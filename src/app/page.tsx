@@ -1,12 +1,12 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { BrandLogos } from "@/components/BrandLogos";
-import { Testimonials } from "@/components/Testimonials";
-import { DashboardPreview } from "@/components/DashboardPreview";
-import { AuditCTA } from "@/components/AuditCTA";
-import { Features } from "@/components/Features";
-import { FeatureStack } from "@/components/FeatureStack";
-import { FAQ, FinalStats, BottomCTA } from "@/components/FooterSections";
+import { Navbar } from "@/components/Navbar/Navbar";
+import { Hero } from "@/components/Hero/Hero";
+import { BrandLogos } from "@/components/BrandLogos/BrandLogos";
+import { Testimonials } from "@/components/Testimonials/Testimonials";
+import { DashboardPreview } from "@/components/DashboardPreview/DashboardPreview";
+import { AuditCTA } from "@/components/AuditCTA/AuditCTA";
+import { Features } from "@/components/Features/Features";
+import { FeatureStack } from "@/components/FeatureStack/FeatureStack";
+import { FAQ, FinalStats, BottomCTA } from "@/components/FooterSections/FooterSections";
 
 export default function Home() {
   return (
