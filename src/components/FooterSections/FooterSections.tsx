@@ -31,22 +31,22 @@ export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-32 bg-white">
+    <section className="py-32 bg-black">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-display mb-6">Frequently Asked Questions</h2>
-          <p className="text-slate-500 font-body">Everything you need to know about Ryze's autonomous growth platform.</p>
+          <h2 className="text-4xl md:text-5xl font-display mb-6 text-white">Frequently Asked Questions</h2>
+          <p className="text-neutral-400 font-body">Everything you need to know about Ryze's autonomous growth platform.</p>
         </div>
 
         <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-slate-200 rounded-2xl overflow-hidden">
+            <div key={i} className="border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
+                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-neutral-900 transition-colors"
               >
-                <span className="font-display font-semibold text-slate-900">{faq.question}</span>
-                {openIndex === i ? <Minus size={18} /> : <Plus size={18} />}
+                <span className="font-display font-semibold text-white">{faq.question}</span>
+                {openIndex === i ? <Minus size={18} className="text-neutral-400" /> : <Plus size={18} className="text-neutral-400" />}
               </button>
               <AnimatePresence>
                 {openIndex === i && (
@@ -56,7 +56,7 @@ export const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-8 pb-8 pt-2 text-slate-600 font-body leading-relaxed">
+                    <div className="px-8 pb-8 pt-2 text-neutral-300 font-body leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -72,8 +72,8 @@ export const FAQ = () => {
 
 export const FinalStats = () => {
   return (
-    <section className="py-32 bg-slate-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-30" />
+    <section className="py-32 bg-black text-white relative overflow-hidden border-t border-neutral-900">
+      <div className="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent opacity-40" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-3 gap-16 text-center">
@@ -83,7 +83,7 @@ export const FinalStats = () => {
             viewport={{ once: true }}
           >
             <div className="text-5xl md:text-7xl font-display mb-4 text-accent">$250M+</div>
-            <p className="text-slate-400 uppercase tracking-widest text-xs font-bold">Ad Spend Managed</p>
+            <p className="text-neutral-500 uppercase tracking-widest text-xs font-bold">Ad Spend Managed</p>
           </motion.div>
           
           <motion.div
@@ -93,7 +93,7 @@ export const FinalStats = () => {
             transition={{ delay: 0.1 }}
           >
             <div className="text-5xl md:text-7xl font-display mb-4 text-accent">2,000+</div>
-            <p className="text-slate-400 uppercase tracking-widest text-xs font-bold">Scale-ups & Agencies</p>
+            <p className="text-neutral-500 uppercase tracking-widest text-xs font-bold">Scale-ups & Agencies</p>
           </motion.div>
           
           <motion.div
@@ -106,7 +106,7 @@ export const FinalStats = () => {
                <Star className="w-10 h-10 fill-accent text-accent" />
                <div className="text-5xl md:text-7xl font-display text-white">4.8/5</div>
             </div>
-            <p className="text-slate-400 uppercase tracking-widest text-xs font-bold">Trustpilot Rating</p>
+            <p className="text-neutral-500 uppercase tracking-widest text-xs font-bold">Trustpilot Rating</p>
           </motion.div>
         </div>
       </div>
@@ -116,9 +116,9 @@ export const FinalStats = () => {
 
 export const BottomCTA = () => {
   return (
-    <section className="py-32 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50" />
-      
+    <section className="py-32 bg-black relative overflow-hidden border-t border-neutral-900">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/10 to-transparent opacity-60" />
+
       <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -129,9 +129,9 @@ export const BottomCTA = () => {
           <h2 className="text-5xl md:text-7xl font-display text-white leading-tight">
             Stop losing customers to your <span className="italic">competitors</span>
           </h2>
-          
+
           <div className="flex flex-col items-center gap-8">
-            <button className="bg-white text-primary rounded-full px-12 py-6 text-lg font-bold font-display uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-3">
+            <button className="bg-white text-black rounded-full px-12 py-6 text-lg font-bold font-display uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-3">
               Run growth audit
               <ArrowRight size={24} />
             </button>

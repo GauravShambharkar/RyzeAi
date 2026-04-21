@@ -5,118 +5,136 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Star } from "lucide-react";
 
-const testimonials = [
+type Item = {
+  kind: "text" | "image";
+  text: string;
+  author: string;
+  title: string;
+  metric?: string;
+  image?: string;
+  span?: string; // grid span classes applied at lg
+};
+
+/* Bento layout (4-col grid, 3 rows):
+   [T] [T] [IMG 2col]
+   [IMG 2col] [T] [T]
+   [T] [IMG 2col] [T]
+*/
+const items: Item[] = [
   {
-    text: "These AI-driven ads outperform human optimization by a huge margin. We've seen a +63% increase in revenue in just 90 days.",
+    kind: "text",
+    text: "These AI-driven ads outperform human optimization by a huge margin. +63% revenue in 90 days.",
     author: "Alex Rivers",
     title: "Growth Lead @ Spectrum",
     metric: "+63% Revenue",
-    type: "twitter"
   },
   {
+    kind: "text",
     text: "Ryze is remarkably speedy. The autonomous SEO agent started ranking our keywords faster than any agency we've ever worked with.",
     author: "Sarah Chen",
     title: "Product Manager @ Openpay",
     metric: "#1 Ranking",
-    type: "quote"
   },
   {
-    text: "The website builder created a high-converting landing page in minutes. It feels like magic to see it optimize in real-time.",
+    kind: "image",
+    text: "Standing on stage at SaaStr telling the story of how Ryze took our CAC from $180 to $62 in a single quarter.",
     author: "Marcus Vogel",
     title: "Founder @ Calyx",
-    metric: "4.8/5 Trustpilot",
-    type: "trustpilot"
+    image: "/WallOfLove/StagedSpeech.avif",
+    span: "md:col-span-2 lg:col-span-2",
   },
   {
-    text: "Literally the only tool that actually delivers on the 'AI Agent' promise. It doesn't just suggest, it executes.",
+    kind: "image",
+    text: "Our whole growth team moved to Ryze last April. One tool replaced three. Nothing we've ever shipped has made this much of a dent.",
     author: "Jessica Lam",
     title: "Head of Marketing @ FinTech",
-    metric: "10x Efficency",
-    type: "twitter"
+    image: "/WallOfLove/GrpImage.avif",
+    span: "md:col-span-2 lg:col-span-2",
   },
   {
-    text: "The transparency is what sold us. Seeing every bid adjustment and the reasoning behind it builds total trust.",
+    kind: "text",
+    text: "The transparency sold us. Every bid adjustment, every reasoning — it's all there. Total trust.",
     author: "David Knight",
     title: "CMO @ RetailFlow",
     metric: "-40% CPA",
-    type: "quote"
   },
   {
-    text: "We replaced three different apps with Ryze. It runs our entire front-of-funnel on autopilot.",
+    kind: "text",
+    text: "Replaced three different apps with Ryze. It runs our entire front-of-funnel on autopilot.",
     author: "Elena Rossi",
     title: "E-commerce Director",
     metric: "3.5x ROI",
-    type: "trustpilot"
-  }
+  },
+  {
+    kind: "text",
+    text: "The website builder shipped a high-converting landing page in minutes. Watching it optimize in real-time feels like magic.",
+    author: "Priya Patel",
+    title: "VP Growth @ Lumen",
+    metric: "4.8/5 Trustpilot",
+  },
+  {
+    kind: "image",
+    text: "The only tool that actually delivers on the 'AI Agent' promise. It doesn't just suggest — it executes.",
+    author: "James Ortiz",
+    title: "Founder @ Northline",
+    image: "/WallOfLove/slfee.avif",
+    span: "md:col-span-2 lg:col-span-2",
+  },
+  {
+    kind: "text",
+    text: "We finally have a marketing team that works while we sleep. 24/7 optimization with zero meetings.",
+    author: "Nora Ahmed",
+    title: "COO @ Kinly",
+    metric: "2.1x Pipeline",
+  },
 ];
-
-const XIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
 
 export const Testimonials = () => {
   return (
-    <section className="py-32 bg-[#f9fafb] relative overflow-hidden">
-      {/* Background Pixel Art - subtle corner decor */}
-      <div className="absolute left-[-150px] top-[10%] opacity-[0.03] rotate-[-15deg] pointer-events-none scale-150">
+    <section className="py-32 bg-black relative overflow-hidden">
+      {/* Ambient corner decor */}
+      <div className="absolute left-[-150px] top-[8%] opacity-[0.04] rotate-[-15deg] pointer-events-none scale-150">
         <Image src="/PixelArt/lambDancing.png" alt="" width={800} height={800} />
       </div>
+      <div className="absolute -top-40 right-[-10%] w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
-          <motion.h2 
+        {/* Heading */}
+        <div className="text-center mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Wall of Love
+          </motion.div>
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-display text-slate-900 mb-6"
+            className="text-4xl md:text-6xl font-display text-white mb-5 leading-[1.05]"
           >
-            Wall of Love ❤️
+            Loved by teams <span className="italic">that ship</span>
           </motion.h2>
-          <p className="text-slate-500 font-body max-w-2xl mx-auto text-lg leading-relaxed">
-            Real results from businesses scaling with autonomous AI. No fluff, just performance.
+          <p className="text-neutral-400 font-body max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+            Real results from founders, growth leads, and CMOs scaling with autonomous AI.
           </p>
         </div>
 
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-          {testimonials.map((t, i) => (
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 auto-rows-[minmax(280px,1fr)]">
+          {items.map((t, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="break-inside-avoid bg-white border border-slate-200 p-8 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:border-primary/20 transition-all duration-300"
+              transition={{ delay: (i % 3) * 0.06, duration: 0.5 }}
+              className={t.span ?? ""}
             >
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              
-              <p className="text-slate-800 leading-relaxed font-body text-[15px] mb-8">
-                "{t.text}"
-              </p>
-              
-              <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-                <div className="flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-display text-slate-400 text-xs">
-                      {t.author.charAt(0)}
-                   </div>
-                   <div>
-                     <p className="text-sm font-bold text-slate-900">{t.author}</p>
-                     <p className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">{t.title}</p>
-                   </div>
-                </div>
-                {t.type === 'twitter' ? (
-                  <XIcon />
-                ) : (
-                  <div className="bg-emerald-50 text-emerald-600 px-2 py-1 rounded text-[9px] font-bold uppercase tracking-widest">
-                    {t.metric}
-                  </div>
-                )}
-              </div>
+              {t.kind === "text" ? <TextCard {...t} /> : <ImageCard {...t} />}
             </motion.div>
           ))}
         </div>
@@ -124,3 +142,88 @@ export const Testimonials = () => {
     </section>
   );
 };
+
+/* ───────────────────────────── Cards ───────────────────────────── */
+
+const TextCard = ({ text, author, title, metric }: Item) => (
+  <div className="h-full flex flex-col gap-5 p-6 md:p-7 rounded-2xl bg-neutral-950 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/60 transition-colors duration-300">
+    <div className="flex gap-0.5">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+      ))}
+    </div>
+
+    <p className="text-neutral-200 leading-relaxed font-body text-[15px] flex-1">
+      "{text}"
+    </p>
+
+    <div className="flex items-center justify-between pt-5 border-t border-neutral-800">
+      <AuthorBlock author={author} title={title} />
+      {metric && (
+        <span className="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded text-[9px] font-semibold uppercase tracking-widest whitespace-nowrap">
+          {metric}
+        </span>
+      )}
+    </div>
+  </div>
+);
+
+const ImageCard = ({ text, author, title, image }: Item) => (
+  <div className="h-full relative rounded-2xl overflow-hidden border border-neutral-800 group">
+    {/* Photo */}
+    <Image
+      src={image!}
+      alt={author}
+      fill
+      sizes="(max-width: 768px) 100vw, 50vw"
+      className="object-cover scale-100 group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
+    />
+
+    {/* Readability gradient */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/10" />
+
+    {/* Content */}
+    <div className="relative h-full flex flex-col justify-between p-6 md:p-7">
+      {/* Top badge */}
+      <div className="flex items-center justify-between">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[10px] font-semibold uppercase tracking-widest text-white">
+          <span className="w-1 h-1 rounded-full bg-emerald-400" />
+          Customer story
+        </div>
+        <div className="flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+          ))}
+        </div>
+      </div>
+
+      {/* Quote + author at bottom */}
+      <div className="space-y-4">
+        <p className="text-white font-display text-xl md:text-[22px] leading-[1.3] drop-shadow-md">
+          "{text}"
+        </p>
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-[11px] font-semibold text-white">
+            {author.charAt(0)}
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white">{author}</p>
+            <p className="text-[11px] text-white/70 uppercase tracking-wider">{title}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const AuthorBlock = ({ author, title }: { author: string; title: string }) => (
+  <div className="flex items-center gap-3 min-w-0">
+    <div className="w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center font-display text-neutral-500 text-xs shrink-0">
+      {author.charAt(0)}
+    </div>
+    <div className="min-w-0">
+      <p className="text-sm font-semibold text-white truncate">{author}</p>
+      <p className="text-[11px] text-neutral-500 uppercase tracking-wider truncate">{title}</p>
+    </div>
+  </div>
+);

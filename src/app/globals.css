@@ -2,22 +2,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 210 14% 17%;
-  --primary: 210 14% 17%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 184 5% 55%;
+  --background: 0 0% 4%;
+  --foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 60%;
   --accent: 239 84% 67%;
   --accent-foreground: 0 0% 100%;
-  --border: 0 0% 90%;
+  --border: 0 0% 15%;
   --ring: 239 84% 67%;
   --radius: 0.5rem;
   --font-display: 'Instrument Serif', serif;
   --font-body: 'Inter', sans-serif;
-  --shadow-dashboard: 0 25px 80px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-dashboard: 0 25px 80px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 @theme {
@@ -56,4 +56,9 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
+}
+
+
+body{
+  background-color: black;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -13,6 +13,8 @@ const brands = [
 ];
 
 export const BrandLogos = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <section className="py-20 border-y border-border/50 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -25,12 +27,16 @@ export const BrandLogos = () => {
           <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
 
-          <div className="flex overflow-hidden group">
+          <div
+            className="flex overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <motion.div
               className="flex gap-20 items-center whitespace-nowrap flex-shrink-0"
               animate={{ x: ["0%", "-50%"] }}
               transition={{
-                duration: 20,
+                duration: isHovered ? 60 : 20,
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -38,14 +44,14 @@ export const BrandLogos = () => {
               {[...brands, ...brands].map((brand, i) => (
                 <div
                   key={i}
-                  className="relative h-8 md:h-10 w-[160px] md:w-[200px] shrink-0 opacity-50 hover:opacity-100 transition-opacity"
+                  className="relative h-8 md:h-10 w-[160px] md:w-[200px] shrink-0 opacity-60 hover:opacity-100 transition-opacity"
                 >
                   <Image
                     src={brand.src}
                     alt={brand.name}
                     fill
                     sizes="200px"
-                    className="object-contain select-none"
+                    className="object-contain select-none invert brightness-200"
                     draggable={false}
                   />
                 </div>

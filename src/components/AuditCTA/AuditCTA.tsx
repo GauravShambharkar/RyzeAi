@@ -59,39 +59,39 @@ export const AuditCTA = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-white text-slate-900 p-8 md:p-12 rounded-[2rem] shadow-2xl relative"
+            className="bg-neutral-950 text-white p-8 md:p-12 rounded-[2rem] shadow-2xl shadow-black/60 border border-neutral-800 relative"
           >
             {/* Subtle floating pixel art decor */}
             <div className="absolute -top-10 -right-10 w-24 h-24 rotate-12 hidden md:block">
-               <Image src="/PixelArt/pettingLamb.png" alt="" width={100} height={100} className="drop-shadow-2xl" />
+              <Image src="/PixelArt/pettingLamb.png" alt="" width={100} height={100} className="drop-shadow-2xl" />
             </div>
 
             <form className="space-y-6">
               <div>
-                <label className="block text-[10px] font-bold mb-2 font-display uppercase tracking-[0.2em] text-slate-400">Work Email</label>
+                <label className="block text-[10px] font-bold mb-2 font-display uppercase tracking-[0.2em] text-neutral-500">Work Email</label>
                 <input
                   type="email"
                   placeholder="name@company.com"
-                  className="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-body"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-[10px] font-bold mb-2 font-display uppercase tracking-[0.2em] text-slate-400">Website URL (Optional)</label>
-                <input
-                  type="url"
-                  placeholder="https://yoursite.com"
-                  className="w-full bg-slate-50 border border-slate-100 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-body"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all font-body text-white placeholder:text-neutral-600"
                 />
               </div>
 
-              <button className="w-full bg-primary text-primary-foreground rounded-xl py-5 font-bold font-display uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-primary/95 transition-all group">
+              <div>
+                <label className="block text-[10px] font-bold mb-2 font-display uppercase tracking-[0.2em] text-neutral-500">Website URL (Optional)</label>
+                <input
+                  type="url"
+                  placeholder="https://yoursite.com"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-accent/30 transition-all font-body text-white placeholder:text-neutral-600"
+                />
+              </div>
+
+              <button className="w-full bg-white text-black rounded-xl py-5 font-bold font-display uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/90 transition-all group">
                 Run audit
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </form>
-            
-            <p className="mt-8 text-center text-[10px] text-slate-400 font-body leading-relaxed flex items-center justify-center gap-2">
+
+            <p className="mt-8 text-center text-[10px] text-neutral-500 font-body leading-relaxed flex items-center justify-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Audit delivered to your inbox within 24 hours.
             </p>

@@ -16,7 +16,8 @@ export const Hero = () => {
           className="object-cover brightness-85"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20" />
+        {/* Bottom fade — image dissolves into the black section below */}
+        <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent from-90% to-black to-100%" />
       </div>
 
       {/* Content Wrapper */}
@@ -36,9 +37,9 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-5xl text-white md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-tight max-w-4xl drop-shadow-sm"
+          className="font-display text-5xl text-white md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-tighter max-w-4xl drop-shadow-sm"
         >
-          AI runs your <span className="italic">ads, SEO,</span> and website
+          AI runs your <span className="italic">ads, </span> <span className="text-blue-500 mix-blend-screen italic">SEO, </span> <br /> and website
         </motion.h1>
 
         {/* 3. Subheadline */}

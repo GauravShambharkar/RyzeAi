@@ -54,11 +54,11 @@ const stackItems = [
 
 export const FeatureStack = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20 text-center">
-          <h2 className="text-3xl md:text-5xl font-display mb-6">Everything built for <span className="italic">performance</span></h2>
-          <p className="text-muted-foreground font-body max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-display mb-6 text-white">Everything built for <span className="italic">performance</span></h2>
+          <p className="text-neutral-400 font-body max-w-2xl mx-auto">
             Our specialized agents handle every aspect of your growth stack, from creative production to technical optimization.
           </p>
         </div>
@@ -71,13 +71,13 @@ export const FeatureStack = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-3xl bg-secondary/10 border border-border/50 hover:bg-secondary/20 transition-all group flex flex-col"
+              className="p-8 rounded-3xl bg-neutral-950 border border-neutral-800 hover:bg-neutral-900 transition-all group flex flex-col"
             >
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${item.color} group-hover:scale-110 transition-transform`}>
                 {item.icon}
               </div>
-              <h3 className="text-xl font-display mb-3">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-body">{item.description}</p>
+              <h3 className="text-xl font-display mb-3 text-white">{item.title}</h3>
+              <p className="text-sm text-neutral-400 leading-relaxed font-body">{item.description}</p>
             </motion.div>
           ))}
         </div>
