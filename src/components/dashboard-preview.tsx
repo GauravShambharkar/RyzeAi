@@ -29,9 +29,9 @@ export const DashboardPreview = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="mt-8 w-full max-w-6xl px-4 lg:px-0"
+      className="w-full max-w-6xl px-4 lg:px-0"
     >
-      <div className="rounded-2xl overflow-hidden p-2 md:p-3 lg:p-4 backdrop-blur-xl bg-white/10 border border-white/20 shadow-dashboard">
+      <div className="rounded-2xl absolute top-138 right-30 left-30 overflow-hidden p-2 md:p-3 lg:p-4 backdrop-blur-xl bg-white/10 border border-white/20 shadow-dashboard">
         <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-border/50 overflow-hidden flex flex-col min-h-[500px] lg:min-h-[600px] text-[11px] select-none pointer-events-none">
           {/* Browser Top Bar (Tabs) */}
           <div className="h-7 bg-[#e5e7eb]/80 backdrop-blur-sm border-b border-border/50 flex items-center px-3 gap-2">

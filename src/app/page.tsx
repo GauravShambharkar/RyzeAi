@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { DashboardPreview } from "@/components/dashboard-preview";
 
 export default function Home() {
   return (
@@ -10,6 +11,9 @@ export default function Home() {
       {/* Hero Section */}
       <main className="flex-1">
         <Hero />
+        <section className="min-h-screen flex items-center justify-center bg-background">
+          <DashboardPreview />
+        </section>
       </main>
     </div>
   );

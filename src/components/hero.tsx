@@ -4,11 +4,9 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
-import { DashboardPreview } from "./dashboard-preview";
-
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center pt-24 md:pt-32 lg:pt-40">
+    <section className="relative h-screen flex flex-col items-center pt-24 md:pt-32 lg:pt-40 overflow-hidden">
       {/* Background Image (Pixel Art) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
@@ -67,9 +65,6 @@ export const Hero = () => {
             <Play className="h-4 w-4 fill-foreground text-foreground ml-0.5 group-hover:scale-110 transition-transform" />
           </button>
         </motion.div>
-
-        {/* 5. Dashboard Preview */}
-        <DashboardPreview />
       </div>
     </section>
   );
