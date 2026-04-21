@@ -1,19 +1,50 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { BrandLogos } from "@/components/brand-logos";
+import { Testimonials } from "@/components/testimonials";
 import { DashboardPreview } from "@/components/dashboard-preview";
+import { AuditCTA } from "@/components/audit-cta";
+import { Features } from "@/components/features";
+import { FeatureStack } from "@/components/feature-stack";
+import { FAQ, FinalStats, BottomCTA } from "@/components/footer-sections";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background selection:bg-accent/30 selection:text-accent-foreground relative">
-      {/* Navbar stays fixed as per its own component logic */}
       <Navbar />
-      
-      {/* Hero Section */}
+
       <main className="flex-1">
+        {/* 1. HERO SECTION */}
         <Hero />
-        <section className="min-h-screen flex items-center justify-center bg-background">
+
+        {/* 2. DASHBOARD PREVIEW (Peeking) */}
+        <section className="relative z-20 -mt-[100px] md:-mt-[140px] px-6 md:px-10 max-w-7xl mx-auto flex justify-center">
           <DashboardPreview />
         </section>
+
+        {/* 3. TESTIMONIALS / WALL OF LOVE */}
+        <Testimonials />
+
+        {/* 4. BRAND COLLABORATIONS */}
+        <BrandLogos />
+
+        {/* 5. LEAD GENERATION CTA */}
+        <AuditCTA />
+
+        {/* 6 & 7. FEATURES & BENEFITS */}
+        <Features />
+
+        {/* 8 & 9. FULL FEATURE STACK & ENTERPRISE */}
+        <FeatureStack />
+
+        {/* 10. FAQ SECTION */}
+        <FAQ />
+
+        {/* 11. FINAL SOCIAL PROOF / STATS */}
+        <FinalStats />
+
+        {/* 12. FINAL CTA (BOTTOM) */}
+        <BottomCTA />
       </main>
     </div>
   );

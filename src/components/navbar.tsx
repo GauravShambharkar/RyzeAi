@@ -5,10 +5,10 @@ import { Plus } from "lucide-react";
 
 export const Navbar = () => {
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 lg:px-20">
+    <nav className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 lg:px-20">
       <div className="max-w-[1400px] border border-white/20 bg-white/10 backdrop-blur-md mx-auto p-2 rounded-full pl-6 pr-2 flex items-center justify-between shadow-lg shadow-black/5">
         {/* Left: Logo */}
-        <div className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
+        <div className="flex items-center gap-2 text-xl font-bold tracking-tight text-white">
           <span className="hidden sm:inline">Ryze.ai</span>
         </div>
 
