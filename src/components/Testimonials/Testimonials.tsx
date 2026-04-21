@@ -93,7 +93,7 @@ export const Testimonials = () => {
   return (
     <section className="py-32 relative overflow-hidden">
       {/* Ambient corner decor */}
-      <div className="absolute left-[-150px] top-[8%] opacity-[0.04] rotate-[-15deg] pointer-events-none scale-150">
+      <div className="absolute left-0 right-0 top-0 opacity-[0.14] pointer-events-none">
         <Image src="/PixelArt/lambDancing.png" alt="" width={800} height={800} />
       </div>
       <div className="absolute -top-40 right-[-10%] w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
@@ -176,11 +176,11 @@ const ImageCard = ({ text, author, title, image }: Item) => (
       alt={author}
       fill
       sizes="(max-width: 768px) 100vw, 50vw"
-      className="object-cover scale-100 group-hover:scale-105 transition-transform duration-[1200ms] ease-out brightness-[1.7] contrast-105 saturate-125"
+      className="object-cover scale-100 group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
     />
 
-    {/* Readability gradient — soft, only darkens the very bottom for text legibility */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+    {/* Readability gradient — only the bottom darkens for quote legibility */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
     {/* Content */}
     <div className="relative h-full flex flex-col justify-between p-6 md:p-7">
