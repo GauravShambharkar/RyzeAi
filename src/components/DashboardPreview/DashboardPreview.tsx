@@ -118,17 +118,51 @@ export const DashboardPreview = () => {
           93%      { transform: translateY(0); }
           100%     { transform: translateY(0); }
         }
+        /* Cursor grabs the scrollbar thumb, drags it, releases — then hides.
+           Drag segments use the same cubic-bezier as dashScroll/dashThumb, so
+           the cursor top exactly tracks the thumb as it moves. */
         @keyframes cursorCycle {
-          0% { opacity: 0; left: 50%; top: 50%; }
-          5% { opacity: 1; left: 50%; top: 50%; }
-          15% { left: 30px; top: 180px; }
-          18% { scale: 0.8; }
-          20% { scale: 1; }
-          40% { left: 400px; top: 300px; }
-          45% { scale: 0.8; }
-          48% { scale: 1; }
-          80% { opacity: 1; }
-          100% { opacity: 0; }
+          /* Idle — hidden, staged at thumb top */
+          0%, 3%   { opacity: 0; left: calc(100% - 28px); top: 210px; scale: 1; }
+
+          /* Click 1 + drag down: thumb 0 → 90 (scroll 5% → 12%) */
+          4%       { opacity: 1; left: calc(100% - 28px); top: 210px; scale: 1; }
+          5%       { opacity: 1; left: calc(100% - 28px); top: 210px; scale: 0.8; }
+          12%      { opacity: 1; left: calc(100% - 28px); top: 300px; scale: 0.8; }
+          13%      { opacity: 1; left: calc(100% - 28px); top: 300px; scale: 1; }
+          15%      { opacity: 0; left: calc(100% - 28px); top: 300px; scale: 1; }
+
+          /* Reposition while hidden, then drag down: 90 → 188 (22% → 30%) */
+          20%      { opacity: 0; left: calc(100% - 28px); top: 300px; scale: 1; }
+          21%      { opacity: 1; left: calc(100% - 28px); top: 300px; scale: 1; }
+          22%      { opacity: 1; left: calc(100% - 28px); top: 300px; scale: 0.8; }
+          30%      { opacity: 1; left: calc(100% - 28px); top: 398px; scale: 0.8; }
+          31%      { opacity: 1; left: calc(100% - 28px); top: 398px; scale: 1; }
+          33%      { opacity: 0; left: calc(100% - 28px); top: 398px; scale: 1; }
+
+          /* Drag down: 188 → 296 (42% → 50%) */
+          40%      { opacity: 0; left: calc(100% - 28px); top: 398px; scale: 1; }
+          41%      { opacity: 1; left: calc(100% - 28px); top: 398px; scale: 1; }
+          42%      { opacity: 1; left: calc(100% - 28px); top: 398px; scale: 0.8; }
+          50%      { opacity: 1; left: calc(100% - 28px); top: 506px; scale: 0.8; }
+          51%      { opacity: 1; left: calc(100% - 28px); top: 506px; scale: 1; }
+          53%      { opacity: 0; left: calc(100% - 28px); top: 506px; scale: 1; }
+
+          /* Drag UP: 296 → 156 (62% → 72%) */
+          60%      { opacity: 0; left: calc(100% - 28px); top: 506px; scale: 1; }
+          61%      { opacity: 1; left: calc(100% - 28px); top: 506px; scale: 1; }
+          62%      { opacity: 1; left: calc(100% - 28px); top: 506px; scale: 0.8; }
+          72%      { opacity: 1; left: calc(100% - 28px); top: 366px; scale: 0.8; }
+          73%      { opacity: 1; left: calc(100% - 28px); top: 366px; scale: 1; }
+          75%      { opacity: 0; left: calc(100% - 28px); top: 366px; scale: 1; }
+
+          /* Drag to top: 156 → 0 (82% → 92%) */
+          80%      { opacity: 0; left: calc(100% - 28px); top: 366px; scale: 1; }
+          81%      { opacity: 1; left: calc(100% - 28px); top: 366px; scale: 1; }
+          82%      { opacity: 1; left: calc(100% - 28px); top: 366px; scale: 0.8; }
+          92%      { opacity: 1; left: calc(100% - 28px); top: 210px; scale: 0.8; }
+          93%      { opacity: 1; left: calc(100% - 28px); top: 210px; scale: 1; }
+          95%, 100%{ opacity: 0; left: calc(100% - 28px); top: 210px; scale: 1; }
         }
         @keyframes monitoringPop {
           0%, 18% { opacity: 0; transform: scale(0.95) translateY(10px); pointer-events: none; }
@@ -155,7 +189,7 @@ export const DashboardPreview = () => {
                 onClick={() => setActiveTab("dashboard")}
               />
               <BrowserTab
-                label="SEO Optimizer"
+                label="SEO Analytics"
                 active={activeTab === "seo"}
                 onClick={() => setActiveTab("seo")}
               />
@@ -459,7 +493,7 @@ export const DashboardPreview = () => {
           <div className="absolute inset-0 pointer-events-none z-[100]">
             <div
               className="absolute z-[110]"
-              style={{ animation: "cursorCycle 25s ease-in-out infinite" }}
+              style={{ animation: "cursorCycle 24s cubic-bezier(0.45, 0, 0.25, 1) infinite" }}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="white" stroke="black" strokeWidth="1.5">
                 <path d="M5 3l14 8-6 2-4 6z" />

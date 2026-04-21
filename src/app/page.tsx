@@ -1,12 +1,13 @@
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Hero } from "@/components/Hero/Hero";
-import { BrandLogos } from "@/components/BrandLogos/BrandLogos";
+import { PressCoverage } from "@/components/PressCoverage/PressCoverage";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { DashboardPreview } from "@/components/DashboardPreview/DashboardPreview";
 import { AuditCTA } from "@/components/AuditCTA/AuditCTA";
 import { Features } from "@/components/Features/Features";
 import { FeatureStack } from "@/components/FeatureStack/FeatureStack";
 import { FAQ, FinalStats, BottomCTA } from "@/components/FooterSections/FooterSections";
+import { Press_Coverage } from "@/components/Press_Coverage/Press_Coverage";
 
 export default function Home() {
   return (
@@ -25,8 +26,9 @@ export default function Home() {
         {/* 3. TESTIMONIALS / WALL OF LOVE */}
         <Testimonials />
 
-        {/* 4. BRAND COLLABORATIONS */}
-        <BrandLogos />
+        {/* 4. PRESS & COVERAGE */}
+        {/* <PressCoverage /> */}
+        <Press_Coverage />
 
         {/* 5. LEAD GENERATION CTA */}
         <AuditCTA />
@@ -39,9 +41,6 @@ export default function Home() {
 
         {/* 10. FAQ SECTION */}
         <FAQ />
-
-        {/* 11. FINAL SOCIAL PROOF / STATS */}
-        <FinalStats />
 
         {/* 12. FINAL CTA (BOTTOM) */}
         <BottomCTA />

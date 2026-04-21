@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Cpu, Search, Layout, BarChart, Zap, ShieldCheck, Globe } from "lucide-react";
 
@@ -50,16 +51,25 @@ export const Features = () => {
     <section className="py-32 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Growth engine
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-display mb-6 text-white"
+            className="text-4xl md:text-6xl font-display mb-6 text-white leading-[1.05]"
           >
-            Autonomous Growth Engine
+            Autonomous agents, <span className="italic">compounding results</span>
           </motion.h2>
-          <p className="text-neutral-400 font-body max-w-2xl mx-auto text-lg lowercase">
-            Harness the power of AI agents dedicated to your success.
+          <p className="text-neutral-400 font-body max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            Three always-on AI agents covering the full funnel &mdash; ads, SEO, and site &mdash; learning from every click.
           </p>
         </div>
 
@@ -103,19 +113,35 @@ export const Features = () => {
               </div>
             </div>
 
-            <div className="relative aspect-square">
-              <div className="absolute inset-0 bg-accent/10 rounded-full blur-[100px]" />
-              <div className="relative h-full flex items-center justify-center">
-                 {/* This could be a complex illustration or a pixel art mascot */}
-                 <div className="animate-float">
-                   <div className="w-64 h-64 bg-white/5 backdrop-blur-3xl rounded-3xl border border-white/10 flex items-center justify-center p-8 shadow-2xl relative">
-                      <div className="absolute -top-12 -right-12 w-24 h-24 rotate-12">
-                          {/* Pixel Art Petting Lamb */}
-                          <img src="/PixelArt/pettingLamb.png" alt="Ryze Asset" className="w-full h-full object-contain drop-shadow-lg" />
-                      </div>
-                      <BarChart className="w-32 h-32 text-white/20" />
-                   </div>
-                 </div>
+            {/* Pixel-art editorial showcase — nurturing growth, visualized */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-accent/10 rounded-[2.5rem] blur-[80px] pointer-events-none" />
+              <div className="relative animate-float rounded-3xl overflow-hidden border border-white/10 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)] group">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/PixelArt/lambGettingPet.png"
+                    alt="A caretaker cradling a lamb — autonomous agents nurturing your growth"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 500px"
+                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
+                  />
+                  {/* Bottom scrim for caption legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                  {/* Floating stat badge — top-right */}
+                  <div className="absolute top-5 right-5 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Always on
+                  </div>
+                  {/* Caption */}
+                  <div className="absolute bottom-6 left-6 right-6 space-y-1.5">
+                    <p className="text-white font-display text-xl md:text-2xl leading-tight drop-shadow-md">
+                      Nurturing your growth, <span className="italic">24/7</span>
+                    </p>
+                    <p className="text-white/70 text-[12px] font-body uppercase tracking-[0.2em]">
+                      Agents running while you sleep
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

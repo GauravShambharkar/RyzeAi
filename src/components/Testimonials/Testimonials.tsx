@@ -92,9 +92,20 @@ const items: Item[] = [
 export const Testimonials = () => {
   return (
     <section className="py-32 relative overflow-hidden">
-      {/* Ambient corner decor */}
-      <div className="absolute left-0 right-0 top-0 opacity-[0.14] pointer-events-none">
-        <Image src="/PixelArt/lambDancing.png" alt="" width={800} height={800} />
+      {/* Full-cover pixel-art backdrop */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/PixelArt/lambDancing.png"
+          alt=""
+          fill
+          sizes="100vw"
+          priority={false}
+          className="object-cover"
+        />
+        {/* Legibility wash — lets the pixel art breathe while keeping cards readable */}
+        <div className="absolute inset-0 bg-black/55" />
+        {/* Edge vignette — fades top/bottom into the page so the section blends seamlessly */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
       <div className="absolute -top-40 right-[-10%] w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -146,7 +157,7 @@ export const Testimonials = () => {
 /* ───────────────────────────── Cards ───────────────────────────── */
 
 const TextCard = ({ text, author, title, metric }: Item) => (
-  <div className="h-full flex flex-col gap-5 p-6 md:p-7 rounded-2xl bg-neutral-950 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/60 transition-colors duration-300">
+  <div className="h-full flex flex-col gap-5 p-6 md:p-7 bg-neutral-950/85 backdrop-blur-xl border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/60 transition-colors duration-300">
     <div className="flex gap-0.5">
       {[...Array(5)].map((_, i) => (
         <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -160,7 +171,7 @@ const TextCard = ({ text, author, title, metric }: Item) => (
     <div className="flex items-center justify-between pt-5 border-t border-neutral-800">
       <AuthorBlock author={author} title={title} />
       {metric && (
-        <span className="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded text-[9px] font-semibold uppercase tracking-widest whitespace-nowrap">
+        <span className="bg-emerald-500/10 text-emerald-400 px-2 py-1 text-[9px] font-semibold uppercase tracking-widest whitespace-nowrap">
           {metric}
         </span>
       )}
@@ -169,7 +180,7 @@ const TextCard = ({ text, author, title, metric }: Item) => (
 );
 
 const ImageCard = ({ text, author, title, image }: Item) => (
-  <div className="h-full relative rounded-2xl overflow-hidden border border-neutral-800 group">
+  <div className="h-full relative overflow-hidden border border-neutral-800 group">
     {/* Photo */}
     <Image
       src={image!}
