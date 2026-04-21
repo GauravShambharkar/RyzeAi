@@ -34,7 +34,7 @@ export const FAQ = () => {
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       {/* Corner pixel-art ornament — pastoral calm */}
-      
+
 
       <div className="max-w-3xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -62,8 +62,8 @@ export const FAQ = () => {
               <div
                 key={i}
                 className={`relative border-b transition-colors ${isOpen
-                    ? "bg-neutral-950 border-neutral-800"
-                    : "border-neutral-900 hover:bg-neutral-950/60"
+                  ? "bg-neutral-950 border-neutral-800"
+                  : "border-neutral-900 hover:bg-neutral-950/60"
                   }`}
               >
                 {/* Editorial left accent on active */}
@@ -236,11 +236,11 @@ export const BottomCTA = () => {
 
           {/* CTA stack */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
-            <button className="group bg-white text-black rounded-full px-10 py-5 text-base font-bold font-display uppercase tracking-[0.15em] transition-all hover:shadow-[0_20px_60px_-10px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 flex items-center gap-3">
+            <button className="group bg-white text-black px-8 py-3.5 text-sm font-bold font-display uppercase tracking-[0.15em] transition-all hover:shadow-[0_20px_60px_-10px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 flex items-center gap-3">
               Run my free audit
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="group rounded-full px-8 py-5 text-base font-semibold font-display uppercase tracking-[0.15em] text-white/90 border border-white/20 backdrop-blur-md bg-white/5 hover:bg-white/10 transition-colors flex items-center gap-2">
+            <button className="group px-6 py-3.5 text-sm font-semibold font-display uppercase tracking-[0.15em] text-white/90 border border-white/20 backdrop-blur-md bg-white/5 hover:bg-white/10 transition-colors flex items-center gap-2">
               <Sparkles size={16} className="text-emerald-400" />
               See sample report
             </button>
