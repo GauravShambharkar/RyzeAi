@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=VT323&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -15,10 +15,11 @@
   --border: 0 0% 15%;
   --ring: 239 84% 67%;
   --radius: 0.5rem;
-  --font-display: 'Instrument Serif', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-pixel: 'VT323', ui-monospace, monospace;
-  --shadow-dashboard: 0 25px 80px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --font-display: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+  --font-pixel: "VT323", ui-monospace, monospace;
+  --shadow-dashboard:
+    0 25px 80px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 @theme {
@@ -34,15 +35,15 @@
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-border: hsl(var(--border));
   --color-ring: hsl(var(--ring));
-  
+
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-pixel: var(--font-pixel);
-  
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  
+
   --shadow-dashboard: var(--shadow-dashboard);
 }
 
@@ -60,7 +61,44 @@
   }
 }
 
-
-body{
+body {
   background-color: #080808;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Thin, emerald-on-hover scrollbar — matches the chat aesthetic. */
+.scrollbar-chat {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.scrollbar-chat::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-chat::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-chat::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  transition: background-color 200ms ease;
+}
+
+.scrollbar-chat::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+.scrollbar-chat::-webkit-scrollbar-thumb:active {
+  background: rgba(16, 185, 129, 0.6);
 }
