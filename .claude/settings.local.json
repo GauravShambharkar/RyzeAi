@@ -1,8 +1,5 @@
 {
   "permissions": {
-    "allow": [
-      "Bash(git mv *)",
-      "Bash(npx tsc *)"
-    ]
+    "allow": ["Bash(git mv *)", "Bash(npx tsc *)"]
   }
 }

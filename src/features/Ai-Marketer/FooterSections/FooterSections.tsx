@@ -42,7 +42,7 @@ export const FAQ = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1  bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             FAQ
@@ -190,7 +190,7 @@ export const FinalStats = () => {
 
 export const BottomCTA = () => {
   return (
-    <section className="relative overflow-hidden bg-black border-t border-neutral-900">
+    <section className="relative overflow-hidden bg-black  border-neutral-900">
       {/* Full-bleed pixel-art backdrop — dancing lamb = joy of shipping */}
       <div className="absolute inset-0 pointer-events-none">
         <Image

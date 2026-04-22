@@ -3,68 +3,99 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  Zap,
-  BarChart3,
-  Target,
-  FileSearch,
-  PenTool,
-  Users,
-  ShieldCheck,
-  LineChart,
-} from "lucide-react";
+import { Zap, Users, ShieldCheck } from "lucide-react";
 
-const stackItems = [
+type Accent = {
+  text: string;
+  bar: string;
+};
+
+type Card = {
+  id: string;
+  tag: string;
+  title: string;
+  description: string;
+  accent: Accent;
+  metric: { label: string; value: string };
+  colSpan: string; // literal Tailwind class so JIT picks it up
+};
+
+// Bento layout — zig-zag asymmetry across 12 cols:
+// [ 01 span-8 ][ 02 span-4 ]
+// [ 03 span-5 ][ 04 span-7 ]
+// [ 05 span-7 ][ 06 span-5 ]
+const cards: Card[] = [
   {
+    id: "01",
+    tag: "Forecast",
     title: "Predictive Modeling",
-    icon: <BarChart3 className="w-6 h-6" />,
-    description: "AI forecasts performance before you spend a single dollar.",
-    color: "bg-blue-500/10 text-blue-500"
+    description: "Agents simulate campaign performance before a single dollar is spent.",
+    accent: { text: "text-blue-400", bar: "bg-blue-500" },
+    metric: { label: "Confidence", value: "94.2%" },
+    colSpan: "md:col-span-8",
   },
   {
+    id: "02",
+    tag: "Creative",
     title: "Custom Ad Creatives",
-    icon: <PenTool className="w-6 h-6" />,
-    description: "High-converting visual assets generated in seconds.",
-    color: "bg-purple-500/10 text-purple-500"
+    description: "Visual assets generated from your brand kit in seconds.",
+    accent: { text: "text-purple-400", bar: "bg-purple-500" },
+    metric: { label: "Generated", value: "1,284" },
+    colSpan: "md:col-span-4",
   },
   {
-    title: "Technical SEO",
-    icon: <FileSearch className="w-6 h-6" />,
-    description: "Autonomous crawling and fixing of indexation issues.",
-    color: "bg-amber-500/10 text-amber-500"
+    id: "03",
+    tag: "Technical",
+    title: "Autonomous SEO",
+    description: "Crawl, diagnose, and fix indexation issues — hands-off.",
+    accent: { text: "text-amber-400", bar: "bg-amber-500" },
+    metric: { label: "Uptime", value: "99.97%" },
+    colSpan: "md:col-span-5",
   },
   {
-    title: "Content Gen",
-    icon: <PenTool className="w-6 h-6" />,
-    description: "SEO-optimized articles and landing page copy that ranks.",
-    color: "bg-emerald-500/10 text-emerald-500"
+    id: "04",
+    tag: "Copy",
+    title: "Content Generation",
+    description: "SEO-ready articles and landing-page copy tuned to your audience.",
+    accent: { text: "text-emerald-400", bar: "bg-emerald-500" },
+    metric: { label: "Avg rank lift", value: "+4.1" },
+    colSpan: "md:col-span-7",
   },
   {
+    id: "05",
+    tag: "Analytics",
     title: "Real-time Reporting",
-    icon: <LineChart className="w-6 h-6" />,
-    description: "Live dashboard with deep insights into every metric.",
-    color: "bg-rose-500/10 text-rose-500"
+    description: "Live dashboard streaming every metric that moves the needle.",
+    accent: { text: "text-rose-400", bar: "bg-rose-500" },
+    metric: { label: "Events / sec", value: "12.4K" },
+    colSpan: "md:col-span-7",
   },
   {
-    title: "Conversion Optimization",
-    icon: <Target className="w-6 h-6" />,
-    description: "A/B testing running automatically on your website.",
-    color: "bg-cyan-500/10 text-cyan-500"
-  }
+    id: "06",
+    tag: "Optimize",
+    title: "Conversion Tests",
+    description: "Automated A/B experiments — winners ship themselves.",
+    accent: { text: "text-cyan-400", bar: "bg-cyan-500" },
+    metric: { label: "Avg lift", value: "+18.6%" },
+    colSpan: "md:col-span-5",
+  },
 ];
+
+// ─────────── Main component ───────────
 
 export const FeatureStack = () => {
   return (
     <section className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
         <div className="mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-1.5 h-1.5 bg-emerald-500 animate-pulse" />
             Full stack
           </motion.div>
           <h2 className="text-3xl md:text-5xl font-display mb-5 text-white leading-[1.05]">
@@ -75,28 +106,52 @@ export const FeatureStack = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-32">
-          {stackItems.map((item, i) => (
-            <motion.div
-              key={i}
+        {/* Bento grid — hairline dividers, zig-zag spans */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-neutral-800 border border-neutral-800 mb-32">
+          {cards.map((card, i) => (
+            <motion.article
+              key={card.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-3xl bg-neutral-950 border border-neutral-800 hover:bg-neutral-900 transition-all group flex flex-col"
+              transition={{ delay: i * 0.06 }}
+              className={`group relative bg-neutral-950 p-6 transition-colors duration-300 hover:bg-neutral-900 flex flex-col ${card.colSpan}`}
             >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${item.color} group-hover:scale-110 transition-transform`}>
-                {item.icon}
+              {/* Meta — id + tag */}
+              <div className="flex items-center gap-2.5 text-[9px] font-mono uppercase tracking-[0.22em] text-neutral-500 mb-5">
+                <span className="tabular-nums text-neutral-600">{card.id}</span>
+                <span className="w-3 h-px bg-white/15" />
+                <span className={card.accent.text}>{card.tag}</span>
               </div>
-              <h3 className="text-xl font-display mb-3 text-white">{item.title}</h3>
-              <p className="text-sm text-neutral-400 leading-relaxed font-body">{item.description}</p>
-            </motion.div>
+
+              {/* Title + description */}
+              <h3 className="text-base md:text-lg font-display text-white mb-1.5 tracking-tight leading-tight">
+                {card.title}
+              </h3>
+              <p className="text-[12px] text-neutral-400 leading-relaxed font-body max-w-sm">
+                {card.description}
+              </p>
+
+              {/* Metric — pinned to bottom */}
+              <div className="flex items-baseline justify-between mt-auto pt-8">
+                <span className="text-[9px] font-mono uppercase tracking-[0.22em] text-neutral-500">
+                  {card.metric.label}
+                </span>
+                <span className={`text-[13px] font-mono font-semibold tabular-nums ${card.accent.text}`}>
+                  {card.metric.value}
+                </span>
+              </div>
+
+              {/* Accent bar — sweeps in on hover from left */}
+              <span
+                className={`absolute left-0 right-0 bottom-0 h-px ${card.accent.bar} origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out`}
+              />
+            </motion.article>
           ))}
         </div>
 
         {/* Enterprise Section — monumental statue backdrop = enduring reliability */}
-        <div className="relative rounded-[3rem] overflow-hidden group">
-          {/* Pixel-art monument backdrop */}
+        <div className="relative overflow-hidden group">
           <Image
             src="/PixelArt/Gemini_Generated_Image_o1xa64o1xa64o1xa.png"
             alt=""
@@ -104,13 +159,11 @@ export const FeatureStack = () => {
             sizes="100vw"
             className="object-cover"
           />
-          {/* Layered washes — keep art visible, text fully readable */}
-          {/* <div className="absolute inset-0 bg-black/70" /> */}
           <div className="absolute inset-0 bg-linear-to-r from-black via-black/75 to-black/30" />
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-accent/25 rounded-full blur-[100px] group-hover:blur-[120px] transition-all" />
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-accent/25 blur-[100px] group-hover:blur-[120px] transition-all" />
 
           <div className="relative z-10 max-w-3xl p-12 md:p-20 text-white">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold uppercase tracking-[0.2em] text-white mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold uppercase tracking-[0.2em] text-white mb-8">
               <Zap className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
               Scale edition
             </div>
@@ -137,10 +190,10 @@ export const FeatureStack = () => {
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
-              <button className="bg-white text-black rounded-full px-7 py-3.5 text-sm font-bold font-display uppercase tracking-[0.15em] hover:shadow-[0_20px_60px_-10px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all">
+              <button className="bg-white text-black px-7 py-3.5 text-sm font-bold font-display uppercase tracking-[0.15em] hover:shadow-[0_20px_60px_-10px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all">
                 Get enterprise access
               </button>
-              <button className="bg-white/5 backdrop-blur-md border border-white/15 text-white rounded-full px-7 py-3.5 text-sm font-bold font-display uppercase tracking-[0.15em] hover:bg-white/10 transition-colors">
+              <button className="bg-white/5 backdrop-blur-md border border-white/15 text-white px-7 py-3.5 text-sm font-bold font-display uppercase tracking-[0.15em] hover:bg-white/10 transition-colors">
                 View case studies
               </button>
             </div>

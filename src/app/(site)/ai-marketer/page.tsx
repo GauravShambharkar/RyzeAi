@@ -31,10 +31,10 @@ export default function AiMarketerPage() {
         <AuditCTA />
 
         {/* 6 & 7. FEATURES & BENEFITS */}
-        {/* <Features /> */}
+        <Features />
 
         {/* 8 & 9. FULL FEATURE STACK & ENTERPRISE */}
-        {/* <FeatureStack /> */}
+        <FeatureStack />
 
         {/* 10. FAQ SECTION */}
         <FAQ />
