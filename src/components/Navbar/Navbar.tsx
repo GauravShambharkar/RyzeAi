@@ -14,8 +14,8 @@ export const Navbar = () => {
 
         {/* Right: Nav Links */}
         <div className="hidden md:flex items-center gap-8">
-          <NavLink label="Home" active />
-          <NavLink label="AI Marketer" />
+          {/* <NavLink label="Home" active /> */}
+          <NavLink label="AI Marketer" active/>
           <NavLink label="MCP" />
         </div>
 
