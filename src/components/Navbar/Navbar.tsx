@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const NAV_LINKS = [
   { label: "AI Marketer", href: "/ai-marketer" },
   { label: "MCP", href: "/mcp" },
+  { label: "SEO Agent", href: "/seo-agent" },
 ] as const;
 
 export const Navbar = () => {
