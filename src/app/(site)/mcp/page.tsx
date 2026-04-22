@@ -1,9 +1,9 @@
-import { Mcp_Hero } from "@/features/mcp/hero";
-import { FeatureTrio } from "@/features/mcp/FeatureTrio";
-import { ConnectorShowcase } from "@/features/mcp/ConnectorShowcase";
-import { Integrations } from "@/features/mcp/Integrations";
-import { SetupGuide } from "@/features/mcp/SetupGuide";
-import { ResultsCTA } from "@/features/mcp/ResultsCTA";
+import { Mcp_Hero } from "@/features/mcp/components/hero";
+import { FeatureTrio } from "@/features/mcp/components/FeatureTrio";
+import { ConnectorShowcase } from "@/features/mcp/components/ConnectorShowcase";
+import { Integrations } from "@/features/mcp/components/Integrations";
+import { SetupGuide } from "@/features/mcp/components/SetupGuide";
+import { ResultsCTA } from "@/features/mcp/components/ResultsCTA";
 
 export default function McpPage() {
   return (
