@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { label: "AI Marketer", href: "/" },
+  { label: "AI Marketer", href: "/ai-marketer" },
   { label: "MCP", href: "/mcp" },
 ] as const;
 
@@ -52,11 +52,10 @@ const NavLink = ({
 }) => (
   <Link
     href={href}
-    className={`relative text-sm transition-colors after:absolute after:left-0 after:-bottom-1 after:h-px after:bg-white after:transition-all ${
-      active
+    className={`relative text-sm transition-colors after:absolute after:left-0 after:-bottom-1 after:h-px after:bg-white after:transition-all ${active
         ? "text-white font-medium after:w-full"
         : "text-white/70 hover:text-white after:w-0 hover:after:w-full"
-    }`}
+      }`}
   >
     {label}
   </Link>
