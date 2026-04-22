@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Lock } from "lucide-react";
+import { Lock, Loader2 } from "lucide-react";
 import { useLogin } from "@/features/seo-agent/hooks/login.hook";
 
 export const Login = () => {
@@ -13,6 +13,7 @@ export const Login = () => {
         error,
         authed,
         ready,
+        isSubmitting,
         setEmail,
         setPassword,
         handleSubmit,
@@ -55,7 +56,8 @@ export const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@company.com"
-                                className="w-full bg-black/60 border border-white/10 px-3.5 py-2.5 text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 transition-colors placeholder:text-neutral-700"
+                                disabled={isSubmitting}
+                                className="w-full bg-black/60 border border-white/10 px-3.5 py-2.5 text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 transition-colors placeholder:text-neutral-700 disabled:opacity-60"
                                 required
                             />
                         </div>
@@ -68,7 +70,8 @@ export const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="w-full bg-black/60 border border-white/10 px-3.5 py-2.5 text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 transition-colors placeholder:text-neutral-700"
+                                disabled={isSubmitting}
+                                className="w-full bg-black/60 border border-white/10 px-3.5 py-2.5 text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 transition-colors placeholder:text-neutral-700 disabled:opacity-60"
                                 required
                             />
                         </div>
@@ -82,9 +85,17 @@ export const Login = () => {
 
                         <button
                             type="submit"
-                            className="w-full bg-white text-black py-2.5 text-sm font-semibold hover:bg-neutral-200 hover:-translate-y-px transition-all"
+                            disabled={isSubmitting}
+                            className="w-full bg-white text-black py-2.5 text-sm font-semibold hover:bg-neutral-200 hover:-translate-y-px transition-all disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
                         >
-                            Sign in
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                    Signing in...
+                                </>
+                            ) : (
+                                "Sign in"
+                            )}
                         </button>
                     </form>
                 </div>

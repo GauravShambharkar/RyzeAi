@@ -6,6 +6,7 @@ import { useEffect, useState, type FormEvent } from "react";
 const VALID_EMAIL = process.env.EMAIL_ID || "admin@ryze.ai";
 const VALID_PASSWORD = process.env.PASSWORD || "ryze2026";
 const STORAGE_KEY = "ryze:seo-agent:auth";
+const SUBMIT_DELAY_MS = 800;
 
 type StoredCreds = { email: string; password: string };
 
@@ -15,6 +16,7 @@ export const useLogin = () => {
     const [error, setError] = useState<string | null>(null);
     const [authed, setAuthed] = useState(false);
     const [ready, setReady] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Restore session from localStorage on mount
     useEffect(() => {
@@ -41,17 +43,26 @@ export const useLogin = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+        if (isSubmitting) return;
+
+        setError(null);
+        setIsSubmitting(true);
+
         const cleanEmail = email.trim().toLowerCase();
-        if (cleanEmail === VALID_EMAIL && password === VALID_PASSWORD) {
-            setError(null);
-            setAuthed(true);
-            window.localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify({ email: cleanEmail, password })
-            );
-        } else {
-            setError("Incorrect email or password.");
-        }
+
+        // Simulated latency — swap for a real API call later.
+        setTimeout(() => {
+            if (cleanEmail === VALID_EMAIL && password === VALID_PASSWORD) {
+                setAuthed(true);
+                window.localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify({ email: cleanEmail, password })
+                );
+            } else {
+                setError("Incorrect email or password.");
+            }
+            setIsSubmitting(false);
+        }, SUBMIT_DELAY_MS);
     };
 
     const handleLogout = () => {
@@ -70,6 +81,7 @@ export const useLogin = () => {
         error,
         authed,
         ready,
+        isSubmitting,
         setEmail,
         setPassword,
         handleSubmit,
