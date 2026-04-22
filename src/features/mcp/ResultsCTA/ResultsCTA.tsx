@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -33,8 +34,23 @@ const STATS: StatGroup[] = [
 
 export const ResultsCTA = () => {
   return (
-    <section className="relative py-24 md:py-32">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-20">
+    <section className="relative py-16 md:py-20 overflow-hidden">
+      {/* Pixel-art backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/PixelArt/Gemini_Generated_Image_o1xa64o1xa64o1xa.png"
+          alt=""
+          fill
+          className="object-cover opacity-25"
+          sizes="100vw"
+        />
+        {/* Top-to-bottom darkening so text stays readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020502] via-[#020502]/70 to-[#020502]/90" />
+        {/* Warm orange wash on the CTA side */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(227,90,50,0.18),transparent_55%)]" />
+      </div>
+
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 lg:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-5">
           {/* Left — live results */}
           <motion.div
@@ -44,38 +60,40 @@ export const ResultsCTA = () => {
             transition={{ duration: 0.5 }}
             className="border border-white/10 bg-white/[0.02] p-8 md:p-10"
           >
-            <div className="flex items-baseline justify-between">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+                <div className="font-pixel text-sm tracking-[0.2em] text-white/50 uppercase">
                   Live results
                 </div>
-                <h3 className="mt-2 font-display text-3xl md:text-4xl text-white">
+                <h3 className="mt-1 font-display text-2xl md:text-3xl text-white leading-tight">
                   Across{" "}
-                  <span className="text-[#e35a32]">2,000+ clients</span>
+                  <span className="font-pixel text-[#e35a32] text-3xl md:text-4xl">
+                    2,000+ clients
+                  </span>
                 </h3>
               </div>
-              <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 text-[10px] text-emerald-300">
-                <span className="h-1.5 w-1.5 bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 font-pixel text-xs text-emerald-300 tracking-wider whitespace-nowrap">
+                <span className="h-1 w-1 bg-emerald-400 animate-pulse" />
                 All systems ok
               </div>
             </div>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-8 space-y-5">
               {STATS.map((g) => (
                 <div key={g.group}>
-                  <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-3">
+                  <div className="font-pixel text-sm uppercase tracking-[0.25em] text-[#e35a32] mb-2">
                     {g.group}
                   </div>
                   <div className="divide-y divide-white/5 border-t border-white/5">
                     {g.rows.map((r) => (
                       <div
                         key={r.label}
-                        className="flex items-center justify-between py-3"
+                        className="flex items-center justify-between py-2.5"
                       >
                         <span className="text-sm text-white/60">
                           {r.label}
                         </span>
-                        <span className="font-mono text-white text-base">
+                        <span className="font-pixel text-white text-xl leading-none">
                           {r.value}
                         </span>
                       </div>
@@ -85,7 +103,7 @@ export const ResultsCTA = () => {
               ))}
             </div>
 
-            <div className="mt-8 pt-4 border-t border-white/5 text-[11px] text-white/40 font-mono">
+            <div className="mt-8 pt-4 border-t border-white/5 font-pixel text-sm text-white/40 tracking-wider">
               Last updated: Apr 21, 2026
             </div>
           </motion.div>
@@ -111,33 +129,33 @@ export const ResultsCTA = () => {
             />
 
             <div className="relative">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-[#e35a32]">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#e35a32]">
                 Final step
               </div>
-              <h3 className="mt-3 font-display text-4xl md:text-5xl lg:text-6xl text-white leading-[1.02] tracking-tight max-w-md">
+              <h3 className="mt-2 font-display text-3xl md:text-4xl lg:text-5xl text-white leading-[1.02] tracking-tight max-w-md">
                 Connect Claude to your Ads
               </h3>
-              <p className="mt-5 text-sm md:text-base text-white/60 max-w-md leading-relaxed">
+              <p className="mt-3 text-sm text-white/60 max-w-md leading-relaxed">
                 Get your dedicated MCP server. Connect Claude, ChatGPT, or
                 Cursor to Google Ads, Meta Ads, and Google Analytics.
               </p>
 
               <form
                 onSubmit={(e) => e.preventDefault()}
-                className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md"
+                className="mt-5 flex flex-col sm:flex-row gap-2 max-w-md"
               >
                 <input
                   type="email"
                   placeholder="work@email.com"
-                  className="flex-1 bg-white/5 border border-white/15 backdrop-blur-sm px-5 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#e35a32]/50"
+                  className="flex-1 bg-white/5 border border-white/15 backdrop-blur-sm px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#e35a32]/50"
                 />
-                <button className="group inline-flex items-center justify-center gap-1.5 bg-[#e35a32] text-white px-6 py-3 text-sm font-medium hover:bg-[#f06a3f] transition-colors">
+                <button className="group inline-flex items-center justify-center gap-1.5 bg-[#e35a32] text-white px-5 py-2.5 text-sm font-medium hover:bg-[#f06a3f] transition-colors">
                   Get MCP access
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </form>
 
-              <div className="mt-6 text-[11px] text-white/40">
+              <div className="mt-4 text-[10px] text-white/40">
                 Free to start · No card required
               </div>
             </div>
