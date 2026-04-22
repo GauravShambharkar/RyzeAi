@@ -1,19 +1,16 @@
-import { Navbar } from "@/components/Navbar/Navbar";
-import { Hero } from "@/components/Hero/Hero";
-import { PressCoverage } from "@/components/PressCoverage/PressCoverage";
-import { Testimonials } from "@/components/Testimonials/Testimonials";
-import { DashboardPreview } from "@/components/DashboardPreview/DashboardPreview";
-import { AuditCTA } from "@/components/AuditCTA/AuditCTA";
-import { Features } from "@/components/Features/Features";
-import { FeatureStack } from "@/components/FeatureStack/FeatureStack";
-import { FAQ, FinalStats, BottomCTA } from "@/components/FooterSections/FooterSections";
-import { Press_Coverage } from "@/components/Press_Coverage/Press_Coverage";
+import { Hero } from "@/features/Ai-Marketer/Hero";
+import { PressCoverage } from "@/features/Ai-Marketer/PressCoverage";
+import { Testimonials } from "@/features/Ai-Marketer/Testimonials";
+import { DashboardPreview } from "@/features/Ai-Marketer/DashboardPreview";
+import { AuditCTA } from "@/features/Ai-Marketer/AuditCTA";
+import { Features } from "@/features/Ai-Marketer/Features";
+import { FeatureStack } from "@/features/Ai-Marketer/FeatureStack";
+import { FAQ, FinalStats, BottomCTA } from "@/features/Ai-Marketer/FooterSections";
+import { Press_Coverage } from "@/features/Ai-Marketer/Press_Coverage";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background selection:bg-accent/30 selection:text-accent-foreground relative">
-      <Navbar />
-
       <main className="flex-1">
         {/* 1. HERO SECTION */}
         <Hero />

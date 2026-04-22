@@ -1,9 +1,17 @@
 "use client";
 
 import React from "react";
-import { Plus } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const NAV_LINKS = [
+  { label: "AI Marketer", href: "/" },
+  { label: "MCP", href: "/mcp" },
+] as const;
 
 export const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 lg:px-20">
       <div className="max-w-[1400px] border border-white/20 bg-white/10 backdrop-blur-md mx-auto p-2 pl-6 pr-2 flex items-center justify-between shadow-lg shadow-black/5">
@@ -14,9 +22,14 @@ export const Navbar = () => {
 
         {/* Right: Nav Links */}
         <div className="hidden md:flex items-center gap-8">
-          {/* <NavLink label="Home" active /> */}
-          <NavLink label="AI Marketer" active/>
-          <NavLink label="MCP" />
+          {NAV_LINKS.map(({ label, href }) => (
+            <NavLink
+              key={href}
+              label={label}
+              href={href}
+              active={pathname === href}
+            />
+          ))}
         </div>
 
         {/* CTA Button */}
@@ -28,14 +41,23 @@ export const Navbar = () => {
   );
 };
 
-const NavLink = ({ label, active = false }: { label: string; active?: boolean }) => (
-  <a
-    href="#"
-    className={`text-sm transition-colors ${active
-      ? "text-white font-medium"
-      : "text-white hover:text-white"
-      }`}
+const NavLink = ({
+  label,
+  href,
+  active,
+}: {
+  label: string;
+  href: string;
+  active: boolean;
+}) => (
+  <Link
+    href={href}
+    className={`relative text-sm transition-colors after:absolute after:left-0 after:-bottom-1 after:h-px after:bg-white after:transition-all ${
+      active
+        ? "text-white font-medium after:w-full"
+        : "text-white/70 hover:text-white after:w-0 hover:after:w-full"
+    }`}
   >
     {label}
-  </a>
+  </Link>
 );

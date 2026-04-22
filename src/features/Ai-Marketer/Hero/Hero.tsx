@@ -16,10 +16,10 @@ export const Hero = () => {
           className="object-cover brightness-85"
           priority
         />
-        {/* Top fade — image emerges from black at the top */}
-        <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-black from-0% to-transparent to-10%" />
-        {/* Bottom fade — image dissolves into the black section below */}
-        <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent from-70% to-black to-100%" />
+        {/* Top fade — image emerges from #020502 at the top */}
+        <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#020502] from-0% to-transparent to-10%" />
+        {/* Bottom fade — image dissolves into the #020502 section below */}
+        <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent from-70% to-[#020502] to-100%" />
       </div>
 
       {/* Content Wrapper */}
