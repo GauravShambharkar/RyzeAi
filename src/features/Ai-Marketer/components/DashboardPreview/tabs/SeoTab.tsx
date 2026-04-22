@@ -22,8 +22,8 @@ export const SeoTab = () => (
   >
     <div className="flex items-center justify-between">
       <Header title="SEO Strategy & Execution" subtitle="ryze.ai · scanned 2 min ago" />
-      <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-600 px-2.5 py-1 rounded-md text-[11px] font-semibold border border-emerald-500/20">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/100 animate-pulse" />
+      <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-700 px-2.5 py-1 rounded-full text-[11px] font-semibold border border-emerald-500/20">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
         Scanning
       </span>
     </div>
@@ -54,10 +54,10 @@ export const SeoTab = () => (
         <div className="h-8" />
       </div>
 
-      <div className="absolute top-0 right-0 h-full w-1.5 bg-neutral-800/60 rounded-full pointer-events-none">
+      <div className="absolute top-0 right-0 h-full w-1.5 bg-black/5 rounded-full pointer-events-none">
         <div
           style={{ animation: "seoThumb 26s cubic-bezier(0.45, 0, 0.25, 1) infinite" }}
-          className="w-full h-[140px] bg-neutral-600/80 rounded-full"
+          className="w-full h-[140px] bg-black/25 rounded-full"
         />
       </div>
     </div>

@@ -32,10 +32,10 @@ export const DashboardTab = () => (
         <div className="h-8" />
       </div>
 
-      <div className="absolute top-0 right-0 h-full w-1.5 bg-neutral-800/60 rounded-full pointer-events-none">
+      <div className="absolute top-0 right-0 h-full w-1.5 bg-black/5 rounded-full pointer-events-none">
         <div
           style={{ animation: "dashThumb 24s cubic-bezier(0.45, 0, 0.25, 1) infinite" }}
-          className="w-full h-[156px] bg-neutral-600/80 rounded-full"
+          className="w-full h-[156px] bg-black/25 rounded-full"
         />
       </div>
     </div>

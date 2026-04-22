@@ -9,7 +9,7 @@ export const TestimonialsHeader = () => (
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 mb-6"
+      className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/5 shadow-sm text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-600 mb-6"
     >
       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
       Wall of Love
@@ -18,11 +18,11 @@ export const TestimonialsHeader = () => (
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-4xl md:text-6xl font-display text-white mb-5 leading-[1.05]"
+      className="text-4xl md:text-6xl font-display text-neutral-900 mb-5 leading-[1.05]"
     >
-      Loved by teams <span className="italic">that ship</span>
+      Loved by teams <span className="italic text-emerald-700">that ship</span>
     </motion.h2>
-    <p className="text-neutral-400 font-body max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+    <p className="text-neutral-600 font-body max-w-xl mx-auto text-base md:text-lg leading-relaxed">
       Real results from founders, growth leads, and CMOs scaling with autonomous AI.
     </p>
   </div>

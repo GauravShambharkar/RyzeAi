@@ -9,13 +9,14 @@ import { TextCard } from "./TextCard";
 import { ImageCard } from "./ImageCard";
 
 export const Testimonials = () => (
-  <section className="py-32 relative overflow-hidden">
+  <section className="py-32 relative overflow-hidden bg-[#FAF7F2]">
     <div className="absolute inset-0 pointer-events-none">
-      <Image src="/PixelArt/lambDancing.png" alt="" fill sizes="100vw" className="object-cover" />
-      <div className="absolute inset-0 bg-black/55" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+      <Image src="/pixelArt2/hoverFloor.png" alt="" fill sizes="100vw" className="object-cover" />
+      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FAF7F2] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#FAF7F2] to-transparent" />
     </div>
-    <div className="absolute -top-40 right-[-10%] w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="absolute -top-40 right-[-10%] w-[500px] h-[500px] bg-emerald-400/15 rounded-full blur-[120px] pointer-events-none" />
 
     <div className="max-w-7xl mx-auto px-6 relative z-10">
       <TestimonialsHeader />

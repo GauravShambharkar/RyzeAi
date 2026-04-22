@@ -6,10 +6,10 @@ type Props = { label: string; score: number };
 export const HealthCard = ({ label, score }: Props) => {
   const tone =
     score >= 90
-      ? { bar: "bg-emerald-500/100", text: "text-emerald-600", tag: "Strong" }
+      ? { bar: "bg-emerald-500", text: "text-emerald-700", tag: "Strong" }
       : score >= 75
-      ? { bar: "bg-amber-400", text: "text-amber-500", tag: "Healthy" }
-      : { bar: "bg-rose-400", text: "text-rose-500", tag: "Needs work" };
+      ? { bar: "bg-amber-400", text: "text-amber-600", tag: "Healthy" }
+      : { bar: "bg-rose-400", text: "text-rose-600", tag: "Needs work" };
 
   return (
     <div className={`${CARD} p-5`}>
@@ -17,8 +17,8 @@ export const HealthCard = ({ label, score }: Props) => {
         <span className={LABEL}>{label}</span>
         <span className={`text-[11px] font-semibold ${tone.text}`}>{tone.tag}</span>
       </div>
-      <div className="text-2xl font-semibold text-white tracking-tight mb-3">{score}%</div>
-      <div className="h-1 bg-neutral-800 rounded-full overflow-hidden">
+      <div className="text-2xl font-semibold text-neutral-900 tracking-tight mb-3">{score}%</div>
+      <div className="h-1.5 bg-neutral-100 rounded-full overflow-hidden">
         <div className={`h-full rounded-full ${tone.bar}`} style={{ width: `${score}%` }} />
       </div>
     </div>

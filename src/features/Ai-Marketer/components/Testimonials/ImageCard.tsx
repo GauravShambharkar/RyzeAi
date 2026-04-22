@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 import type { Testimonial } from "@/features/Ai-Marketer/data/testimonials";
 
 export const ImageCard = ({ text, author, title, image }: Testimonial) => (
-  <div className="h-full relative overflow-hidden border border-neutral-800 group">
+  <div className="h-full relative overflow-hidden rounded-3xl border border-black/5 group shadow-[0_20px_60px_-20px_rgba(20,20,20,0.12)]">
     <Image
       src={image!}
       alt={author}
@@ -13,11 +13,11 @@ export const ImageCard = ({ text, author, title, image }: Testimonial) => (
       className="object-cover scale-100 group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
     />
 
-    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
 
     <div className="relative h-full flex flex-col justify-between p-6 md:p-7">
       <div className="flex items-center justify-between">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[10px] font-semibold uppercase tracking-widest text-white">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[10px] font-semibold uppercase tracking-widest text-white">
           <span className="w-1 h-1 rounded-full bg-emerald-400" />
           Customer story
         </div>
@@ -33,12 +33,12 @@ export const ImageCard = ({ text, author, title, image }: Testimonial) => (
           &quot;{text}&quot;
         </p>
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-[11px] font-semibold text-white">
+          <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-[11px] font-semibold text-white">
             {author.charAt(0)}
           </div>
           <div>
             <p className="text-sm font-semibold text-white">{author}</p>
-            <p className="text-[11px] text-white/70 uppercase tracking-wider">{title}</p>
+            <p className="text-[11px] text-white/80 uppercase tracking-wider">{title}</p>
           </div>
         </div>
       </div>

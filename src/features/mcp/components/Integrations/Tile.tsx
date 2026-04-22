@@ -12,7 +12,7 @@ export const Tile = ({ label, src, invert, side, innerRef }: Props) => (
   <div className="flex flex-col items-center gap-2.5">
     <div
       ref={innerRef}
-      className="relative h-14 w-14 md:h-16 md:w-16 border border-white/10 bg-[#0b0b0b]/90 backdrop-blur-sm flex items-center justify-center p-3"
+      className="relative h-14 w-14 md:h-16 md:w-16 rounded-2xl border border-black/5 bg-white shadow-[0_8px_24px_-8px_rgba(20,20,20,0.12)] flex items-center justify-center p-3"
     >
       <span
         className={`${styles.socket} ${side === "left" ? styles.socketRight : styles.socketLeft}`}
@@ -22,9 +22,9 @@ export const Tile = ({ label, src, invert, side, innerRef }: Props) => (
         alt={label}
         width={64}
         height={64}
-        className={`h-full w-full object-contain ${invert ? "invert brightness-0" : ""}`}
+        className={`h-full w-full object-contain ${invert ? "" : ""}`}
       />
     </div>
-    <span className="text-[11px] md:text-xs text-white/60 text-center leading-tight">{label}</span>
+    <span className="text-[11px] md:text-xs text-neutral-600 text-center leading-tight">{label}</span>
   </div>
 );

@@ -7,11 +7,11 @@ export const MetricCard = ({ label, value, sub, trend, up = false }: Props) => (
   <div className={`${CARD} p-4`}>
     <div className="flex items-center justify-between mb-2">
       <span className={LABEL}>{label}</span>
-      <span className={`text-[11px] font-semibold ${up ? "text-emerald-600" : "text-rose-500"}`}>
+      <span className={`text-[11px] font-semibold ${up ? "text-emerald-700" : "text-rose-600"}`}>
         {trend}
       </span>
     </div>
-    <div className="text-lg font-semibold text-white tracking-tight">{value}</div>
-    <div className="text-[11px] text-neutral-400 mt-0.5">{sub}</div>
+    <div className="text-lg font-semibold text-neutral-900 tracking-tight">{value}</div>
+    <div className="text-[11px] text-neutral-500 mt-0.5">{sub}</div>
   </div>
 );

@@ -12,19 +12,19 @@ export const Integrations = () => {
   const { stageRef, hubRef, leftRefs, rightRefs, size, hub, paths } = useIntegrationsMeasure();
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden bg-[#FAF7F2]">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-20 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="font-display text-3xl md:text-4xl lg:text-5xl text-white tracking-tight"
+          className="font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 tracking-tight"
         >
           Connect any <span className="italic text-[#e35a32]">AI tool</span> with any ad account
         </motion.h2>
 
-        <p className="mt-4 text-sm text-white/50 max-w-md mx-auto">
+        <p className="mt-4 text-sm text-neutral-600 max-w-md mx-auto">
           One MCP hub, routing every request across your stack.
         </p>
 

@@ -13,12 +13,12 @@ export const SafetyPreview = () => (
       {checks.map((c) => (
         <div
           key={c.label}
-          className="flex items-center gap-2.5 border border-white/10 bg-white/[0.03] px-3 py-2"
+          className="flex items-center gap-2.5 rounded-xl border border-black/5 bg-neutral-50 px-3 py-2"
         >
-          <span className="h-5 w-5 flex-shrink-0 bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 flex items-center justify-center">
+          <span className="h-5 w-5 rounded-lg flex-shrink-0 bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 flex items-center justify-center">
             {c.icon}
           </span>
-          <span className="text-[12px] text-white/70">{c.label}</span>
+          <span className="text-[12px] text-neutral-700">{c.label}</span>
         </div>
       ))}
     </div>

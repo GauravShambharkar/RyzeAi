@@ -26,13 +26,13 @@ export const DashboardPreview = () => {
     >
       <ScrollAnimations />
 
-      <div className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 shadow-2xl shadow-black/60 flex flex-col h-[700px]">
+      <div className="relative rounded-[2rem] overflow-hidden bg-neutral-50 border border-black/5 shadow-[0_40px_100px_-24px_rgba(20,20,20,0.18)] flex flex-col h-[700px]">
         <BrowserFrame activeTab={activeTab} onSelectTab={setActiveTab} />
 
         <div className="flex flex-1 overflow-hidden">
           <Sidebar activeTab={activeTab} onSelectTab={setActiveTab} />
 
-          <div className="flex-1 relative overflow-hidden flex flex-col bg-neutral-900">
+          <div className="flex-1 relative overflow-hidden flex flex-col bg-[#FAF7F2]">
             <AnimatePresence mode="wait">
               {activeTab === "dashboard" && <DashboardTab />}
               {activeTab === "seo" && <SeoTab />}

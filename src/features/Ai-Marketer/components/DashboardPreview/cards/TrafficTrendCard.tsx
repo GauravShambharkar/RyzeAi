@@ -18,16 +18,16 @@ export const TrafficTrendCard = () => {
         <div>
           <div className={LABEL}>Organic traffic</div>
           <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-2xl font-semibold text-white tracking-tight">48,200</span>
-            <span className="text-[11px] font-semibold text-emerald-600">+18.4%</span>
+            <span className="text-2xl font-semibold text-neutral-900 tracking-tight">48,200</span>
+            <span className="text-[11px] font-semibold text-emerald-700">+18.4%</span>
           </div>
         </div>
         <div className="flex gap-1">
           {["7d", "30d", "90d"].map((t) => (
             <span
               key={t}
-              className={`text-[11px] px-2 py-0.5 rounded-md font-medium ${
-                t === "30d" ? "bg-black text-white" : "text-neutral-400"
+              className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${
+                t === "30d" ? "bg-neutral-900 text-white" : "text-neutral-500"
               }`}
             >
               {t}
@@ -38,12 +38,12 @@ export const TrafficTrendCard = () => {
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-20" preserveAspectRatio="none">
         <defs>
           <linearGradient id="traffic" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="hsl(239 84% 67%)" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="hsl(239 84% 67%)" stopOpacity="0" />
+            <stop offset="0%" stopColor="hsl(158 64% 40%)" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="hsl(158 64% 40%)" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path d={areaPath} fill="url(#traffic)" />
-        <path d={path} fill="none" stroke="hsl(239 84% 67%)" strokeWidth="1.5" />
+        <path d={path} fill="none" stroke="hsl(158 64% 40%)" strokeWidth="1.5" />
       </svg>
     </div>
   );

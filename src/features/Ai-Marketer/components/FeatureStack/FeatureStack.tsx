@@ -5,11 +5,11 @@ import { StackCard } from "./StackCard";
 import { EnterpriseBlock } from "./EnterpriseBlock";
 
 export const FeatureStack = () => (
-  <section className="py-24 bg-black">
+  <section className="py-24 bg-[#FAF7F2]">
     <div className="max-w-7xl mx-auto px-6">
       <StackHeader />
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-neutral-800 border border-neutral-800 mb-32">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-32">
         {stackCards.map((card, i) => (
           <StackCard key={card.id} card={card} index={i} />
         ))}

@@ -27,15 +27,15 @@ export const FindingRow = ({ finding, index }: Props) => {
       transition={{ delay: 0.1 + index * 0.08 }}
       className="flex items-center gap-4 px-5 py-4"
     >
-      <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${tone.pill} ${tone.tag}`}>
+      <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${tone.pill} ${tone.tag}`}>
         <Icon className="w-4 h-4" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[13px] font-semibold text-white truncate">{finding.label}</p>
+        <p className="text-[13px] font-semibold text-neutral-900 truncate">{finding.label}</p>
         <p className="text-[11px] text-neutral-500 font-mono truncate">{finding.detail}</p>
       </div>
       <div className="text-right shrink-0">
-        <p className="text-[13px] font-mono tabular-nums text-white">{finding.metric}</p>
+        <p className="text-[13px] font-mono tabular-nums text-neutral-900">{finding.metric}</p>
         <p className={`text-[10px] font-semibold uppercase tracking-[0.15em] ${tone.tag}`}>{tone.label}</p>
       </div>
       <span className={`w-1.5 h-8 rounded-full ${tone.dot}`} />

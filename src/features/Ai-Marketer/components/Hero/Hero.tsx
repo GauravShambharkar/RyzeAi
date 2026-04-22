@@ -10,16 +10,17 @@ export const Hero = () => {
       {/* Background Image (Pixel Art) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/PixelArt/brokenPillers.png"
+          src="/pixelArt2/openWorld.png"
           alt="Atmospheric Background"
           fill
-          className="object-cover brightness-85"
+          className="object-cover"
           priority
         />
-        {/* Top fade — image emerges from #020502 at the top */}
-        <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-[#020502] from-0% to-transparent to-10%" />
-        {/* Bottom fade — image dissolves into the #020502 section below */}
-        <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent from-70% to-[#020502] to-100%" />
+        {/* Subtle depth wash so the headline remains legible */}
+        <div className="absolute inset-0 bg-black/20" />
+        {/* Soft edges — blend into the cream body above and below */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FAF7F2] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#FAF7F2] to-transparent" />
       </div>
 
       {/* Content Wrapper */}
@@ -39,9 +40,9 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-5xl text-white md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-tighter max-w-4xl drop-shadow-sm"
+          className="font-display text-5xl text-white md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-tighter max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
         >
-          AI runs your <span className="italic">ads, </span> <span className="text-blue-500 mix-blend-screen italic">SEO, </span> <br /> and website
+          AI runs your <span className="italic">ads, </span> <span className="text-emerald-300 italic">SEO, </span> <br /> and website
         </motion.h1>
 
         {/* 3. Subheadline */}
@@ -49,7 +50,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-center text-xs text-white/70 leading-relaxed md:text-sm max-w-2xl font-body drop-shadow-sm"
+          className="mt-6 text-center text-xs text-white/85 leading-relaxed md:text-sm max-w-2xl font-body drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
         >
           More customers on autopilot — all for our products built for you
         </motion.p>
@@ -65,10 +66,10 @@ export const Hero = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full bg-background/50 backdrop-blur-md border border-border rounded-full px-6 py-4 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
+              className="w-full bg-white/80 backdrop-blur-md border border-black/5 rounded-full px-6 py-4 text-sm font-body text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all shadow-sm"
             />
           </div>
-          <button className="whitespace-nowrap rounded-full bg-foreground text-background px-8 py-4 text-sm font-semibold font-body hover:opacity-90 transition-all shadow-md w-full sm:w-auto">
+          <button className="whitespace-nowrap rounded-full bg-neutral-900 text-white px-8 py-4 text-sm font-semibold font-body hover:bg-neutral-800 transition-all shadow-md w-full sm:w-auto">
             Get started
           </button>
         </motion.div>

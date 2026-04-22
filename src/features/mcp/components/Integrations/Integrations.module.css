@@ -133,14 +133,15 @@
   position: relative;
   width: 72%;
   height: 72%;
-  background: #080202;
+  background: #1a1a1a;
   border: 2px solid #f9a876;
+  border-radius: 14px;
   transform: rotate(45deg);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 0 12px rgba(227, 90, 50, 0.65),
+    0 0 16px rgba(227, 90, 50, 0.6),
     inset 0 0 10px rgba(227, 90, 50, 0.2);
   animation: hubPulse 3.2s ease-in-out infinite;
 }
