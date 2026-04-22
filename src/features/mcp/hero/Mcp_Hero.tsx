@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 const TRUST_LOGOS = [
-  { label: "Google Ads", mark: "GA" },
-  { label: "Meta Ads", mark: "M" },
-  { label: "Google Analytics", mark: "GA4" },
+  { label: "Google Ads", src: "/services/google_ads.avif" },
+  { label: "Meta Ads", src: "/services/meta.avif" },
+  { label: "Google Analytics", src: "/services/google-analytics.svg" },
 ];
 
 export const Mcp_Hero = () => {
@@ -90,10 +90,16 @@ export const Mcp_Hero = () => {
               {TRUST_LOGOS.map((l) => (
                 <div
                   key={l.label}
-                  className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center text-[10px] font-medium text-white/70"
+                  className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center p-1.5"
                   title={l.label}
                 >
-                  {l.mark}
+                  <Image
+                    src={l.src}
+                    alt={l.label}
+                    width={32}
+                    height={32}
+                    className="h-full w-full object-contain"
+                  />
                 </div>
               ))}
             </div>

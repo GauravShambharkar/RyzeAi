@@ -1,25 +1,34 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
-const AI_TOOLS = [
-  { label: "Claude", mark: "C" },
-  { label: "ChatGPT", mark: "G" },
-  { label: "Cursor", mark: "◆" },
+type Logo = { label: string; src: string; invert?: boolean };
+
+const AI_TOOLS: Logo[] = [
+  { label: "Claude", src: "/services/claude_logo.png" },
+  { label: "ChatGPT", src: "/services/ChatGPT-Logo.png", invert: true },
+  { label: "Cursor", src: "/services/cursor-logo.png", invert: true },
 ];
 
-const AD_ACCOUNTS = [
-  { label: "Google Ads", mark: "GA" },
-  { label: "Meta Ads", mark: "M" },
-  { label: "Google Analytics", mark: "GA4" },
+const AD_ACCOUNTS: Logo[] = [
+  { label: "Google Ads", src: "/services/google_ads.avif" },
+  { label: "Meta Ads", src: "/services/meta.avif" },
+  { label: "Google Analytics", src: "/services/google-analytics.svg" },
 ];
 
-const LogoTile = ({ label, mark }: { label: string; mark: string }) => (
+const LogoTile = ({ label, src, invert }: Logo) => (
   <div className="flex flex-col items-center gap-3">
-    <div className="h-16 w-16 border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white/80 text-lg font-medium">
-      {mark}
+    <div className="h-16 w-16 border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center p-3">
+      <Image
+        src={src}
+        alt={label}
+        width={64}
+        height={64}
+        className={`h-full w-full object-contain ${invert ? "invert brightness-0" : ""}`}
+      />
     </div>
     <span className="text-xs text-white/60">{label}</span>
   </div>

@@ -1,15 +1,18 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { MessageSquare, Layers, Zap } from "lucide-react";
+
+type Badge = { label: string; src: string };
 
 type Card = {
   num: string;
   icon: React.ReactNode;
   title: string;
   bullets: { text: string; dot: string }[];
-  badges?: string[];
+  badges?: Badge[];
 };
 
 const CARDS: Card[] = [
@@ -36,7 +39,12 @@ const CARDS: Card[] = [
       },
       { text: "Compare and deduplicate across accounts", dot: "#f472b6" },
     ],
-    badges: ["GA", "M", "GA4", "TT"],
+    badges: [
+      { label: "Google Ads", src: "/services/google_ads.avif" },
+      { label: "Meta", src: "/services/meta.avif" },
+      { label: "Google Analytics", src: "/services/google-analytics.svg" },
+      { label: "TikTok", src: "/services/tiktok.avif" },
+    ],
   },
   {
     num: "03",
@@ -107,10 +115,17 @@ export const FeatureTrio = () => {
                 <div className="mt-6 flex gap-1.5">
                   {c.badges.map((b) => (
                     <span
-                      key={b}
-                      className="h-7 w-7 border border-white/10 bg-black/40 flex items-center justify-center text-[9px] text-white/60 font-medium"
+                      key={b.label}
+                      title={b.label}
+                      className="h-7 w-7 border border-white/10 bg-black/40 flex items-center justify-center p-1"
                     >
-                      {b}
+                      <Image
+                        src={b.src}
+                        alt={b.label}
+                        width={28}
+                        height={28}
+                        className="h-full w-full object-contain"
+                      />
                     </span>
                   ))}
                 </div>
