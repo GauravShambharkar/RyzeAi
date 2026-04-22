@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 const TRUST_LOGOS = [
@@ -12,8 +12,10 @@ const TRUST_LOGOS = [
 ];
 
 export const Mcp_Hero = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section className="relative min-h-screen flex items-center pt-32 md:pt-36 lg:pt-40 pb-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-20 md:pt-24 lg:pt-24 pb-12 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
@@ -27,7 +29,7 @@ export const Mcp_Hero = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(227,90,50,0.18),transparent_60%)]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-[0.85fr_1.5fr] gap-8 lg:gap-10 items-center">
         {/* Left — copy */}
         <div>
           <motion.div
@@ -44,7 +46,7 @@ export const Mcp_Hero = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-white mt-6"
+            className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-white mt-4"
           >
             Connect your ad accounts to{" "}
             <span className="italic text-[#e35a32]">Claude</span> in <br /> 1-click
@@ -54,7 +56,7 @@ export const Mcp_Hero = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 max-w-xl text-sm md:text-base text-white/60 font-body leading-relaxed"
+            className="mt-5 max-w-xl text-sm md:text-base text-white/60 font-body leading-relaxed"
           >
             Analyze and manage your ads, and schedule actions — all from Claude.
           </motion.p>
@@ -82,7 +84,7 @@ export const Mcp_Hero = () => {
           </motion.form>
 
           {/* Trust row */}
-          <div className="mt-10 flex items-center gap-5 text-white/50">
+          <div className="mt-8 flex items-center gap-5 text-white/50">
             <span className="text-[11px] uppercase tracking-[0.2em]">
               Connects to
             </span>
@@ -120,78 +122,25 @@ export const Mcp_Hero = () => {
               <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
               <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
               <span className="ml-3 text-[11px] text-white/40 font-mono">
-                claude.ai / ryze-mcp
+                claude.ai / ryze-mcp · live audit
+              </span>
+              <span className="ml-auto inline-flex items-center gap-1.5 text-[10px] text-emerald-300/80">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Recording
               </span>
             </div>
 
-            {/* Tabs */}
-            <div className="flex gap-1 px-3 pt-3 text-[11px] overflow-x-auto scrollbar-hide">
-              {[
-                "Account Audit",
-                "Weekly Report",
-                "Spend Scheduling",
-                "Budget Optimizer",
-                "Keyword Research",
-              ].map((t, i) => (
-                <span
-                  key={t}
-                  className={`whitespace-nowrap rounded-md px-2.5 py-1.5 border ${i === 0
-                      ? "border-white/15 bg-white/10 text-white"
-                      : "border-transparent text-white/50 hover:text-white/80"
-                    }`}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            {/* Body */}
-            <div className="p-5">
-              {/* prompt line */}
-              <div className="text-[11px] font-mono text-white/40">
-                Ryze AI · MCP · Claude · Google + Meta Ads
-              </div>
-              <p className="mt-3 text-sm text-white/80 leading-relaxed">
-                Run the weekly performance snapshot for all connected ad
-                accounts — deduplicate conversions and flag anything off-pace.
-              </p>
-
-              <button className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[#e35a32] text-white px-4 py-1.5 text-xs font-medium">
-                Continue
-                <ArrowRight className="w-3 h-3" />
-              </button>
-
-              {/* Mini chart */}
-              <div className="mt-6 rounded-lg border border-white/5 bg-black/40 p-4">
-                <div className="flex items-center justify-between text-[11px] text-white/50">
-                  <span>PMax asset group performance</span>
-                  <span className="text-white/30">Last 7d</span>
-                </div>
-                <div className="mt-3 space-y-2">
-                  {[
-                    { label: "Asset grp — Brand", val: 82 },
-                    { label: "Asset grp — Retargeting", val: 61 },
-                    { label: "Asset grp — Non-brand", val: 44 },
-                    { label: "Asset grp — Prospecting", val: 28 },
-                  ].map((r) => (
-                    <div key={r.label} className="flex items-center gap-3">
-                      <span className="text-[10px] text-white/50 w-40 truncate">
-                        {r.label}
-                      </span>
-                      <div className="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-[#e35a32] to-[#f59e6a]"
-                          style={{ width: `${r.val}%` }}
-                        />
-                      </div>
-                      <span className="text-[10px] text-white/60 w-8 text-right">
-                        {r.val}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {/* Product video — replaces the static mock */}
+            <video
+              src="/assets/mcp-hero-audit.webm"
+              autoPlay={!shouldReduceMotion}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Claude running a Google Ads account audit through the Ryze MCP"
+              className="block w-full h-auto bg-[#0b0b0b]"
+            />
           </div>
         </motion.div>
       </div>

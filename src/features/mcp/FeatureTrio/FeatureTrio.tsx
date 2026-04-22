@@ -187,11 +187,10 @@ export const FeatureTrio = () => {
                     </div>
 
                     <h3
-                      className={`mt-6 text-white font-medium ${
-                        isWide
+                      className={`mt-6 text-white font-medium ${isWide
                           ? "font-display text-2xl md:text-3xl leading-[1.1] tracking-tight"
                           : "text-lg leading-snug"
-                      }`}
+                        }`}
                     >
                       {c.title}
                     </h3>
