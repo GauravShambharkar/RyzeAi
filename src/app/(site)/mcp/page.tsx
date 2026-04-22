@@ -4,6 +4,7 @@ import { ConnectorShowcase } from "@/features/mcp/components/ConnectorShowcase";
 import { Integrations } from "@/features/mcp/components/Integrations";
 import { SetupGuide } from "@/features/mcp/components/SetupGuide";
 import { ResultsCTA } from "@/features/mcp/components/ResultsCTA";
+import { Footer } from "@/components/Footer";
 
 export default function McpPage() {
   return (
@@ -16,6 +17,7 @@ export default function McpPage() {
         <SetupGuide />
         <ResultsCTA />
       </main>
+      <Footer />
     </div>
   );
 }

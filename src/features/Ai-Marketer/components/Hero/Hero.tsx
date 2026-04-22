@@ -10,9 +10,10 @@ export const Hero = () => {
       {/* Background Image (Pixel Art) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/pixelArt2/openWorld.png"
+          src="https://i.pinimg.com/control1/1200x/23/73/2b/23732b5be70933055257e69b3c3197a5.jpg"
           alt="Atmospheric Background"
           fill
+          unoptimized
           className="object-cover"
           priority
         />

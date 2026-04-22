@@ -9,6 +9,7 @@ import { FAQ } from "@/features/Ai-Marketer/components/FAQ";
 import { FinalStats } from "@/features/Ai-Marketer/components/FinalStats";
 import { BottomCTA } from "@/features/Ai-Marketer/components/BottomCTA";
 import { Press_Coverage } from "@/features/Ai-Marketer/components/Press_Coverage";
+import { Footer } from "@/components/Footer";
 
 export default function AiMarketerPage() {
   return (
@@ -44,6 +45,7 @@ export default function AiMarketerPage() {
         {/* 12. FINAL CTA (BOTTOM) */}
         <BottomCTA />
       </main>
+      <Footer />
     </div>
   );
 }
