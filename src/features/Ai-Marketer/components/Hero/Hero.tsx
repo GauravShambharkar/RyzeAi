@@ -42,7 +42,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-display text-5xl text-white md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-tighter max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
         >
-          AI runs your <span className="italic">ads, </span> <span className="text-emerald-300 italic">SEO, </span> <br /> and website
+          AI runs your <span className="italic">ads, </span> <span className="text-blue-200 italic">SEO, </span> <br /> and website
         </motion.h1>
 
         {/* 3. Subheadline */}
