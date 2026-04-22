@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/Navbar/Navbar";
 import { GlobalAuthGuard } from "@/components/GlobalAuthGuard";
 import "./globals.css";
 
@@ -17,7 +16,6 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body className=" selection:bg-accent/30 selection:text-accent-foreground">
         <GlobalAuthGuard />
-        <Navbar />
         {children}
       </body>
     </html>

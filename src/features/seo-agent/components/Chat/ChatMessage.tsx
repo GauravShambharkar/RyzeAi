@@ -19,7 +19,7 @@ export const ChatMessage = ({ message }: Props) => {
       <div className="h-8 w-8 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-700 text-xs font-display shrink-0">
         R
       </div>
-      <div className="max-w-[85%] text-sm text-neutral-800 leading-relaxed whitespace-pre-wrap pt-1">
+      <div className="max-w-[55%] text-sm text-neutral-800 leading-relaxed whitespace-pre-wrap pt-1">
         {message.content}
       </div>
     </div>
