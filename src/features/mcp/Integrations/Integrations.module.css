@@ -1,0 +1,174 @@
+/* -----------------------------------------------------------
+   Integrations — measured node-network diagram.
+   SVG paths are computed in JS from real tile / hub positions.
+   This file only defines the visual treatment of each element.
+   ----------------------------------------------------------- */
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- wires ---------- */
+.wire {
+  fill: none;
+  stroke: url(#wire-gradient);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.95;
+}
+
+.wireCore {
+  fill: none;
+  stroke: #fff4e6;
+  stroke-width: 0.75;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.wireHalo {
+  fill: none;
+  stroke: #e35a32;
+  stroke-width: 12;
+  stroke-linecap: round;
+  opacity: 0.16;
+  filter: blur(8px);
+}
+
+/* ---------- travelling data packets ---------- */
+.packet {
+  fill: none;
+  stroke: #ffd9b4;
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* dash pattern is deliberately much larger than any single path length
+     so only one "packet" bead is visible per wire at a time */
+  stroke-dasharray: 3 900;
+  filter: drop-shadow(0 0 8px rgba(255, 217, 180, 1));
+  animation-name: packetFlow;
+  animation-timing-function: cubic-bezier(0.45, 0.02, 0.55, 0.98);
+  animation-iteration-count: infinite;
+}
+
+@keyframes packetFlow {
+  from { stroke-dashoffset: 903; }
+  to   { stroke-dashoffset: 0;   }
+}
+
+.packet-1 { animation-duration: 3.0s; animation-delay: 0.0s; }
+.packet-2 { animation-duration: 3.5s; animation-delay: 0.5s; }
+.packet-3 { animation-duration: 4.0s; animation-delay: 1.0s; }
+.packet-4 { animation-duration: 3.2s; animation-delay: 0.3s; }
+.packet-5 { animation-duration: 3.7s; animation-delay: 0.8s; }
+.packet-6 { animation-duration: 4.2s; animation-delay: 1.3s; }
+
+/* ---------- sonar rings ---------- */
+.sonar {
+  fill: none;
+  stroke: #e35a32;
+  stroke-width: 1.25;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sonar 3.2s ease-out infinite;
+  opacity: 0;
+}
+
+.sonar-2 { animation-delay: 1.6s; }
+
+@keyframes sonar {
+  0%   { transform: scale(0.45); opacity: 0.65; }
+  100% { transform: scale(2.8);  opacity: 0;    }
+}
+
+/* ---------- tile socket (glowing port) ---------- */
+.socket {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff4e6 0%, #e35a32 55%, transparent 75%);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  box-shadow:
+    0 0 6px rgba(255, 244, 230, 0.9),
+    0 0 14px rgba(227, 90, 50, 0.8);
+  animation: socketPulse 2.4s ease-in-out infinite;
+}
+
+.socketRight { right: -5px; }
+.socketLeft  { left: -5px; }
+
+@keyframes socketPulse {
+  0%, 100% { opacity: 0.85; transform: translateY(-50%) scale(1); }
+  50%      { opacity: 1;    transform: translateY(-50%) scale(1.25); }
+}
+
+/* ---------- HUB (rendered as real DOM, not SVG, so it has reliable bounds) ---------- */
+.hubBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+/* ambient glow behind the hub */
+.hubGlowCss {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    circle,
+    rgba(227, 90, 50, 0.6) 0%,
+    rgba(227, 90, 50, 0) 70%
+  );
+  filter: blur(12px);
+  animation: hubGlow 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* rotated diamond "node" */
+.hubDiamond {
+  position: relative;
+  width: 72%;
+  height: 72%;
+  background: #080202;
+  border: 2px solid #f9a876;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 12px rgba(227, 90, 50, 0.65),
+    inset 0 0 10px rgba(227, 90, 50, 0.2);
+  animation: hubPulse 3.2s ease-in-out infinite;
+}
+
+.hubDiamond > svg {
+  transform: rotate(-45deg);
+  filter: drop-shadow(0 0 4px rgba(255, 217, 180, 0.9));
+}
+
+@keyframes hubPulse {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  50%      { transform: rotate(45deg) scale(1.08); }
+}
+
+@keyframes hubGlow {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.95; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 767px) {
+  .canvas { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packet,
+  .hubDiamond,
+  .hubGlowCss,
+  .sonar,
+  .socket { animation: none; }
+}
