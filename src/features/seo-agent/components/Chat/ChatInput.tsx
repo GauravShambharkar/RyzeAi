@@ -2,6 +2,7 @@
 
 import React, { type FormEvent, type KeyboardEvent } from "react";
 import { ArrowUp } from "lucide-react";
+import { DomainSelector } from "./DomainSelector";
 
 type Props = {
   value: string;
@@ -45,10 +46,8 @@ export const ChatInput = ({ value, onChange, onSend, disabled }: Props) => {
           className="w-full resize-none bg-transparent px-4 pt-3 pb-2 text-sm text-white placeholder:text-neutral-500 focus:outline-none min-h-[56px] max-h-52 leading-relaxed scrollbar-chat"
         />
 
-        <div className="flex items-center justify-between px-3 pb-2.5 pt-1">
-          <span className="text-xs text-neutral-500 pl-1">
-            Press Enter to send
-          </span>
+        <div className="flex items-center justify-between gap-3 px-3 pb-2.5 pt-1">
+          <DomainSelector />
           <button
             type="submit"
             disabled={!canSubmit}
