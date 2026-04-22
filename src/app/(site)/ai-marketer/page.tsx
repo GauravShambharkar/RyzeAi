@@ -1,12 +1,14 @@
-import { Hero } from "@/features/Ai-Marketer/Hero";
-import { PressCoverage } from "@/features/Ai-Marketer/PressCoverage";
-import { Testimonials } from "@/features/Ai-Marketer/Testimonials";
-import { DashboardPreview } from "@/features/Ai-Marketer/DashboardPreview";
-import { AuditCTA } from "@/features/Ai-Marketer/AuditCTA";
-import { Features } from "@/features/Ai-Marketer/Features";
-import { FeatureStack } from "@/features/Ai-Marketer/FeatureStack";
-import { FAQ, FinalStats, BottomCTA } from "@/features/Ai-Marketer/FooterSections";
-import { Press_Coverage } from "@/features/Ai-Marketer/Press_Coverage";
+import { Hero } from "@/features/Ai-Marketer/components/Hero";
+import { PressCoverage } from "@/features/Ai-Marketer/components/PressCoverage";
+import { Testimonials } from "@/features/Ai-Marketer/components/Testimonials";
+import { DashboardPreview } from "@/features/Ai-Marketer/components/DashboardPreview";
+import { AuditCTA } from "@/features/Ai-Marketer/components/AuditCTA";
+import { Features } from "@/features/Ai-Marketer/components/Features";
+import { FeatureStack } from "@/features/Ai-Marketer/components/FeatureStack";
+import { FAQ } from "@/features/Ai-Marketer/components/FAQ";
+import { FinalStats } from "@/features/Ai-Marketer/components/FinalStats";
+import { BottomCTA } from "@/features/Ai-Marketer/components/BottomCTA";
+import { Press_Coverage } from "@/features/Ai-Marketer/components/Press_Coverage";
 
 export default function AiMarketerPage() {
   return (

@@ -3,14 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-const brands = [
-  { name: "Forbes", src: "/collaborations/forbes.svg" },
-  { name: "Axios", src: "/collaborations/axios.svg" },
-  { name: "WSJ", src: "/collaborations/wsj.svg" },
-  { name: "Fortune", src: "/collaborations/fortune.svg" },
-  { name: "Business Insider", src: "/collaborations/business-insider.svg" },
-];
+import { pressBrands } from "@/features/Ai-Marketer/data/pressBrands";
 
 export const Press_Coverage = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -18,7 +11,6 @@ export const Press_Coverage = () => {
   return (
     <section className="py-20 md:py-24 border-y border-border/50 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header — honest press framing, consistent with Wall of Love pattern */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,9 +26,7 @@ export const Press_Coverage = () => {
           </p>
         </motion.div>
 
-        {/* Marquee */}
         <div className="relative">
-          {/* Wider, softer edge fades */}
           <div className="absolute inset-y-0 left-0 w-24 md:w-40 bg-linear-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-linear-to-l from-background via-background/80 to-transparent z-10 pointer-events-none" />
 
@@ -48,13 +38,9 @@ export const Press_Coverage = () => {
             <motion.div
               className="flex gap-16 md:gap-24 items-center whitespace-nowrap flex-shrink-0"
               animate={{ x: ["0%", "-50%"] }}
-              transition={{
-                duration: isHovered ? 42 : 22,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+              transition={{ duration: isHovered ? 42 : 22, repeat: Infinity, ease: "linear" }}
             >
-              {[...brands, ...brands].map((brand, i) => (
+              {[...pressBrands, ...pressBrands].map((brand, i) => (
                 <div
                   key={i}
                   className="relative h-7 md:h-9 w-[150px] md:w-[190px] shrink-0 transition-transform duration-500 ease-out hover:scale-110"
