@@ -12,8 +12,8 @@ export const Chat = ({ userEmail }: Props) => {
   const { messages, input, isStreaming, setInput, sendMessage } = useChat();
 
   return (
-    <div className="h-screen flex flex-col pt-24 bg-black text-white">
-      <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full px-6 min-h-0">
+    <div className="min-h-screen flex flex-col pt-24 bg-black text-white">
+      <div className="flex-1 flex flex-col gap-4 max-w-5xl mx-auto w-full px-4 sm:px-6">
         <ChatHeader userEmail={userEmail} />
         <ChatMessages
           messages={messages}

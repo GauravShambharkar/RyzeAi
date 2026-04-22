@@ -28,41 +28,36 @@ export const ChatInput = ({ value, onChange, onSend, disabled }: Props) => {
   };
 
   return (
-    <form onSubmit={submit} className="py-5 shrink-0 relative w-full max-w-2xl mx-auto">
-      {/* Soft emerald halo — activates when the user is typing */}
-      <div
-        className={`absolute inset-x-4 -top-2 -bottom-2 bg-emerald-500/10 blur-3xl pointer-events-none transition-opacity duration-500 ${hasContent ? "opacity-100" : "opacity-0"
-          }`}
-      />
-
-      <div className="relative border border-white/10 bg-neutral-950/80 backdrop-blur-xl focus-within:border-emerald-500/40 transition-colors duration-300 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]">
+    <form onSubmit={submit} className="py-4 shrink-0 w-full sticky bottom-0 z-10 bg-gradient-to-t from-black via-black/60 to-transparent">
+      <div className="relative rounded-2xl border border-white/15 bg-white/[0.04] backdrop-blur-xl backdrop-saturate-150 focus-within:border-emerald-400/50 focus-within:bg-white/[0.06] transition-all duration-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),_0_8px_32px_-8px_rgba(0,0,0,0.5)] max-w-3xl mx-auto">
         <textarea
           value={value}
           onChange={(e) => {
             onChange(e.target.value);
             e.target.style.height = "auto";
-            const MIN_H = 64; // ~2 visible rows
-            const MAX_H = 240;
+            const MIN_H = 56;
+            const MAX_H = 200;
             e.target.style.height = `${Math.max(MIN_H, Math.min(e.target.scrollHeight, MAX_H))}px`;
           }}
           onKeyDown={onKeyDown}
-          placeholder="Ask the SEO agent anything..."
+          placeholder="Message SEO Agent..."
           rows={2}
-          className="w-full resize-none bg-transparent px-5 pt-3 pb-2.5 text-[15px] text-white placeholder:text-neutral-600 focus:outline-none max-h-60 leading-relaxed scrollbar-chat"
+          className="w-full resize-none bg-transparent px-4 pt-3 pb-2 text-sm text-white placeholder:text-neutral-500 focus:outline-none min-h-[56px] max-h-52 leading-relaxed scrollbar-chat"
         />
 
-        <div className="flex items-center justify-between px-3 py-2.5 border-t border-white/5">
-          <span className="text-[10px] text-neutral-600 font-mono pl-2">
-            Enter to send · Shift+Enter for new line
+        <div className="flex items-center justify-between px-3 pb-2.5 pt-1">
+          <span className="text-xs text-neutral-500 pl-1">
+            Press Enter to send
           </span>
           <button
             type="submit"
             disabled={!canSubmit}
             aria-label="Send message"
-            className={`h-9 w-9 flex items-center justify-center transition-all duration-200 ${canSubmit
-                ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-[0_0_24px_-4px_rgba(16,185,129,0.7)]"
-                : "bg-white/5 text-neutral-600 cursor-not-allowed"
-              }`}
+            className={`h-8 w-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+              canSubmit
+                ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-sm shadow-emerald-500/30"
+                : "bg-white/10 text-neutral-500 cursor-not-allowed"
+            }`}
           >
             <ArrowUp className="w-4 h-4" strokeWidth={2.5} />
           </button>

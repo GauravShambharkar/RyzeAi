@@ -24,7 +24,7 @@ export const ChatMessages = ({ messages, isStreaming, onExamplePrompt }: Props) 
   }
 
   return (
-    <div className="flex-1 overflow-y-auto py-6 space-y-6 min-h-0 scrollbar-chat pr-2">
+    <div className="flex-1 py-6 space-y-6">
       {messages.map((m) => (
         <ChatMessage key={m.id} message={m} />
       ))}
