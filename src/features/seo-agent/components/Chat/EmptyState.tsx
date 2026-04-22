@@ -1,14 +1,10 @@
 import React from "react";
-import { Sparkles } from "lucide-react";
 import { examplePrompts } from "@/features/seo-agent/data/examplePrompts";
 
 type Props = { onPromptSelect: (prompt: string) => void };
 
 export const EmptyState = ({ onPromptSelect }: Props) => (
   <div className="flex-1 flex flex-col items-center justify-center py-12">
-    <div className="h-12 w-12 border border-emerald-500/30 bg-emerald-500/10 flex items-center justify-center text-emerald-300 mb-6">
-      <Sparkles className="w-5 h-5" />
-    </div>
     <h2 className="font-display text-3xl md:text-4xl text-white text-center tracking-tight">
       How can I help with your <span className="italic text-emerald-300">SEO</span>?
     </h2>

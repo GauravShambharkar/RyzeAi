@@ -6,15 +6,15 @@ import { ChatHeader } from "./ChatHeader";
 import { ChatMessages } from "./ChatMessages";
 import { ChatInput } from "./ChatInput";
 
-type Props = { userEmail: string; onSignOut: () => void };
+type Props = { userEmail: string };
 
-export const Chat = ({ userEmail, onSignOut }: Props) => {
+export const Chat = ({ userEmail }: Props) => {
   const { messages, input, isStreaming, setInput, sendMessage } = useChat();
 
   return (
     <div className="h-screen flex flex-col pt-24 bg-black text-white">
       <div className="flex-1 flex flex-col max-w-3xl mx-auto w-full px-6 min-h-0">
-        <ChatHeader userEmail={userEmail} onSignOut={onSignOut} />
+        <ChatHeader userEmail={userEmail} />
         <ChatMessages
           messages={messages}
           isStreaming={isStreaming}

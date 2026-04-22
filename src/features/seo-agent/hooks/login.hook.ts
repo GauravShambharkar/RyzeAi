@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 
 // Hardcoded gate — replace with real auth before going public.
 const VALID_EMAIL = process.env.EMAIL_ID || "admin@ryze.ai";
 const VALID_PASSWORD = process.env.PASSWORD || "ryze2026";
 const STORAGE_KEY = "ryze:seo-agent:auth";
+const AUTH_EVENT = "ryze:seo-agent:auth-change";
 const SUBMIT_DELAY_MS = 800;
 
 type StoredCreds = { email: string; password: string };
@@ -18,28 +19,43 @@ export const useLogin = () => {
     const [ready, setReady] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Restore session from localStorage on mount
+    // Reads storage and syncs local state. Runs on mount + whenever auth
+    // changes anywhere in the app (custom event) or in another tab (storage event).
+    const sync = useCallback(() => {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+            setAuthed(false);
+            return;
+        }
+        try {
+            const stored = JSON.parse(raw) as StoredCreds;
+            if (
+                stored.email?.toLowerCase() === VALID_EMAIL &&
+                stored.password === VALID_PASSWORD
+            ) {
+                setEmail(stored.email);
+                setAuthed(true);
+                return;
+            }
+            window.localStorage.removeItem(STORAGE_KEY);
+        } catch {
+            window.localStorage.removeItem(STORAGE_KEY);
+        }
+        setAuthed(false);
+    }, []);
+
     useEffect(() => {
         if (typeof window === "undefined") return;
-        const raw = window.localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-            try {
-                const stored = JSON.parse(raw) as StoredCreds;
-                if (
-                    stored.email?.toLowerCase() === VALID_EMAIL &&
-                    stored.password === VALID_PASSWORD
-                ) {
-                    setEmail(stored.email);
-                    setAuthed(true);
-                } else {
-                    window.localStorage.removeItem(STORAGE_KEY);
-                }
-            } catch {
-                window.localStorage.removeItem(STORAGE_KEY);
-            }
-        }
+        sync();
         setReady(true);
-    }, []);
+
+        window.addEventListener(AUTH_EVENT, sync);
+        window.addEventListener("storage", sync);
+        return () => {
+            window.removeEventListener(AUTH_EVENT, sync);
+            window.removeEventListener("storage", sync);
+        };
+    }, [sync]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -58,6 +74,7 @@ export const useLogin = () => {
                     STORAGE_KEY,
                     JSON.stringify({ email: cleanEmail, password })
                 );
+                window.dispatchEvent(new Event(AUTH_EVENT));
             } else {
                 setError("Incorrect email or password.");
             }
@@ -72,6 +89,7 @@ export const useLogin = () => {
         setError(null);
         if (typeof window !== "undefined") {
             window.localStorage.removeItem(STORAGE_KEY);
+            window.dispatchEvent(new Event(AUTH_EVENT));
         }
     };
 

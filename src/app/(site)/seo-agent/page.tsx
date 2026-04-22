@@ -7,7 +7,7 @@ import { Chat } from "@/features/seo-agent/components/Chat";
 
 export default function SeoAgentPage() {
   const router = useRouter();
-  const { email, authed, ready, handleLogout } = useLogin();
+  const { email, authed, ready } = useLogin();
 
   // Not authed → bounce to /login.
   useEffect(() => {
@@ -17,10 +17,5 @@ export default function SeoAgentPage() {
   // While hydrating, or if we're about to redirect, render nothing.
   if (!ready || !authed) return null;
 
-  const onSignOut = () => {
-    handleLogout();
-    router.replace("/login");
-  };
-
-  return <Chat userEmail={email} onSignOut={onSignOut} />;
+  return <Chat userEmail={email} />;
 }

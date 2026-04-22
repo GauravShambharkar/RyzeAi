@@ -11,9 +11,12 @@ type Props = {
 };
 
 export const ChatInput = ({ value, onChange, onSend, disabled }: Props) => {
+  const hasContent = value.trim().length > 0;
+  const canSubmit = hasContent && !disabled;
+
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    if (!value.trim() || disabled) return;
+    if (!canSubmit) return;
     onSend(value);
   };
 
@@ -25,32 +28,46 @@ export const ChatInput = ({ value, onChange, onSend, disabled }: Props) => {
   };
 
   return (
-    <form onSubmit={submit} className="py-4 shrink-0">
-      <div className="relative border border-white/10 bg-neutral-950 focus-within:border-emerald-500/40 transition-colors">
+    <form onSubmit={submit} className="py-5 shrink-0 relative">
+      {/* Soft emerald halo — activates when the user is typing */}
+      <div
+        className={`absolute inset-x-4 -top-2 -bottom-2 bg-emerald-500/10 blur-3xl pointer-events-none transition-opacity duration-500 ${
+          hasContent ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <div className="relative border border-white/10 bg-neutral-950/80 backdrop-blur-xl focus-within:border-emerald-500/40 transition-colors duration-300 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]">
         <textarea
           value={value}
           onChange={(e) => {
             onChange(e.target.value);
             e.target.style.height = "auto";
-            e.target.style.height = `${Math.min(e.target.scrollHeight, 160)}px`;
+            e.target.style.height = `${Math.min(e.target.scrollHeight, 180)}px`;
           }}
           onKeyDown={onKeyDown}
           placeholder="Ask the SEO agent anything..."
           rows={1}
-          className="w-full resize-none bg-transparent px-4 py-3.5 pr-14 text-sm text-white placeholder:text-neutral-600 focus:outline-none max-h-40"
+          className="w-full resize-none bg-transparent px-5 pt-4 pb-3 text-[15px] text-white placeholder:text-neutral-600 focus:outline-none max-h-44 leading-relaxed"
         />
-        <button
-          type="submit"
-          disabled={!value.trim() || disabled}
-          aria-label="Send message"
-          className="absolute right-2 bottom-2 h-9 w-9 flex items-center justify-center bg-white text-black disabled:bg-neutral-800 disabled:text-neutral-600 hover:bg-neutral-200 transition-colors"
-        >
-          <ArrowUp className="w-4 h-4" />
-        </button>
+
+        <div className="flex items-center justify-between px-3 py-2.5 border-t border-white/5">
+          <span className="text-[10px] text-neutral-600 font-mono pl-2">
+            Enter to send · Shift+Enter for new line
+          </span>
+          <button
+            type="submit"
+            disabled={!canSubmit}
+            aria-label="Send message"
+            className={`h-9 w-9 flex items-center justify-center transition-all duration-200 ${
+              canSubmit
+                ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-[0_0_24px_-4px_rgba(16,185,129,0.7)]"
+                : "bg-white/5 text-neutral-600 cursor-not-allowed"
+            }`}
+          >
+            <ArrowUp className="w-4 h-4" strokeWidth={2.5} />
+          </button>
+        </div>
       </div>
-      <p className="text-[10px] text-neutral-600 mt-2 px-1 font-mono">
-        Preview mode · responses are simulated. Enter to send · Shift+Enter for new line.
-      </p>
     </form>
   );
 };

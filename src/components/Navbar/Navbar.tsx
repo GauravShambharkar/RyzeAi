@@ -2,7 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { LogOut } from "lucide-react";
+import { useLogin } from "@/features/seo-agent/hooks/login.hook";
+import { AUTHED_BLOCKED_ROUTES } from "@/features/seo-agent/hooks/authGuard.hook";
 
 const NAV_LINKS = [
   { label: "AI Marketer", href: "/ai-marketer" },
@@ -12,6 +15,19 @@ const NAV_LINKS = [
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { authed, ready, handleLogout } = useLogin();
+
+  // Authed admins only see the SEO Agent link; public links are hidden.
+  const visibleLinks =
+    ready && authed
+      ? NAV_LINKS.filter((l) => !AUTHED_BLOCKED_ROUTES.includes(l.href as (typeof AUTHED_BLOCKED_ROUTES)[number]))
+      : NAV_LINKS;
+
+  const onSignOut = () => {
+    handleLogout();
+    router.replace("/login");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 lg:px-20">
@@ -23,7 +39,7 @@ export const Navbar = () => {
 
         {/* Right: Nav Links */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map(({ label, href }) => (
+          {visibleLinks.map(({ label, href }) => (
             <NavLink
               key={href}
               label={label}
@@ -33,10 +49,20 @@ export const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA Button */}
-        <button className=" bg-primary text-primary-foreground px-5 py-2 text-sm font-medium hover:ring-2 hover:ring-ring hover:ring-offset-2 transition-all">
-          Get Started
-        </button>
+        {/* CTA: Sign out when authed, Get Started otherwise */}
+        {ready && authed ? (
+          <button
+            onClick={onSignOut}
+            className="inline-flex items-center gap-1.5 bg-white/10 text-white border border-white/20 px-4 py-2 text-sm font-medium hover:bg-white/20 transition-colors"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            Sign out
+          </button>
+        ) : (
+          <button className="bg-primary text-primary-foreground px-5 py-2 text-sm font-medium hover:ring-2 hover:ring-ring hover:ring-offset-2 transition-all">
+            Get Started
+          </button>
+        )}
       </div>
     </nav>
   );
