@@ -14,14 +14,14 @@ export const Hero = () => {
           alt="Atmospheric Background"
           fill
           unoptimized
-          className="object-cover"
+          className="object-cover brightness-85"
           priority
         />
-        {/* Subtle depth wash so the headline remains legible */}
-        <div className="absolute inset-0 bg-black/20" />
-        {/* Soft edges — blend into the cream body above and below */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FAF7F2] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#FAF7F2] to-transparent" />
+        {/* Depth wash so the headline pops against the background */}
+        <div className="absolute inset-0 bg-black/35" />
+        {/* Dark edge vignettes — focus attention on the center */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black to-transparent" />
       </div>
 
       {/* Content Wrapper */}

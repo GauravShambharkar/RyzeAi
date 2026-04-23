@@ -77,11 +77,11 @@ body {
   background-color: #FAF7F2;
 }
 
-/* Global scrollbar — thin, subtle, emerald on hover. Applies to the document
+/* Global scrollbar — thin, black track, emerald on hover. Applies to the document
    (html) and any scroll container that doesn't opt out via .no-scrollbar. */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(20, 20, 20, 0.12) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.25) #000;
 }
 
 ::-webkit-scrollbar {
@@ -90,25 +90,25 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(20, 20, 20, 0.12);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 9999px;
   transition: background-color 200ms ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.5);
-}
-
-::-webkit-scrollbar-thumb:active {
   background: rgba(16, 185, 129, 0.7);
 }
 
+::-webkit-scrollbar-thumb:active {
+  background: rgba(16, 185, 129, 0.9);
+}
+
 ::-webkit-scrollbar-corner {
-  background: transparent;
+  background: #000;
 }
 
 .no-scrollbar::-webkit-scrollbar {

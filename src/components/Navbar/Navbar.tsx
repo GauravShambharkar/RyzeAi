@@ -30,10 +30,10 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 lg:px-20">
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between rounded-full border border-black/5 bg-white/5 backdrop-blur-xl p-2 pl-6 pr-2 shadow-[0_8px_32px_-12px_rgba(20,20,20,0.12)]">
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between rounded-full border border-white/20 bg-white/5 backdrop-blur-xl p-2 pl-6 pr-2 shadow-[0_8px_32px_-12px_rgba(20,20,20,0.12)]">
         {/* Left: Logo */}
         <div className="flex items-center gap-2 text-xl font-semibold tracking-tighter text-white font-display">
-          <span className="hidden sm:inline">Ryze.ai</span>
+          <h1 className="hidden sm:inline mix-blend-screen">Ryze.ai</h1>
         </div>
 
         {/* Right: Nav Links */}
@@ -79,8 +79,8 @@ const NavLink = ({
   <Link
     href={href}
     className={`rounded-full px-4 py-2 text-sm transition-all ${active
-        ? "bg-white/10 backdrop-blur-md shadow-lg text-neutral-900 font-medium "
-        : "text-neutral-600 hover:text-neutral-900 hover:bg-white/50"
+      ? "bg-white/80 backdrop-blur-md shadow-lg text-neutral-900 font-medium "
+      : "text-white hover:text-black hover:bg-white"
       }`}
   >
     {label}
