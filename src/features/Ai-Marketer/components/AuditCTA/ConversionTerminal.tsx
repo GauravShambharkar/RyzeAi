@@ -31,10 +31,10 @@ export const ConversionTerminal = () => (
       </div>
 
       <div className="p-8 md:p-9">
-        <h3 className="font-display text-2xl md:text-[28px] text-neutral-900 leading-tight tracking-tight mb-1.5">
+        <h3 className="font-display text-2xl md:text-[28px] text-neutral-900 leading-tight tracking-tighter mb-1.5">
           Run my <span className="italic text-emerald-700">free</span> audit
         </h3>
-        <p className="text-sm text-neutral-500 font-body mb-7">Drop your email. Report lands in 24h.</p>
+        <p className="text-sm text-neutral-500 font-body leading-6 tracking-tight mb-7">Drop your email. Report lands in 24h.</p>
 
         <AuditForm />
 

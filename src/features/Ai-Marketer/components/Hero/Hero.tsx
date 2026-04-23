@@ -51,7 +51,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-center text-xs text-white/85 leading-relaxed md:text-sm max-w-2xl font-body drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
+          className="mt-6 text-center text-xs text-white/85 leading-6 tracking-tight md:text-sm max-w-2xl font-body drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
         >
           More customers on autopilot — all for our products built for you
         </motion.p>

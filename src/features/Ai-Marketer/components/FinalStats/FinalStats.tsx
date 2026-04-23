@@ -34,7 +34,7 @@ export const FinalStats = () => (
           >
             <div className="flex items-center justify-center gap-2 mb-3">
               {s.star && <Star className="w-7 h-7 md:w-9 md:h-9 fill-amber-400 text-amber-400" />}
-              <div className="text-5xl md:text-7xl font-display tracking-tight text-neutral-900">{s.value}</div>
+              <div className="text-5xl md:text-7xl font-display tracking-tighter text-neutral-900">{s.value}</div>
             </div>
             <p className="text-neutral-900 font-display font-semibold text-sm md:text-base">{s.label}</p>
             <p className="text-neutral-500 text-xs md:text-sm font-body mt-1">{s.sub}</p>

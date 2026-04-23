@@ -18,7 +18,7 @@ export const FeaturesHeader = () => (
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-4xl md:text-5xl lg:text-6xl font-display text-neutral-900 leading-[1.05] tracking-tight"
+      className="text-4xl md:text-5xl lg:text-6xl font-display text-neutral-900 leading-[1.05] tracking-tighter"
     >
       Everything you need to run{" "}
       <span className="italic text-neutral-500">paid ads.</span>

@@ -6,10 +6,10 @@ type Props = { onPromptSelect: (prompt: string) => void };
 
 export const EmptyState = ({ onPromptSelect }: Props) => (
   <div className="flex-1 flex flex-col items-center justify-center py-12 px-2">
-    <h2 className="font-display text-2xl md:text-3xl text-neutral-900 text-center tracking-tight">
+    <h2 className="font-display text-2xl md:text-3xl text-neutral-900 text-center tracking-tighter">
       How can I help with your <span className="italic text-emerald-700">SEO</span>?
     </h2>
-    <p className="text-sm text-neutral-600 mt-2 text-center max-w-md">
+    <p className="text-sm text-neutral-600 mt-2 text-center max-w-md leading-6 tracking-tight">
       Ask anything about rankings, keywords, site health, or content strategy.
     </p>
 

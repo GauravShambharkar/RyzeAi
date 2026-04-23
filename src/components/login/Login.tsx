@@ -43,7 +43,7 @@ export const Login = () => {
 
                 {/* Brand mark */}
                 <div className="relative z-10 flex items-center gap-2">
-                    <span className="font-display text-2xl text-white tracking-tight">Ryze<span className="text-emerald-300 italic">.ai</span></span>
+                    <span className="font-display text-2xl text-white tracking-tighter">Ryze<span className="text-emerald-300 italic">.ai</span></span>
                 </div>
 
                 {/* Editorial copy */}
@@ -51,10 +51,10 @@ export const Login = () => {
                     <div className="font-pixel text-[13px] uppercase tracking-[0.35em] text-emerald-300/90 mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                         — SEO Agent
                     </div>
-                    <p className="font-display text-5xl xl:text-6xl text-white leading-[1.05] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+                    <p className="font-display text-5xl xl:text-6xl text-white leading-[1.05] tracking-tighter drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
                         The garden <span className="italic text-emerald-300">tends</span> itself.
                     </p>
-                    <p className="mt-6 text-sm text-white/75 leading-relaxed max-w-md drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+                    <p className="mt-6 text-sm text-white/75 leading-6 tracking-tight max-w-md drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
                         While you sleep, the agent audits rankings, rewrites meta, and queues fixes — by morning the backlog is smaller than yesterday.
                     </p>
                 </div>
@@ -75,7 +75,7 @@ export const Login = () => {
             <div className="relative flex flex-col px-6 sm:px-10 lg:px-16 py-10 lg:py-14">
                 {/* Mobile brand strip */}
                 <div className="lg:hidden flex items-center justify-between mb-10">
-                    <span className="font-display text-xl text-neutral-900 tracking-tight">Ryze<span className="text-emerald-700 italic">.ai</span></span>
+                    <span className="font-display text-xl text-neutral-900 tracking-tighter">Ryze<span className="text-emerald-700 italic">.ai</span></span>
                     <span className="font-pixel text-[11px] uppercase tracking-[0.3em] text-neutral-500">SEO Agent</span>
                 </div>
 
@@ -88,10 +88,10 @@ export const Login = () => {
 
                 <div className="flex-1 flex flex-col justify-center max-w-md w-full mx-auto lg:mx-0">
                     {/* Headline */}
-                    <h1 className="font-display text-4xl sm:text-5xl text-neutral-900 tracking-tight leading-[1.02]">
+                    <h1 className="font-display text-4xl sm:text-5xl text-neutral-900 tracking-tighter leading-[1.02]">
                         Welcome <span className="italic text-emerald-700">back.</span>
                     </h1>
-                    <p className="mt-3 text-sm text-neutral-500 leading-relaxed">
+                    <p className="mt-3 text-sm text-neutral-500 leading-6 tracking-tight">
                         Preview access for invited teams. If you&apos;re not on the list yet, drop us a note at{" "}
                         <a href="mailto:hello@get-ryze.ai" className="text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-emerald-600 hover:text-emerald-700 transition-colors">
                             hello@get-ryze.ai

@@ -32,7 +32,7 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8 lg:px-20">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between rounded-full border border-black/5 bg-white/5 backdrop-blur-xl p-2 pl-6 pr-2 shadow-[0_8px_32px_-12px_rgba(20,20,20,0.12)]">
         {/* Left: Logo */}
-        <div className="flex items-center gap-2 text-xl font-semibold tracking-tight text-white font-display">
+        <div className="flex items-center gap-2 text-xl font-semibold tracking-tighter text-white font-display">
           <span className="hidden sm:inline">Ryze.ai</span>
         </div>
 

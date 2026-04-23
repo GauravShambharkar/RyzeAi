@@ -23,10 +23,10 @@ export const FinalCTA = () => (
 
     <div className="relative">
       <div className="text-[10px] uppercase tracking-[0.2em] text-[#e35a32] font-semibold">Final step</div>
-      <h3 className="mt-2 font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 leading-[1.02] tracking-tight max-w-md">
+      <h3 className="mt-2 font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 leading-[1.02] tracking-tighter max-w-md">
         Connect Claude to your Ads
       </h3>
-      <p className="mt-3 text-sm text-neutral-600 max-w-md leading-relaxed">
+      <p className="mt-3 text-sm text-neutral-600 max-w-md leading-6 tracking-tight">
         Get your dedicated MCP server. Connect Claude, ChatGPT, or Cursor to Google Ads, Meta Ads, and Google Analytics.
       </p>
 

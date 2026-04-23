@@ -13,7 +13,7 @@ export const FeatureTrio = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="font-display text-4xl md:text-5xl lg:text-6xl text-neutral-900 leading-[1.05] tracking-tight max-w-3xl"
+        className="font-display text-4xl md:text-5xl lg:text-6xl text-neutral-900 leading-[1.05] tracking-tighter max-w-3xl"
       >
         Ryze AI: Connect <span className="italic text-[#e35a32]">Claude</span> to Google &amp; Meta Ads
       </motion.h2>

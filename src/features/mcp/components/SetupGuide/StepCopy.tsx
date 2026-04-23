@@ -24,7 +24,7 @@ export const StepCopy = ({ step, active, onPrev, onNext }: Props) => (
         transition={{ duration: 0.25 }}
       >
         <div className="text-[11px] uppercase tracking-[0.2em] text-[#e35a32] font-semibold">{step.label}</div>
-        <h3 className="mt-2 font-display text-4xl md:text-5xl text-neutral-900 leading-[1.05]">
+        <h3 className="mt-2 font-display text-4xl md:text-5xl text-neutral-900 leading-[1.05] tracking-tighter">
           {step.title}
         </h3>
         <ul className="mt-6 space-y-3">

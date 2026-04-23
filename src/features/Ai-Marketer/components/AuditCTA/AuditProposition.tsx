@@ -23,12 +23,12 @@ export const AuditProposition = () => (
       initial={{ opacity: 0, x: -16 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      className="text-4xl md:text-5xl lg:text-[56px] font-display leading-[1.02] tracking-tight mb-6 text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
+      className="text-4xl md:text-5xl lg:text-[56px] font-display leading-[1.02] tracking-tighter mb-6 text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]"
     >
       See exactly where your growth is <span className="italic text-emerald-300">leaking</span>.
     </motion.h2>
 
-    <p className="text-white/80 font-body text-base md:text-lg leading-relaxed mb-10 max-w-xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+    <p className="text-white/80 font-body text-base md:text-lg leading-6 tracking-tight mb-10 max-w-xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
       In under 24 hours our agents scan your ads, SEO, and site &mdash; then hand you a prioritized action plan. Zero cost, zero strings.
     </p>
 

@@ -19,12 +19,12 @@ export const Integrations = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 tracking-tight"
+          className="font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 tracking-tighter"
         >
           Connect any <span className="italic text-[#e35a32]">AI tool</span> with any ad account
         </motion.h2>
 
-        <p className="mt-4 text-sm text-neutral-600 max-w-md mx-auto">
+        <p className="mt-4 text-sm text-neutral-600 max-w-md mx-auto leading-6 tracking-tight">
           One MCP hub, routing every request across your stack.
         </p>
 

@@ -15,7 +15,7 @@ export const LiveResults = () => (
     <div className="flex items-start justify-between gap-3">
       <div>
         <div className="font-pixel text-sm tracking-[0.2em] text-neutral-500 uppercase">Live results</div>
-        <h3 className="mt-1 font-display text-2xl md:text-3xl text-neutral-900 leading-tight">
+        <h3 className="mt-1 font-display text-2xl md:text-3xl text-neutral-900 leading-tight tracking-tighter">
           Across <span className="font-pixel text-[#e35a32] text-3xl md:text-4xl">2,000+ clients</span>
         </h3>
       </div>

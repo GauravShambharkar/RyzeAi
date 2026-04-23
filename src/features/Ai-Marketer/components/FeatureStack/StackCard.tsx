@@ -24,10 +24,10 @@ export const StackCard = ({ card, index }: Props) => {
         <span className={accent.text}>{card.tag}</span>
       </div>
 
-      <h3 className="text-base md:text-lg font-display text-neutral-900 mb-1.5 tracking-tight leading-tight">
+      <h3 className="text-base md:text-lg font-display text-neutral-900 mb-1.5 tracking-tighter leading-tight">
         {card.title}
       </h3>
-      <p className="text-[12px] text-neutral-600 leading-relaxed font-body max-w-sm">
+      <p className="text-[12px] text-neutral-600 leading-6 tracking-tight font-body max-w-sm">
         {card.description}
       </p>
 

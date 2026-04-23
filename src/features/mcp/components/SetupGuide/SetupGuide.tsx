@@ -20,7 +20,7 @@ export const SetupGuide = () => {
           <span className="font-mono text-2xl md:text-3xl text-[#e35a32] tracking-wider">
             Setup guide:
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-neutral-900 tracking-tighter">
             Link your ads to Claude in 10 sec
           </h2>
         </div>

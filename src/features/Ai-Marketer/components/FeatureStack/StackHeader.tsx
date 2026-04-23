@@ -14,10 +14,10 @@ export const StackHeader = () => (
       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
       Full stack
     </motion.div>
-    <h2 className="text-3xl md:text-5xl font-display mb-5 text-neutral-900 leading-[1.05]">
+    <h2 className="text-3xl md:text-5xl font-display mb-5 text-neutral-900 leading-[1.05] tracking-tighter">
       Everything built for <span className="italic text-emerald-700">performance</span>
     </h2>
-    <p className="text-neutral-600 font-body max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+    <p className="text-neutral-600 font-body max-w-2xl mx-auto text-base md:text-lg leading-6 tracking-tight">
       Specialized agents across every layer of your growth stack &mdash; creative, technical, analytical.
     </p>
   </div>

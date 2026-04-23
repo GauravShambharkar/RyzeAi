@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Plus, X, Lock } from "lucide-react";
+import { Plus, X, Lock, Sparkles, TrendingUp } from "lucide-react";
 
 type Tab = {
   title: string;
@@ -47,25 +47,30 @@ export const HeroPreview = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24, scale: 0.98 }}
+      initial={{ opacity: 0, y: 30, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.25 }}
-      className="relative lg:ml-10 xl:ml-14"
+      transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      className="relative w-full max-w-[780px]"
     >
-      <div className="relative rounded-3xl border border-black/5 bg-white shadow-[0_40px_100px_-24px_rgba(20,20,20,0.35)] overflow-hidden">
-        {/* ——— Window chrome: traffic lights + tab strip ——— */}
+      {/* Ambient glow behind window — pure depth, no bg change */}
+      <div
+        aria-hidden
+        className="absolute -inset-6 rounded-[32px] bg-white/20 blur-2xl opacity-60"
+      />
+
+      {/* ——— Floating window ——— */}
+      <div className="relative rounded-[20px] md:rounded-[24px] border border-black/5 bg-white shadow-[0_50px_120px_-24px_rgba(0,0,0,0.55),0_20px_40px_-20px_rgba(0,0,0,0.35)] overflow-hidden">
+        {/* Window chrome: traffic lights + tabs */}
         <div
           aria-hidden
           className="flex items-end gap-2 pl-4 pr-2 pt-3 bg-neutral-100 border-b border-black/5 select-none"
         >
-          {/* Traffic lights */}
           <div className="flex items-center gap-1.5 pb-3">
             <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
           </div>
 
-          {/* Tabs */}
           <div className="flex items-end gap-0.5 ml-3 flex-1 min-w-0 overflow-hidden">
             {TABS.map((tab) => (
               <TabPill key={tab.title} tab={tab} />
@@ -76,7 +81,7 @@ export const HeroPreview = () => {
           </div>
         </div>
 
-        {/* ——— URL bar ——— */}
+        {/* URL bar */}
         <div
           aria-hidden
           className="flex items-center gap-2 px-4 py-2.5 bg-white border-b border-black/5 select-none"
@@ -101,7 +106,7 @@ export const HeroPreview = () => {
           </span>
         </div>
 
-        {/* ——— Active tab content ——— */}
+        {/* Video demo — main focal point */}
         <video
           src="/assets/mcp-hero-audit.webm"
           autoPlay={!shouldReduceMotion}
@@ -113,6 +118,59 @@ export const HeroPreview = () => {
           className="block w-full h-auto bg-neutral-100"
         />
       </div>
+
+      {/* ——— Floating UI chips for depth ——— */}
+      {/* Top-right: live-connection pill */}
+      <motion.div
+        initial={{ opacity: 0, y: -10, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.9 }}
+        className="hidden md:flex absolute -top-5 right-6 lg:right-10 items-center gap-2 rounded-full bg-white/95 backdrop-blur-md border border-black/5 pl-2.5 pr-3.5 py-1.5 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.35)]"
+      >
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+        </span>
+        <span className="text-[11px] font-semibold text-neutral-800 tracking-tight">
+          Connected to Claude
+        </span>
+      </motion.div>
+
+      {/* Bottom-left: action chip */}
+      <motion.div
+        initial={{ opacity: 0, x: -10, y: 10 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.1 }}
+        className="hidden md:flex absolute -bottom-5 left-4 lg:left-8 items-center gap-2.5 rounded-full bg-neutral-900/95 backdrop-blur-md border border-white/10 pl-2.5 pr-4 py-1.5 shadow-[0_14px_30px_-10px_rgba(0,0,0,0.55)]"
+      >
+        <span className="h-6 w-6 rounded-full bg-gradient-to-br from-[#ffb59c] to-[#e35a32] flex items-center justify-center">
+          <Sparkles className="w-3 h-3 text-white" />
+        </span>
+        <span className="text-[11px] font-medium text-white tracking-tight">
+          Audit ran in <span className="font-semibold">24s</span>
+        </span>
+      </motion.div>
+
+      {/* Bottom-right: stat card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, delay: 1.3 }}
+        className="hidden lg:flex absolute -bottom-8 -right-4 flex-col items-start gap-1 rounded-2xl bg-white/95 backdrop-blur-md border border-black/5 px-4 py-3 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.4)]"
+      >
+        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-neutral-500 font-semibold">
+          <TrendingUp className="w-3 h-3 text-emerald-600" />
+          ROAS uplift
+        </div>
+        <div className="flex items-baseline gap-1">
+          <span className="text-2xl font-display font-semibold text-neutral-900">
+            +24%
+          </span>
+          <span className="text-[10px] text-emerald-600 font-medium">
+            last 7d
+          </span>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };

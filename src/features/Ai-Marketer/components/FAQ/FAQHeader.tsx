@@ -14,10 +14,10 @@ export const FAQHeader = () => (
       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
       FAQ
     </motion.div>
-    <h2 className="text-4xl md:text-5xl font-display mb-5 text-neutral-900 leading-[1.05]">
+    <h2 className="text-4xl md:text-5xl font-display mb-5 text-neutral-900 leading-[1.05] tracking-tighter">
       The answers <span className="italic text-emerald-700">before</span> you ask
     </h2>
-    <p className="text-neutral-600 font-body text-base md:text-lg leading-relaxed">
+    <p className="text-neutral-600 font-body text-base md:text-lg leading-6 tracking-tight">
       Everything you need to know about Ryze&apos;s autonomous growth platform.
     </p>
   </div>

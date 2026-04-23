@@ -40,7 +40,7 @@ export const TrioCard = ({ card, index }: Props) => {
 
           <h3
             className={`mt-6 text-neutral-900 font-medium ${
-              isWide ? "font-display text-2xl md:text-3xl leading-[1.1] tracking-tight" : "text-lg leading-snug"
+              isWide ? "font-display text-2xl md:text-3xl leading-[1.1] tracking-tighter" : "text-lg leading-snug tracking-tighter"
             }`}
           >
             {card.title}

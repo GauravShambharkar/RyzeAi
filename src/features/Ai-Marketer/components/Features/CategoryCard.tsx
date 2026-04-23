@@ -24,7 +24,7 @@ export const CategoryCard = ({ category, index }: Props) => {
         <span className={accent.text}>{category.title}</span>
       </div>
 
-      <h3 className="text-2xl md:text-3xl font-display text-neutral-900 mb-8 tracking-tight leading-tight">
+      <h3 className="text-2xl md:text-3xl font-display text-neutral-900 mb-8 tracking-tighter leading-tight">
         {category.title}
       </h3>
 

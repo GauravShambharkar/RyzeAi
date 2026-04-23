@@ -39,16 +39,7 @@ export const Footer = () => (
         className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center overflow-hidden"
       >
         <span
-          className="font-display leading-none tracking-tighter select-none"
-          style={{
-            fontSize: "clamp(9rem, 24vw, 26rem)",
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.015) 70%, transparent 100%)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-            transform: "translateY(18%)",
-          }}
+          className="font-display leading-none tracking-tighter select-none bg-clip-text text-transparent text-[clamp(9rem,24vw,26rem)] translate-y-[18%] bg-[linear-gradient(to_bottom,#e9d5ff_0%,#c4b5fd_18%,#a855f7_38%,#7c3aed_55%,#4c1d95_70%,#1a0b2e_82%,#0b0b0b_90%)] [-webkit-text-fill-color:transparent]"
         >
           RYZE.AI
         </span>

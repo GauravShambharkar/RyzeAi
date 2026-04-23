@@ -22,15 +22,15 @@ export const EnterpriseBlock = () => (
         <Zap className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
         Scale edition
       </div>
-      <h2 className="text-4xl md:text-6xl font-display mb-6 leading-[1.02] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+      <h2 className="text-4xl md:text-6xl font-display mb-6 leading-[1.02] tracking-tighter drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
         Built to <span className="italic text-emerald-300">last</span> at enterprise scale
       </h2>
-      <p className="text-white/85 font-body text-base md:text-lg max-w-2xl leading-relaxed mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+      <p className="text-white/85 font-body text-base md:text-lg max-w-2xl leading-6 tracking-tight mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
         For agencies and growth teams running dozens of accounts. Built for governance, reliability, and compounding wins across every client.
       </p>
       <div className="grid sm:grid-cols-2 gap-10 mb-12">
         <div>
-          <h3 className="text-base md:text-lg font-display font-semibold mb-2 flex items-center gap-2">
+          <h3 className="text-base md:text-lg font-display font-semibold tracking-tighter mb-2 flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-emerald-300" />
             White-label reports
           </h3>
@@ -39,7 +39,7 @@ export const EnterpriseBlock = () => (
           </p>
         </div>
         <div>
-          <h3 className="text-base md:text-lg font-display font-semibold mb-2 flex items-center gap-2">
+          <h3 className="text-base md:text-lg font-display font-semibold tracking-tighter mb-2 flex items-center gap-2">
             <Users className="w-5 h-5 text-emerald-300" />
             Team collaboration
           </h3>

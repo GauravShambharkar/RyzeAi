@@ -31,11 +31,11 @@ export const BottomCTA = () => (
           247 audits running right now
         </div>
 
-        <h2 className="text-5xl md:text-7xl font-display text-white leading-[1.02] tracking-tight max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+        <h2 className="text-5xl md:text-7xl font-display text-white leading-[1.02] tracking-tighter max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
           Stop losing customers to your <span className="italic text-emerald-300">competitors</span>.
         </h2>
 
-        <p className="text-white/85 font-body text-base md:text-lg max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+        <p className="text-white/85 font-body text-base md:text-lg max-w-xl leading-6 tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
           Get a free, AI-generated teardown of your ads, SEO, and funnel &mdash; delivered to your inbox within 24 hours. No calls, no sales pitch.
         </p>
 

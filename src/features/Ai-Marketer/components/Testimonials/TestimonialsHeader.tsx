@@ -18,11 +18,11 @@ export const TestimonialsHeader = () => (
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-4xl md:text-6xl font-display text-neutral-900 mb-5 leading-[1.05]"
+      className="text-4xl md:text-6xl font-display text-neutral-900 mb-5 leading-[1.05] tracking-tighter"
     >
-      Loved by teams <span className="italic text-emerald-700">that ship</span>
+      Loved by teams <span className="font-bold text-blue-200">that ship!</span>
     </motion.h2>
-    <p className="text-neutral-600 font-body max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+    <p className="text-white  font-body max-w-xl mx-auto text-base md:text-lg leading-6 tracking-tight">
       Real results from founders, growth leads, and CMOs scaling with autonomous AI.
     </p>
   </div>
