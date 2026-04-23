@@ -12,7 +12,7 @@ export type ChatResult =
   | { ok: true; text: string }
   | { ok: false; status: number; error: string };
 
-const getApiKey = () => process.env.NEXT_GROQ_API_KEY ?? "";
+const getApiKey = () => process.env.GROQ_API_KEY ?? "";
 
 export const isConfigured = () => Boolean(getApiKey());
 export const modelName = () => DEFAULT_MODEL;
@@ -23,7 +23,7 @@ export const callChat = async (
 ): Promise<ChatResult> => {
   const apiKey = getApiKey();
   if (!apiKey) {
-    return { ok: false, status: 500, error: "Missing NEXT_GROQ_API_KEY" };
+    return { ok: false, status: 500, error: "Missing GROQ_API_KEY" };
   }
 
   if (turns.length === 0) {
