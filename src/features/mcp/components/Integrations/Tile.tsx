@@ -22,7 +22,7 @@ export const Tile = ({ label, src, invert, side, innerRef }: Props) => (
         alt={label}
         width={64}
         height={64}
-        className={`h-full w-full object-contain ${invert ? "" : ""}`}
+        className={`h-full w-full object-contain ${invert ? "brightness-0 saturate-0" : ""}`}
       />
     </div>
     <span className="text-[11px] md:text-xs text-neutral-600 text-center leading-tight">{label}</span>
