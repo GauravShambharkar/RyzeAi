@@ -12,8 +12,8 @@ const SUBMIT_DELAY_MS = 800;
 type StoredCreds = { email: string; password: string };
 
 export const useLogin = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState(VALID_EMAIL);
+    const [password, setPassword] = useState(VALID_PASSWORD);
     const [error, setError] = useState<string | null>(null);
     const [authed, setAuthed] = useState(false);
     const [ready, setReady] = useState(false);
@@ -84,8 +84,8 @@ export const useLogin = () => {
 
     const handleLogout = () => {
         setAuthed(false);
-        setEmail("");
-        setPassword("");
+        setEmail(VALID_EMAIL);
+        setPassword(VALID_PASSWORD);
         setError(null);
         if (typeof window !== "undefined") {
             window.localStorage.removeItem(STORAGE_KEY);
