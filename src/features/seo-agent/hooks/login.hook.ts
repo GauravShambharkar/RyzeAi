@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
 // Hardcoded gate — replace with real auth before going public.
-const VALID_EMAIL = process.env.EMAIL_ID || "admin@ryze.ai";
-const VALID_PASSWORD = process.env.PASSWORD || "ryze2026";
+const VALID_EMAIL = process.env.NEXT_PUBLIC_EMAIL_ID || "admin@ryze.ai";
+const VALID_PASSWORD = process.env.NEXT_PUBLIC_PASSWORD || "ryze2026";
 const STORAGE_KEY = "ryze:seo-agent:auth";
 const AUTH_EVENT = "ryze:seo-agent:auth-change";
 const SUBMIT_DELAY_MS = 800;
