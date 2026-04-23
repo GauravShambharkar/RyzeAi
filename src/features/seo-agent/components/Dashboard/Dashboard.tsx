@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import Link from "next/link";
 import { Globe, ArrowRight } from "lucide-react";
 import { useActiveProperty } from "@/features/seo-agent/store/domain.store";
-import { getDashboardData } from "@/features/seo-agent/data/dashboardData";
 import { DashboardHeader } from "./DashboardHeader";
 import { PropertySwitcher } from "./PropertySwitcher";
 import { OverviewCard } from "./OverviewCard";
@@ -16,10 +15,6 @@ type Props = { userEmail: string };
 
 export const Dashboard = ({ userEmail }: Props) => {
   const active = useActiveProperty();
-  const data = useMemo(
-    () => (active ? getDashboardData(active.domain) : null),
-    [active]
-  );
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-neutral-900">
@@ -41,7 +36,7 @@ export const Dashboard = ({ userEmail }: Props) => {
             <PropertySwitcher />
           </div>
 
-          {!active || !data ? (
+          {!active ? (
             <div className="rounded-3xl border border-dashed border-black/10 bg-white/40 p-6 sm:p-10 text-center">
               <Globe className="w-6 h-6 text-neutral-300 mx-auto mb-3" />
               <p className="text-xs sm:text-sm text-neutral-600 mb-4">
@@ -57,29 +52,11 @@ export const Dashboard = ({ userEmail }: Props) => {
             </div>
           ) : (
             <div className="space-y-6 sm:space-y-8 md:space-y-10">
-              <OverviewCard data={data} domain={active.domain} />
-              <WebVitalsSection
-                vitals={data.webVitals}
-                domain={active.domain}
-              />
+              <OverviewCard property={active} />
+              <WebVitalsSection vitals={[]} domain={active.domain} />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
-                <KeywordRankings
-                  keywords={data.keywords}
-                  domain={active.domain}
-                />
-                <IssuesList issues={data.issues} domain={active.domain} />
-              </div>
-
-              {/* Disclaimer */}
-              <div className="rounded-2xl border border-dashed border-black/10 bg-white/40 px-3 sm:px-4 py-2.5 sm:py-3 text-[10px] sm:text-[11px] text-neutral-500 leading-relaxed">
-                Sample metrics shown here. Connect{" "}
-                <Link
-                  href="/seo-agent/connect"
-                  className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
-                >
-                  GSC, GA4, or Ahrefs
-                </Link>{" "}
-                on this property to see live data.
+                <KeywordRankings keywords={[]} domain={active.domain} />
+                <IssuesList issues={[]} domain={active.domain} />
               </div>
             </div>
           )}

@@ -3,12 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LogOut, Plug, LayoutDashboard } from "lucide-react";
+import { LogOut, Plug, LayoutDashboard, Menu } from "lucide-react";
 import { useLogin } from "@/features/seo-agent/hooks/login.hook";
 
-type Props = { userEmail: string };
+type Props = {
+  userEmail: string;
+  onOpenHistory?: () => void;
+};
 
-export const ChatHeader = ({ userEmail }: Props) => {
+export const ChatHeader = ({ userEmail, onOpenHistory }: Props) => {
   const router = useRouter();
   const { handleLogout } = useLogin();
 
@@ -21,7 +24,17 @@ export const ChatHeader = ({ userEmail }: Props) => {
     <header className="fixed top-0 left-0 right-0 z-40 py-3 md:py-4 px-4 md:px-6 lg:px-8 bg-[#FAF7F2]/80 backdrop-blur-xl border-b border-black/5">
       <div className="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
         {/* Left — brand + page title */}
-        <div className="flex items-center gap-3 min-w-0">
+        <div className="flex items-center gap-2 md:gap-3 min-w-0">
+          {onOpenHistory && (
+            <button
+              type="button"
+              onClick={onOpenHistory}
+              aria-label="Open chat history"
+              className="md:hidden h-9 w-9 shrink-0 rounded-xl flex items-center justify-center text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/80 transition-colors"
+            >
+              <Menu className="w-4 h-4" />
+            </button>
+          )}
           <span className="font-display text-xl font-semibold tracking-tighter text-neutral-900 shrink-0">
             Ryze<span className="italic text-emerald-700">.ai</span>
           </span>

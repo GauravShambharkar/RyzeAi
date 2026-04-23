@@ -7,7 +7,8 @@
       "Bash(curl -s -o /dev/null -w \"GET / → HTTP %{http_code}\\\\nFinal URL → %{url_effective}\\\\n\" -L http://localhost:3000/)",
       "Bash(curl *)",
       "Bash(npm install *)",
-      "Bash(python -c \"import sys, json; print\\(json.load\\(sys.stdin\\).get\\('reply', 'NO REPLY'\\)\\)\")"
+      "Bash(python -c \"import sys, json; print\\(json.load\\(sys.stdin\\).get\\('reply', 'NO REPLY'\\)\\)\")",
+      "Bash(echo \"exit=$?\")"
     ]
   }
 }

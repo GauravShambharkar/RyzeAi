@@ -25,6 +25,7 @@ export const Chat = ({ userEmail }: Props) => {
   } = useChat();
 
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   // Handle ?ask=... query param. Dashboard cards and future deep links land
   // here with a pre-filled prompt; we auto-send it once and scrub the URL so
@@ -43,13 +44,18 @@ export const Chat = ({ userEmail }: Props) => {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-neutral-900">
-      <ChatHeader userEmail={userEmail} />
+      <ChatHeader
+        userEmail={userEmail}
+        onOpenHistory={() => setMobileOpen(true)}
+      />
 
       <Sidebar
         threads={threads}
         activeThreadId={activeThreadId}
         collapsed={collapsed}
+        mobileOpen={mobileOpen}
         onToggleCollapse={() => setCollapsed((v) => !v)}
+        onMobileClose={() => setMobileOpen(false)}
         onSelect={selectThread}
         onNewChat={newChat}
         onDelete={deleteThread}

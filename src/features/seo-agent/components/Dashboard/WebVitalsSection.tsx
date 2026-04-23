@@ -60,11 +60,17 @@ export const WebVitalsSection = ({ vitals, domain }: Props) => {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
-        {vitals.map((v) => {
-          const s = BAND_STYLES[v.band];
-          return (
-            <button
+      {vitals.length === 0 ? (
+        <div className="rounded-2xl sm:rounded-3xl border border-dashed border-black/10 bg-white/40 p-5 sm:p-6 text-[11px] sm:text-xs text-neutral-500 leading-relaxed">
+          Connect Google Search Console or CrUX on this property to see Core
+          Web Vitals here.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
+          {vitals.map((v) => {
+            const s = BAND_STYLES[v.band];
+            return (
+              <button
               key={v.id}
               type="button"
               onClick={() => askForFix(v)}
@@ -99,10 +105,11 @@ export const WebVitalsSection = ({ vitals, domain }: Props) => {
                 Ask AI to fix
                 <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
-            </button>
-          );
-        })}
-      </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };

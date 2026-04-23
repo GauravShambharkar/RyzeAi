@@ -45,6 +45,12 @@ export const KeywordRankings = ({ keywords, domain }: Props) => {
         </span>
       </div>
 
+      {keywords.length === 0 ? (
+        <div className="rounded-2xl sm:rounded-3xl border border-dashed border-black/10 bg-white/40 p-5 sm:p-6 text-[11px] sm:text-xs text-neutral-500 leading-relaxed">
+          Connect a rank-tracking source (Ahrefs, SEMrush, or Google Search
+          Console) to track keyword positions for this property.
+        </div>
+      ) : (
       <div className="rounded-2xl sm:rounded-3xl border border-black/5 bg-white overflow-hidden shadow-[0_8px_32px_-16px_rgba(20,20,20,0.08)]">
         <div className="grid grid-cols-[1fr_auto_auto] sm:grid-cols-[1fr_auto_auto_auto] gap-x-2.5 sm:gap-x-4 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 text-[9px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.15em] text-neutral-500 font-semibold bg-neutral-50/70 border-b border-black/5">
           <span>Keyword</span>
@@ -89,6 +95,7 @@ export const KeywordRankings = ({ keywords, domain }: Props) => {
           <ArrowUpRight className="w-3 h-3 text-neutral-400 shrink-0" />
         </div>
       </div>
+      )}
     </section>
   );
 };

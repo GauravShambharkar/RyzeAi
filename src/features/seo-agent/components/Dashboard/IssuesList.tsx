@@ -63,6 +63,12 @@ export const IssuesList = ({ issues, domain }: Props) => {
         </span>
       </div>
 
+      {issues.length === 0 ? (
+        <div className="rounded-2xl sm:rounded-3xl border border-dashed border-black/10 bg-white/40 p-5 sm:p-6 text-[11px] sm:text-xs text-neutral-500 leading-relaxed">
+          Issues surface here after running a site audit. Kick one off from the
+          chat — ask the agent to &ldquo;audit this site.&rdquo;
+        </div>
+      ) : (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
         {issues.map((issue) => {
           const s = SEVERITY_STYLES[issue.severity];
@@ -105,6 +111,7 @@ export const IssuesList = ({ issues, domain }: Props) => {
           );
         })}
       </div>
+      )}
     </section>
   );
 };
