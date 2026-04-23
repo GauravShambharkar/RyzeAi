@@ -28,9 +28,6 @@ const SOCIAL = [
 
 export const Footer = () => (
   <footer className="relative isolate overflow-hidden bg-[#0b0b0b] text-white">
-    {/* ——— Top gradient CTA banner ——— */}
-
-
     {/* ——— Footer body ——— */}
     <div className="relative px-4 md:px-8 lg:px-20">
       {/* Giant low-opacity brand text (behind content) */}
