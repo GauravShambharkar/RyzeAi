@@ -30,18 +30,6 @@ export const Footer = () => (
   <footer className="relative isolate overflow-hidden bg-[#0b0b0b] text-white">
     {/* ——— Footer body ——— */}
     <div className="relative px-4 md:px-8 lg:px-20">
-      {/* Giant low-opacity brand text (behind content) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center overflow-hidden"
-      >
-        <span
-          className="font-display leading-none tracking-tighter select-none bg-clip-text text-transparent text-[clamp(9rem,24vw,26rem)] translate-y-[18%] bg-[linear-gradient(to_bottom,#dbeafe_0%,#bfdbfe_18%,#60a5fa_38%,#3b82f6_55%,#1e3a8a_70%,#0a1930_82%,#0b0b0b_90%)] [-webkit-text-fill-color:transparent]"
-        >
-          RYZE.AI
-        </span>
-      </div>
-
       {/* Top border glow */}
       <div
         aria-hidden
@@ -52,15 +40,27 @@ export const Footer = () => (
         }}
       />
 
-      <div className="relative max-w-[1400px] mx-auto pt-20 md:pt-24 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-16">
+      <div className="relative max-w-[1400px] mx-auto pt-20 md:pt-24 pb-10 ">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-16 ">
           <FooterColumn title="Company" links={COMPANY} />
           <FooterColumn title="Products" links={PRODUCTS} />
           <FooterColumn title="Social" links={SOCIAL} />
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-28 md:mt-40 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+        {/* Giant brand text — in normal flow, above the legal bar */}
+        <div
+          aria-hidden
+          className="pointer-events-none flex items-end justify-center  overflow-hidden "
+        >
+          <span
+            className="font-display leading-none tracking-tighter select-none bg-clip-text text-transparent text-[clamp(4.5rem,20vw,8rem)] md:text-[clamp(9rem,24vw,26rem)] bg-[linear-gradient(to_bottom,#dbeafe_0%,#bfdbfe_18%,#60a5fa_38%,#3b82f6_55%,#1e3a8a_70%,#0a1930_82%,#0b0b0b_90%)] [-webkit-text-fill-color:transparent]"
+          >
+            RYZE.AI
+          </span>
+        </div>
+
+        {/* Bottom bar — always sits beneath the giant RYZE.AI */}
+        <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <span className="font-body">© 2024 — Ryze</span>
           <div className="flex items-center gap-6">
             <Link

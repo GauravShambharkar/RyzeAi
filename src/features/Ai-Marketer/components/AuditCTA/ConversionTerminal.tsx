@@ -13,7 +13,7 @@ export const ConversionTerminal = () => (
     transition={{ duration: 0.6 }}
     className="relative lg:sticky lg:top-24"
   >
-    <div className="absolute -inset-4 bg-emerald-400/20 blur-2xl pointer-events-none" />
+    <div className="hidden md:block absolute -inset-4 bg-emerald-400/20 blur-2xl pointer-events-none" />
 
     <div className="relative rounded-3xl border border-black/5 bg-white shadow-[0_40px_100px_-25px_rgba(20,20,20,0.25)] overflow-hidden">
       {/* Live status strip */}
@@ -30,7 +30,7 @@ export const ConversionTerminal = () => (
         </span>
       </div>
 
-      <div className="p-8 md:p-9">
+      <div className="p-6 md:p-9">
         <h3 className="font-display text-2xl md:text-[28px] text-neutral-900 leading-tight tracking-tighter mb-1.5">
           Run my <span className="italic text-emerald-700">free</span> audit
         </h3>

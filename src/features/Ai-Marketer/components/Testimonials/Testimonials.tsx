@@ -29,7 +29,7 @@ export const Testimonials = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: (i % 3) * 0.06, duration: 0.5 }}
-            className={t.span ?? ""}
+            className={`${t.span ?? ""} ${t.kind === "text" ? "hidden md:block" : ""}`}
           >
             {t.kind === "text" ? <TextCard {...t} /> : <ImageCard {...t} />}
           </motion.div>

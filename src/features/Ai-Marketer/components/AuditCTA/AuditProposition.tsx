@@ -32,11 +32,13 @@ export const AuditProposition = () => (
       In under 24 hours our agents scan your ads, SEO, and site &mdash; then hand you a prioritized action plan. Zero cost, zero strings.
     </p>
 
-    <SampleReport />
+    <div className="hidden md:block">
+      <SampleReport />
 
-    <p className="text-[11px] text-white/65 font-mono mt-4 flex items-center gap-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-      <span className="w-1 h-1 rounded-full bg-white/50" />
-      Preview of the actual report delivered to your inbox &mdash; populated with your data.
-    </p>
+      <p className="text-[11px] text-white/65 font-mono mt-4 flex items-center gap-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+        <span className="w-1 h-1 rounded-full bg-white/50" />
+        Preview of the actual report delivered to your inbox &mdash; populated with your data.
+      </p>
+    </div>
   </div>
 );

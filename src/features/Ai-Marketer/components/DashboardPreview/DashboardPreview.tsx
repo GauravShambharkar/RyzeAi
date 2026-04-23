@@ -21,7 +21,7 @@ export const DashboardPreview = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.2 }}
-      className="w-full max-w-6xl mx-auto"
+      className="hidden md:block w-full max-w-6xl mx-auto"
       onMouseDown={() => setIsSimulated(false)}
     >
       <ScrollAnimations />
