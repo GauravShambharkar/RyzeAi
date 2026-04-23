@@ -51,6 +51,7 @@ export const Chat = ({ userEmail }: Props) => {
             isStreaming={isStreaming}
             onExamplePrompt={sendMessage}
             onEditMessage={editMessage}
+            onAction={sendMessage}
           />
           <ChatInput
             value={input}

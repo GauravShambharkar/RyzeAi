@@ -38,6 +38,21 @@ const buildSystemInstruction = (domain?: string) => {
     "  - [OK] Title tag is 58 chars — well within limit.",
     "  - [WARN] H1 is duplicated on two templates.",
     "- Use these tags sparingly in free-form answers; use them consistently in audits, checklists, and anywhere you're rating something.",
+    "",
+    "Suggested next actions (REQUIRED when your response surfaces anything to fix or improve):",
+    "- After the main response, append a block delimited exactly by `[ACTIONS]` and `[/ACTIONS]` on their own lines.",
+    "- Inside the block, list 2–4 short imperative prompts the user could send next to act on your findings.",
+    "- Each action goes on its own line prefixed with `- ` (dash + space). No other formatting, no tags, no trailing punctuation besides `?` if it's a question.",
+    "- Each action must be self-contained (readable without context) and ≤ 80 characters.",
+    "- If the response is purely informational with nothing to fix/improve, OMIT the block entirely. Do not emit an empty one.",
+    "- The block must be the very last thing in your message — nothing after `[/ACTIONS]`.",
+    "",
+    "Example action block:",
+    "[ACTIONS]",
+    "- Draft a better meta description for the homepage",
+    "- Suggest 3 internal link targets from the blog",
+    "- Rewrite the duplicated H1 on the product template",
+    "[/ACTIONS]",
   ].join("\n");
 };
 

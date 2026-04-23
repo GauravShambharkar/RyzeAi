@@ -9,9 +9,10 @@ type Props = {
   message: Message;
   disabled?: boolean;
   onEdit?: (id: string, newContent: string) => void;
+  onAction?: (action: string) => void;
 };
 
-export const ChatMessage = ({ message, disabled, onEdit }: Props) => {
+export const ChatMessage = ({ message, disabled, onEdit, onAction }: Props) => {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(message.content);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -124,7 +125,11 @@ export const ChatMessage = ({ message, disabled, onEdit }: Props) => {
         R
       </div>
       <div className="max-w-[85%] md:max-w-[70%] pt-1 min-w-0">
-        <AssistantMessage content={message.content} />
+        <AssistantMessage
+          content={message.content}
+          disabled={disabled}
+          onAction={onAction}
+        />
       </div>
     </div>
   );

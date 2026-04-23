@@ -4,8 +4,31 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { StatusPill, type StatusKind } from "./StatusPill";
+import { ActionPills } from "./ActionPills";
 
-type Props = { content: string };
+type Props = {
+  content: string;
+  disabled?: boolean;
+  onAction?: (action: string) => void;
+};
+
+const ACTIONS_RE = /\[ACTIONS\]([\s\S]*?)\[\/ACTIONS\]\s*$/;
+
+// Pulls the trailing [ACTIONS]...[/ACTIONS] block (if present) off the message
+// content and returns the cleaned body + parsed action lines.
+const extractActions = (raw: string): { body: string; actions: string[] } => {
+  const match = raw.match(ACTIONS_RE);
+  if (!match) return { body: raw, actions: [] };
+
+  const body = raw.slice(0, match.index).trimEnd();
+  const actions = match[1]
+    .split("\n")
+    .map((line) => line.trim())
+    .map((line) => line.replace(/^[-*]\s+/, ""))
+    .filter(Boolean);
+
+  return { body, actions };
+};
 
 const TOKEN_RE = /\[(OK|FIX|WARN)\]/g;
 
@@ -48,11 +71,15 @@ const withPills = (children: React.ReactNode): React.ReactNode => {
   return children;
 };
 
-export const AssistantMessage = ({ content }: Props) => (
-  <div className="prose-seo text-xs md:text-sm text-neutral-800 leading-relaxed max-w-none">
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
-      components={{
+export const AssistantMessage = ({ content, disabled, onAction }: Props) => {
+  const { body, actions } = extractActions(content);
+  const canShowActions = actions.length > 0 && Boolean(onAction);
+
+  return (
+    <div className="prose-seo text-xs md:text-sm text-neutral-800 leading-relaxed max-w-none">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
         h1: ({ children }) => (
           <h1 className="font-display text-xl md:text-2xl tracking-tighter text-neutral-900 mt-4 mb-2 first:mt-0">
             {withPills(children)}
@@ -157,9 +184,17 @@ export const AssistantMessage = ({ content }: Props) => (
             {withPills(children)}
           </td>
         ),
-      }}
-    >
-      {content}
-    </ReactMarkdown>
-  </div>
-);
+        }}
+      >
+        {body}
+      </ReactMarkdown>
+      {canShowActions && onAction && (
+        <ActionPills
+          actions={actions}
+          disabled={disabled}
+          onAction={onAction}
+        />
+      )}
+    </div>
+  );
+};

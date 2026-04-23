@@ -11,6 +11,7 @@ type Props = {
   isStreaming: boolean;
   onExamplePrompt: (prompt: string) => void;
   onEditMessage: (id: string, newContent: string) => void;
+  onAction: (action: string) => void;
 };
 
 export const ChatMessages = ({
@@ -18,6 +19,7 @@ export const ChatMessages = ({
   isStreaming,
   onExamplePrompt,
   onEditMessage,
+  onAction,
 }: Props) => {
   const endRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +39,7 @@ export const ChatMessages = ({
           message={m}
           disabled={isStreaming}
           onEdit={onEditMessage}
+          onAction={onAction}
         />
       ))}
       {isStreaming && <TypingIndicator />}
