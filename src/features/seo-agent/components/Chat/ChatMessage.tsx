@@ -1,5 +1,5 @@
 import React from "react";
-import type { Message } from "@/features/seo-agent/hooks/chat.hook";
+import type { ChatMessage as Message } from "@/features/seo-agent/store/chat.store";
 
 type Props = { message: Message };
 

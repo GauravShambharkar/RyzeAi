@@ -39,7 +39,7 @@ export const Footer = () => (
         className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center overflow-hidden"
       >
         <span
-          className="font-display leading-none tracking-tighter select-none bg-clip-text text-transparent text-[clamp(9rem,24vw,26rem)] translate-y-[18%] bg-[linear-gradient(to_bottom,#e9d5ff_0%,#c4b5fd_18%,#a855f7_38%,#7c3aed_55%,#4c1d95_70%,#1a0b2e_82%,#0b0b0b_90%)] [-webkit-text-fill-color:transparent]"
+          className="font-display leading-none tracking-tighter select-none bg-clip-text text-transparent text-[clamp(9rem,24vw,26rem)] translate-y-[18%] bg-[linear-gradient(to_bottom,#dbeafe_0%,#bfdbfe_18%,#60a5fa_38%,#3b82f6_55%,#1e3a8a_70%,#0a1930_82%,#0b0b0b_90%)] [-webkit-text-fill-color:transparent]"
         >
           RYZE.AI
         </span>

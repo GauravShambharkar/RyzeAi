@@ -1,24 +1,94 @@
 import { create } from "zustand";
-import { persist } from 'zustand/middleware';
+import { persist } from "zustand/middleware";
 
+export type ChatRole = "user" | "assistant";
 
-interface chatStoreType {
-    chat: {
-        req: string,
-        res: string
-    }[]
+export type ChatMessage = {
+  id: string;
+  role: ChatRole;
+  content: string;
+  timestamp: number;
+};
 
-    setChat: (req: string) => void
-}
+export type ChatThread = {
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+  createdAt: number;
+  updatedAt: number;
+};
 
-export const chatStore = create<chatStoreType>()(
-    persist((set) => ({
-        chat: [],
-        setChat: (input: string) => {
-            set(state => ({
-                ...state,
-                chat: [...state.chat, { req: input, res: "" }]
-            }))
-        }
-    }), { name: 'seo-chat' })
-)
+type ChatState = {
+  threads: ChatThread[];
+  activeThreadId: string | null;
+
+  createThread: () => string;
+  selectThread: (id: string) => void;
+  deleteThread: (id: string) => void;
+  appendMessage: (threadId: string, message: ChatMessage) => void;
+  renameThreadFromFirstMessage: (threadId: string, firstUserMessage: string) => void;
+};
+
+const uid = () =>
+  typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : Math.random().toString(36).slice(2);
+
+const deriveTitle = (text: string) => {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (!clean) return "New chat";
+  return clean.length > 42 ? `${clean.slice(0, 42)}…` : clean;
+};
+
+export const chatStore = create<ChatState>()(
+  persist(
+    (set) => ({
+      threads: [],
+      activeThreadId: null,
+
+      createThread: () => {
+        const id = uid();
+        const now = Date.now();
+        const thread: ChatThread = {
+          id,
+          title: "New chat",
+          messages: [],
+          createdAt: now,
+          updatedAt: now,
+        };
+        set((s) => ({
+          threads: [thread, ...s.threads],
+          activeThreadId: id,
+        }));
+        return id;
+      },
+
+      selectThread: (id) => set({ activeThreadId: id }),
+
+      deleteThread: (id) =>
+        set((s) => {
+          const remaining = s.threads.filter((t) => t.id !== id);
+          const nextActive =
+            s.activeThreadId === id ? (remaining[0]?.id ?? null) : s.activeThreadId;
+          return { threads: remaining, activeThreadId: nextActive };
+        }),
+
+      appendMessage: (threadId, message) =>
+        set((s) => ({
+          threads: s.threads.map((t) =>
+            t.id === threadId
+              ? { ...t, messages: [...t.messages, message], updatedAt: Date.now() }
+              : t
+          ),
+        })),
+
+      renameThreadFromFirstMessage: (threadId, firstUserMessage) =>
+        set((s) => ({
+          threads: s.threads.map((t) =>
+            t.id === threadId ? { ...t, title: deriveTitle(firstUserMessage) } : t
+          ),
+        })),
+    }),
+    { name: "seo-chat-v2" }
+  )
+);

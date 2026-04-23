@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import type { Message } from "@/features/seo-agent/hooks/chat.hook";
+import type { ChatMessage as Message } from "@/features/seo-agent/store/chat.store";
 import { ChatMessage } from "./ChatMessage";
 import { EmptyState } from "./EmptyState";
 import { TypingIndicator } from "./TypingIndicator";
