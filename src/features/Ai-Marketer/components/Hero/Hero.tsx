@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 export const Hero = () => {
   return (
-    <section className="relative h-screen flex flex-col items-center pt-24 md:pt-32 lg:pt-40">
+    <section className="relative min-h-screen flex flex-col items-center pt-24 md:pt-32 lg:pt-40 overflow-hidden">
       {/* Background Image (Pixel Art) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
@@ -63,13 +63,11 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row items-center gap-3 w-full max-w-md"
         >
-          <div className="relative w-full">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full bg-white/80 backdrop-blur-md border border-black/5 rounded-full px-6 py-4 text-sm font-body text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all shadow-sm"
-            />
-          </div>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="w-full bg-white/80 backdrop-blur-md border border-black/5 rounded-full px-6 py-4 text-sm font-body text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all shadow-sm"
+          />
           <button className="whitespace-nowrap rounded-full bg-neutral-900 text-white px-8 py-4 text-sm font-semibold font-body hover:bg-neutral-800 transition-all shadow-md w-full sm:w-auto">
             Get started
           </button>

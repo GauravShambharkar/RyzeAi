@@ -1,5 +1,4 @@
 import { Hero } from "@/features/Ai-Marketer/components/Hero";
-import { PressCoverage } from "@/features/Ai-Marketer/components/PressCoverage";
 import { Testimonials } from "@/features/Ai-Marketer/components/Testimonials";
 import { DashboardPreview } from "@/features/Ai-Marketer/components/DashboardPreview";
 import { AuditCTA } from "@/features/Ai-Marketer/components/AuditCTA";
@@ -27,7 +26,6 @@ export default function AiMarketerPage() {
         <Testimonials />
 
         {/* 4. PRESS & COVERAGE */}
-        {/* <PressCoverage /> */}
         <Press_Coverage />
 
         {/* 5. LEAD GENERATION CTA */}
