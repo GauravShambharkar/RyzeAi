@@ -5,21 +5,30 @@ import type { ChatMessage as Message } from "@/features/seo-agent/store/chat.sto
 import { ChatMessage } from "./ChatMessage";
 import { EmptyState } from "./EmptyState";
 import { TypingIndicator } from "./TypingIndicator";
+import { ChatError } from "./ChatError";
 
 type Props = {
   messages: Message[];
   isStreaming: boolean;
+  error: string | null;
+  onDismissError: () => void;
   onExamplePrompt: (prompt: string) => void;
 };
 
-export const ChatMessages = ({ messages, isStreaming, onExamplePrompt }: Props) => {
+export const ChatMessages = ({
+  messages,
+  isStreaming,
+  error,
+  onDismissError,
+  onExamplePrompt,
+}: Props) => {
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages.length, isStreaming]);
+  }, [messages.length, isStreaming, error]);
 
-  if (messages.length === 0 && !isStreaming) {
+  if (messages.length === 0 && !isStreaming && !error) {
     return <EmptyState onPromptSelect={onExamplePrompt} />;
   }
 
@@ -29,6 +38,7 @@ export const ChatMessages = ({ messages, isStreaming, onExamplePrompt }: Props) 
         <ChatMessage key={m.id} message={m} />
       ))}
       {isStreaming && <TypingIndicator />}
+      {error && <ChatError message={error} onDismiss={onDismissError} />}
       <div ref={endRef} />
     </div>
   );

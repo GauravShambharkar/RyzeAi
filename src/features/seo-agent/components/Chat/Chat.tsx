@@ -16,11 +16,13 @@ export const Chat = ({ userEmail }: Props) => {
     messages,
     input,
     isStreaming,
+    error,
     setInput,
     sendMessage,
     selectThread,
     deleteThread,
     newChat,
+    dismissError,
   } = useChat();
 
   const [collapsed, setCollapsed] = useState(false);
@@ -48,6 +50,8 @@ export const Chat = ({ userEmail }: Props) => {
           <ChatMessages
             messages={messages}
             isStreaming={isStreaming}
+            error={error}
+            onDismissError={dismissError}
             onExamplePrompt={sendMessage}
           />
           <ChatInput

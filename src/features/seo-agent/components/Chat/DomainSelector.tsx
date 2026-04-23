@@ -3,9 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Globe, ChevronDown, Check } from "lucide-react";
 import { availableDomains } from "@/features/seo-agent/data/domains";
+import { domainStore } from "@/features/seo-agent/store/domain.store";
 
 export const DomainSelector = () => {
-  const [selected, setSelected] = useState(availableDomains[0]);
+  const selected = domainStore((s) => s.selected);
+  const setSelected = domainStore((s) => s.setSelected);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

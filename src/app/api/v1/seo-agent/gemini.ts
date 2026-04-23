@@ -5,6 +5,9 @@ const DEFAULT_MODEL = "gemini-2.0-flash";
 const ENDPOINT = (model: string) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
+export type GeminiRole = "user" | "model";
+export type GeminiTurn = { role: GeminiRole; text: string };
+
 export type GeminiResult =
   | { ok: true; text: string }
   | { ok: false; status: number; error: string };
@@ -15,7 +18,7 @@ export const isConfigured = () => Boolean(getApiKey());
 export const modelName = () => DEFAULT_MODEL;
 
 export const callGemini = async (
-  prompt: string,
+  turns: GeminiTurn[],
   systemInstruction?: string
 ): Promise<GeminiResult> => {
   const apiKey = getApiKey();
@@ -23,15 +26,27 @@ export const callGemini = async (
     return { ok: false, status: 500, error: "Missing NEXT_GENIMI_API_KEY" };
   }
 
+  if (turns.length === 0) {
+    return { ok: false, status: 400, error: "No conversation turns provided" };
+  }
+
   try {
     const res = await fetch(`${ENDPOINT(DEFAULT_MODEL)}?key=${apiKey}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
+        contents: turns.map((t) => ({
+          role: t.role,
+          parts: [{ text: t.text }],
+        })),
         ...(systemInstruction && {
           systemInstruction: { parts: [{ text: systemInstruction }] },
         }),
+        generationConfig: {
+          temperature: 0.6,
+          topP: 0.9,
+          maxOutputTokens: 1024,
+        },
       }),
     });
 
