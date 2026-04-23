@@ -1,16 +1,58 @@
 import { NextRequest, NextResponse } from "next/server";
 import { callChat, type ChatTurn } from "./groq";
 
-const buildSystemInstruction = (domain?: string) => {
-  const target = domain?.trim();
+const KNOWN_CONNECTIONS: Record<string, string> = {
+  gsc: "Google Search Console (impressions, clicks, CTR, average position, top queries, top pages)",
+  ga4: "Google Analytics 4 (sessions, users, engagement, conversions, traffic sources)",
+  ahrefs: "Ahrefs (backlinks, referring domains, domain rating, keyword difficulty, SERP positions)",
+  semrush: "SEMrush (keyword research, organic traffic estimates, competitor analysis, paid/organic positions)",
+};
+
+type PropertyContext = {
+  domain?: string;
+  label?: string;
+  connections?: string[];
+};
+
+const buildSystemInstruction = (ctx: PropertyContext) => {
+  const target = ctx.domain?.trim();
+  const label = ctx.label?.trim();
+  const connectedNames = (ctx.connections ?? [])
+    .filter((c) => KNOWN_CONNECTIONS[c])
+    .map((c) => `- ${KNOWN_CONNECTIONS[c]}`);
+
+  const propertyLine = target
+    ? label
+      ? `The user's active property is: ${target} (${label}). Always reason in the context of that domain unless the user explicitly points to a different one.`
+      : `The user's active property is: ${target}. Always reason in the context of that domain unless the user explicitly points to a different one.`
+    : "The user hasn't selected an active property yet. If they reference a specific website, anchor your answer to that domain. Otherwise, recommend they add one at /seo-agent/connect.";
+
+  const connectionsBlock =
+    connectedNames.length > 0
+      ? [
+          "",
+          "Connected data sources (the user has granted access to these for this property):",
+          ...connectedNames,
+          "",
+          "Rules for connected sources:",
+          "- You may reference these sources by name when giving advice (e.g. \"Based on GSC data...\", \"Per GA4 engagement metrics...\").",
+          "- NEVER invent specific numbers (impressions, sessions, KD scores, etc.). If the user hasn't provided real figures in the conversation, say so and ask them to share a screenshot or paste the numbers.",
+          "- Use the connections to shape HOW you'd answer, not to fabricate WHAT the data shows.",
+        ]
+      : [
+          "",
+          "No data sources are connected for this property yet.",
+          "- When a question would benefit from real data (rankings, traffic, backlinks), note which integration would answer it (GSC, GA4, Ahrefs, SEMrush) and suggest the user connect it at /seo-agent/connect.",
+          "- Still provide the best reasoning you can from general SEO knowledge.",
+        ];
+
   return [
     "You are Ryze SEO Agent — a senior, data-driven SEO consultant.",
     "You help the user improve organic visibility, rankings, content strategy,",
     "technical SEO, and keyword targeting.",
     "",
-    target
-      ? `The user's target website is: ${target}. Always reason in the context of that domain unless the user explicitly points to a different one.`
-      : "If the user references a specific website, anchor your answer to that domain.",
+    propertyLine,
+    ...connectionsBlock,
     "",
     "Response rules:",
     "- Be concise and concrete. Default to 2–4 short paragraphs or a tight bullet list.",
@@ -42,16 +84,22 @@ const buildSystemInstruction = (domain?: string) => {
     "Suggested next actions (REQUIRED when your response surfaces anything to fix or improve):",
     "- After the main response, append a block delimited exactly by `[ACTIONS]` and `[/ACTIONS]` on their own lines.",
     "- Inside the block, list 2–4 short imperative prompts the user could send next to act on your findings.",
-    "- Each action goes on its own line prefixed with `- ` (dash + space). No other formatting, no tags, no trailing punctuation besides `?` if it's a question.",
-    "- Each action must be self-contained (readable without context) and ≤ 80 characters.",
+    "- Each action goes on its own line prefixed with `- ` (dash + space), followed by an urgency tag, then the action text.",
+    "- Urgency tag is one of exactly three values: `[HIGH]`, `[MED]`, `[LOW]`. Place the tag immediately after the dash, before the text.",
+    "  - [HIGH] = broken, missing, or actively hurting rankings — the user should work on this first.",
+    "  - [MED]  = should address soon, but not blocking — moderate priority.",
+    "  - [LOW]  = nice-to-have, growth opportunity, polish — safe to defer.",
+    "- Urgency must match the severity of the underlying finding. A [FIX] finding should produce a [HIGH] action. A [WARN] finding usually maps to [MED]. Pure-opportunity improvements (content expansion, keyword research) are typically [LOW].",
+    "- Each action text must be self-contained (readable without context) and ≤ 80 characters. No trailing punctuation besides `?` if it's a question.",
     "- If the response is purely informational with nothing to fix/improve, OMIT the block entirely. Do not emit an empty one.",
     "- The block must be the very last thing in your message — nothing after `[/ACTIONS]`.",
     "",
     "Example action block:",
     "[ACTIONS]",
-    "- Draft a better meta description for the homepage",
-    "- Suggest 3 internal link targets from the blog",
-    "- Rewrite the duplicated H1 on the product template",
+    "- [HIGH] Add the missing meta description to the homepage",
+    "- [HIGH] Rewrite the duplicated H1 on the product template",
+    "- [MED] Suggest 3 internal link targets from the blog",
+    "- [LOW] Draft 5 blog topic ideas around the core keyword",
     "[/ACTIONS]",
   ].join("\n");
 };
@@ -61,6 +109,14 @@ type Body = {
   prompt?: unknown;
   messages?: unknown;
   domain?: unknown;
+  label?: unknown;
+  connections?: unknown;
+};
+
+const toConnections = (raw: unknown): string[] | undefined => {
+  if (!Array.isArray(raw)) return undefined;
+  const list = raw.filter((c): c is string => typeof c === "string");
+  return list.length > 0 ? list : undefined;
 };
 
 const toTurns = (body: Body): ChatTurn[] | null => {
@@ -104,10 +160,13 @@ export const handlePost = async (req: NextRequest) => {
     );
   }
 
-  const domain = typeof body.domain === "string" ? body.domain : undefined;
+  const context: PropertyContext = {
+    domain: typeof body.domain === "string" ? body.domain : undefined,
+    label: typeof body.label === "string" ? body.label : undefined,
+    connections: toConnections(body.connections),
+  };
 
-  const result = await callChat(turns, buildSystemInstruction(domain));
-
+  const result = await callChat(turns, buildSystemInstruction(context));
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: result.status });
   }

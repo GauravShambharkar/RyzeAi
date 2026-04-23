@@ -52,11 +52,10 @@ export const ChatInput = ({ value, onChange, onSend, disabled }: Props) => {
             type="submit"
             disabled={!canSubmit}
             aria-label="Send message"
-            className={`h-9 w-9 rounded-full flex items-center justify-center transition-all duration-200 ${
-              canSubmit
-                ? "bg-emerald-500 text-white hover:bg-emerald-600 shadow-[0_6px_20px_-4px_rgba(16,185,129,0.5)]"
-                : "bg-neutral-100 text-neutral-400 cursor-not-allowed"
-            }`}
+            className={`h-9 w-9 rounded-full flex items-center justify-center transition-all duration-200 ${canSubmit
+              ? "bg-emerald-500 text-white hover:bg-emerald-600 shadow-[0_6px_20px_-4px_rgba(16,185,129,0.5)]"
+              : "bg-neutral-100 text-neutral-400 cursor-not-allowed"
+              }`}
           >
             <ArrowUp className="w-4 h-4" strokeWidth={2.5} />
           </button>

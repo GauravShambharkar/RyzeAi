@@ -3,7 +3,11 @@
 import { useCallback, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { chatStore, type ChatMessage } from "@/features/seo-agent/store/chat.store";
-import { domainStore } from "@/features/seo-agent/store/domain.store";
+import {
+  domainStore,
+  CONNECTIONS,
+  type ConnectionId,
+} from "@/features/seo-agent/store/domain.store";
 
 export type { ChatMessage as Message } from "@/features/seo-agent/store/chat.store";
 
@@ -15,15 +19,21 @@ const uid = () =>
 type ApiOk = { reply: string };
 type ApiErr = { error: string };
 
+type RequestContext = {
+  domain?: string;
+  label?: string;
+  connections?: ConnectionId[];
+};
+
 const fetchReply = async (
   messages: Pick<ChatMessage, "role" | "content">[],
-  domain: string,
+  context: RequestContext,
   signal: AbortSignal
 ): Promise<string> => {
   const res = await fetch("/api/v1/seo-agent", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages, domain }),
+    body: JSON.stringify({ messages, ...context }),
     signal,
   });
 
@@ -32,6 +42,20 @@ const fetchReply = async (
     throw new Error(data.error || `Request failed (${res.status})`);
   }
   return data.reply;
+};
+
+const buildRequestContext = (): RequestContext => {
+  const { properties, selectedId } = domainStore.getState();
+  const active = properties.find((p) => p.id === selectedId);
+  if (!active) return {};
+  const connections = CONNECTIONS
+    .filter((c) => active.connections[c.id])
+    .map((c) => c.id);
+  return {
+    domain: active.domain,
+    label: active.label,
+    connections,
+  };
 };
 
 const threadHistory = (threadId: string) => {
@@ -68,11 +92,11 @@ export const useChat = () => {
     async (threadId: string) => {
       setIsStreaming(true);
       const controller = new AbortController();
-      const domain = domainStore.getState().selected;
+      const context = buildRequestContext();
       const history = threadHistory(threadId);
 
       try {
-        const reply = await fetchReply(history, domain, controller.signal);
+        const reply = await fetchReply(history, context, controller.signal);
         appendMessage(threadId, {
           id: uid(),
           role: "assistant",

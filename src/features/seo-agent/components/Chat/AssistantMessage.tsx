@@ -4,7 +4,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { StatusPill, type StatusKind } from "./StatusPill";
-import { ActionPills } from "./ActionPills";
+import { ActionPills, type Action, type ActionUrgency } from "./ActionPills";
 
 type Props = {
   content: string;
@@ -13,10 +13,17 @@ type Props = {
 };
 
 const ACTIONS_RE = /\[ACTIONS\]([\s\S]*?)\[\/ACTIONS\]\s*$/;
+const URGENCY_RE = /^\[(HIGH|MED|LOW)\]\s*/i;
+
+const URGENCY_MAP: Record<string, ActionUrgency> = {
+  HIGH: "high",
+  MED: "med",
+  LOW: "low",
+};
 
 // Pulls the trailing [ACTIONS]...[/ACTIONS] block (if present) off the message
-// content and returns the cleaned body + parsed action lines.
-const extractActions = (raw: string): { body: string; actions: string[] } => {
+// content and returns the cleaned body + parsed action lines with urgency.
+const extractActions = (raw: string): { body: string; actions: Action[] } => {
   const match = raw.match(ACTIONS_RE);
   if (!match) return { body: raw, actions: [] };
 
@@ -25,7 +32,18 @@ const extractActions = (raw: string): { body: string; actions: string[] } => {
     .split("\n")
     .map((line) => line.trim())
     .map((line) => line.replace(/^[-*]\s+/, ""))
-    .filter(Boolean);
+    .filter(Boolean)
+    .map<Action>((line) => {
+      const tagMatch = line.match(URGENCY_RE);
+      if (tagMatch) {
+        return {
+          text: line.slice(tagMatch[0].length).trim(),
+          urgency: URGENCY_MAP[tagMatch[1].toUpperCase()] ?? "med",
+        };
+      }
+      return { text: line, urgency: "med" };
+    })
+    .filter((a) => a.text.length > 0);
 
   return { body, actions };
 };
