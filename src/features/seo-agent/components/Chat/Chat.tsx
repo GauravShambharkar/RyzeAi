@@ -18,6 +18,7 @@ export const Chat = ({ userEmail }: Props) => {
     isStreaming,
     setInput,
     sendMessage,
+    editMessage,
     selectThread,
     deleteThread,
     newChat,
@@ -49,6 +50,7 @@ export const Chat = ({ userEmail }: Props) => {
             messages={messages}
             isStreaming={isStreaming}
             onExamplePrompt={sendMessage}
+            onEditMessage={editMessage}
           />
           <ChatInput
             value={input}

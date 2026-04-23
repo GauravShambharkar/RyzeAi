@@ -34,6 +34,14 @@ const fetchReply = async (
   return data.reply;
 };
 
+const threadHistory = (threadId: string) => {
+  const thread = chatStore.getState().threads.find((t) => t.id === threadId);
+  return (thread?.messages ?? []).map((m) => ({
+    role: m.role,
+    content: m.content,
+  }));
+};
+
 export const useChat = () => {
   const threads = chatStore((s) => s.threads);
   const activeThreadId = chatStore((s) => s.activeThreadId);
@@ -44,6 +52,9 @@ export const useChat = () => {
   const renameThreadFromFirstMessage = chatStore(
     (s) => s.renameThreadFromFirstMessage
   );
+  const editUserMessageAndTruncate = chatStore(
+    (s) => s.editUserMessageAndTruncate
+  );
 
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -51,6 +62,32 @@ export const useChat = () => {
   const activeThread = useMemo(
     () => threads.find((t) => t.id === activeThreadId) ?? null,
     [threads, activeThreadId]
+  );
+
+  const requestReply = useCallback(
+    async (threadId: string) => {
+      setIsStreaming(true);
+      const controller = new AbortController();
+      const domain = domainStore.getState().selected;
+      const history = threadHistory(threadId);
+
+      try {
+        const reply = await fetchReply(history, domain, controller.signal);
+        appendMessage(threadId, {
+          id: uid(),
+          role: "assistant",
+          content: reply,
+          timestamp: Date.now(),
+        });
+      } catch (err) {
+        const msg =
+          err instanceof Error ? err.message : "Something went wrong. Try again.";
+        toast.error("SEO Agent couldn't respond", { description: msg });
+      } finally {
+        setIsStreaming(false);
+      }
+    },
+    [appendMessage]
   );
 
   const sendMessage = useCallback(
@@ -64,46 +101,19 @@ export const useChat = () => {
       const currentThread = chatStore
         .getState()
         .threads.find((t) => t.id === threadId);
-      const priorMessages = currentThread?.messages ?? [];
-      const isFirstMessage = priorMessages.length === 0;
+      const isFirstMessage = (currentThread?.messages.length ?? 0) === 0;
 
-      const userMsg: ChatMessage = {
+      appendMessage(threadId, {
         id: uid(),
         role: "user",
         content: trimmed,
         timestamp: Date.now(),
-      };
-      appendMessage(threadId, userMsg);
+      });
 
       if (isFirstMessage) renameThreadFromFirstMessage(threadId, trimmed);
 
       setInput("");
-      setIsStreaming(true);
-
-      const controller = new AbortController();
-      const domain = domainStore.getState().selected;
-      const history = [...priorMessages, userMsg].map((m) => ({
-        role: m.role,
-        content: m.content,
-      }));
-
-      try {
-        const reply = await fetchReply(history, domain, controller.signal);
-        appendMessage(threadId, {
-          id: uid(),
-          role: "assistant",
-          content: reply,
-          timestamp: Date.now(),
-        });
-      } catch (err) {
-        const msg =
-          err instanceof Error ? err.message : "Something went wrong. Try again.";
-        toast.error("SEO Agent couldn't respond", {
-          description: msg,
-        });
-      } finally {
-        setIsStreaming(false);
-      }
+      await requestReply(threadId);
     },
     [
       activeThreadId,
@@ -111,7 +121,22 @@ export const useChat = () => {
       createThread,
       isStreaming,
       renameThreadFromFirstMessage,
+      requestReply,
     ]
+  );
+
+  const editMessage = useCallback(
+    async (messageId: string, newContent: string) => {
+      if (isStreaming) return;
+      const threadId = activeThreadId;
+      if (!threadId) return;
+
+      const ok = editUserMessageAndTruncate(threadId, messageId, newContent);
+      if (!ok) return;
+
+      await requestReply(threadId);
+    },
+    [activeThreadId, editUserMessageAndTruncate, isStreaming, requestReply]
   );
 
   const newChat = useCallback(() => {
@@ -136,6 +161,7 @@ export const useChat = () => {
     isStreaming,
     setInput,
     sendMessage,
+    editMessage,
     selectThread,
     deleteThread: deleteThreadWithToast,
     newChat,

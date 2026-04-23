@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isConfigured, modelName } from "./openai";
+import { isConfigured, modelName } from "./groq";
 
 // GET /api/v1/seo-agent — lightweight health/status probe.
 // Returns whether the upstream model is configured and reachable-by-config.

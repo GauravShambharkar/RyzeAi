@@ -27,6 +27,11 @@ type ChatState = {
   deleteThread: (id: string) => void;
   appendMessage: (threadId: string, message: ChatMessage) => void;
   renameThreadFromFirstMessage: (threadId: string, firstUserMessage: string) => void;
+  editUserMessageAndTruncate: (
+    threadId: string,
+    messageId: string,
+    newContent: string
+  ) => boolean;
 };
 
 const uid = () =>
@@ -88,6 +93,42 @@ export const chatStore = create<ChatState>()(
             t.id === threadId ? { ...t, title: deriveTitle(firstUserMessage) } : t
           ),
         })),
+
+      editUserMessageAndTruncate: (threadId, messageId, newContent) => {
+        const trimmed = newContent.trim();
+        if (!trimmed) return false;
+
+        let didEdit = false;
+
+        set((s) => ({
+          threads: s.threads.map((t) => {
+            if (t.id !== threadId) return t;
+            const idx = t.messages.findIndex((m) => m.id === messageId);
+            if (idx === -1) return t;
+            const target = t.messages[idx];
+            if (target.role !== "user") return t;
+
+            didEdit = true;
+            const kept = t.messages.slice(0, idx);
+            const edited: ChatMessage = {
+              ...target,
+              content: trimmed,
+              timestamp: Date.now(),
+            };
+            const nextMessages = [...kept, edited];
+            const nextTitle = idx === 0 ? deriveTitle(trimmed) : t.title;
+
+            return {
+              ...t,
+              messages: nextMessages,
+              title: nextTitle,
+              updatedAt: Date.now(),
+            };
+          }),
+        }));
+
+        return didEdit;
+      },
     }),
     { name: "seo-chat-v2" }
   )

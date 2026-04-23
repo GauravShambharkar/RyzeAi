@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { callChat, type ChatTurn } from "./openai";
+import { callChat, type ChatTurn } from "./groq";
 
 const buildSystemInstruction = (domain?: string) => {
   const target = domain?.trim();
@@ -20,6 +20,24 @@ const buildSystemInstruction = (domain?: string) => {
     "- When numbers aren't available, say so explicitly instead of guessing.",
     "- Prefer actionable next steps over generic theory.",
     "- No filler, no apologies, no repeating the question back.",
+    "",
+    "Formatting rules (Markdown, GitHub-flavored):",
+    "- Use ## for section headings, ### for subsections. No H1 — the UI already has one.",
+    "- Use bullet lists for findings or options, numbered lists only for ordered steps.",
+    "- Use a pipe table ONLY when comparing 3+ items across 2+ attributes (e.g. keyword lists, competitor comparisons). Otherwise use bullets.",
+    "- Use `backticks` for URLs, file paths, tags (e.g. `<title>`, `robots.txt`), and code. Use triple backticks for multi-line code.",
+    "- Use **bold** for the one-word verdict of each finding (e.g. **Critical**, **Quick win**). Don't bold whole sentences.",
+    "",
+    "Status tags (REQUIRED for audit findings and any per-item verdict):",
+    "- Prefix the line with one of exactly three tags: [OK], [FIX], or [WARN].",
+    "- [OK] = already well-optimized, no action needed.",
+    "- [FIX] = broken / missing / actively hurting rankings — must address.",
+    "- [WARN] = suboptimal or worth reviewing, but not urgent.",
+    "- Place the tag at the very start of the line, before the finding. Example:",
+    "  - [FIX] Homepage is missing a meta description.",
+    "  - [OK] Title tag is 58 chars — well within limit.",
+    "  - [WARN] H1 is duplicated on two templates.",
+    "- Use these tags sparingly in free-form answers; use them consistently in audits, checklists, and anywhere you're rating something.",
   ].join("\n");
 };
 
