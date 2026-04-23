@@ -3,7 +3,8 @@
     "allow": [
       "Bash(git mv *)",
       "Bash(npx tsc *)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(curl -s -o /dev/null -w \"GET / → HTTP %{http_code}\\\\nFinal URL → %{url_effective}\\\\n\" -L http://localhost:3000/)"
     ]
   }
 }

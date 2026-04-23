@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { toast } from "sonner";
 
 // Hardcoded gate — replace with real auth before going public.
 const VALID_EMAIL = process.env.EMAIL_ID || "admin@ryze.ai";
@@ -75,8 +76,13 @@ export const useLogin = () => {
                     JSON.stringify({ email: cleanEmail, password })
                 );
                 window.dispatchEvent(new Event(AUTH_EVENT));
+                toast.success("Welcome back", {
+                    description: "Signed in to Ryze SEO Agent.",
+                });
             } else {
-                setError("Incorrect email or password.");
+                const msg = "Incorrect email or password.";
+                setError(msg);
+                toast.error("Sign-in failed", { description: msg });
             }
             setIsSubmitting(false);
         }, SUBMIT_DELAY_MS);
@@ -91,6 +97,7 @@ export const useLogin = () => {
             window.localStorage.removeItem(STORAGE_KEY);
             window.dispatchEvent(new Event(AUTH_EVENT));
         }
+        toast.success("Signed out");
     };
 
     return {

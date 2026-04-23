@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isConfigured, modelName } from "./gemini";
+import { isConfigured, modelName } from "./openai";
 
 // GET /api/v1/seo-agent — lightweight health/status probe.
 // Returns whether the upstream model is configured and reachable-by-config.

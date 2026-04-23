@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { toast } from "sonner";
 import { chatStore, type ChatMessage } from "@/features/seo-agent/store/chat.store";
 import { domainStore } from "@/features/seo-agent/store/domain.store";
 
@@ -46,7 +47,6 @@ export const useChat = () => {
 
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const activeThread = useMemo(
     () => threads.find((t) => t.id === activeThreadId) ?? null,
@@ -79,7 +79,6 @@ export const useChat = () => {
 
       setInput("");
       setIsStreaming(true);
-      setError(null);
 
       const controller = new AbortController();
       const domain = domainStore.getState().selected;
@@ -99,7 +98,9 @@ export const useChat = () => {
       } catch (err) {
         const msg =
           err instanceof Error ? err.message : "Something went wrong. Try again.";
-        setError(msg);
+        toast.error("SEO Agent couldn't respond", {
+          description: msg,
+        });
       } finally {
         setIsStreaming(false);
       }
@@ -116,10 +117,15 @@ export const useChat = () => {
   const newChat = useCallback(() => {
     createThread();
     setInput("");
-    setError(null);
   }, [createThread]);
 
-  const dismissError = useCallback(() => setError(null), []);
+  const deleteThreadWithToast = useCallback(
+    (id: string) => {
+      deleteThread(id);
+      toast.success("Chat deleted");
+    },
+    [deleteThread]
+  );
 
   return {
     threads,
@@ -128,12 +134,10 @@ export const useChat = () => {
     messages: activeThread?.messages ?? [],
     input,
     isStreaming,
-    error,
     setInput,
     sendMessage,
     selectThread,
-    deleteThread,
+    deleteThread: deleteThreadWithToast,
     newChat,
-    dismissError,
   };
 };

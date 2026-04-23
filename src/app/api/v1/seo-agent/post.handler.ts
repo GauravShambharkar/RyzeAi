@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { callGemini, type GeminiTurn } from "./gemini";
+import { callChat, type ChatTurn } from "./openai";
 
 const buildSystemInstruction = (domain?: string) => {
   const target = domain?.trim();
@@ -30,15 +30,15 @@ type Body = {
   domain?: unknown;
 };
 
-const toTurns = (body: Body): GeminiTurn[] | null => {
+const toTurns = (body: Body): ChatTurn[] | null => {
   if (Array.isArray(body.messages)) {
-    const turns: GeminiTurn[] = [];
+    const turns: ChatTurn[] = [];
     for (const m of body.messages as IncomingMessage[]) {
       const role = m?.role;
       const content = m?.content;
       if (typeof content !== "string" || !content.trim()) continue;
       if (role === "user") turns.push({ role: "user", text: content });
-      else if (role === "assistant") turns.push({ role: "model", text: content });
+      else if (role === "assistant") turns.push({ role: "assistant", text: content });
     }
     return turns.length > 0 ? turns : null;
   }
@@ -73,7 +73,7 @@ export const handlePost = async (req: NextRequest) => {
 
   const domain = typeof body.domain === "string" ? body.domain : undefined;
 
-  const result = await callGemini(turns, buildSystemInstruction(domain));
+  const result = await callChat(turns, buildSystemInstruction(domain));
 
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: result.status });
