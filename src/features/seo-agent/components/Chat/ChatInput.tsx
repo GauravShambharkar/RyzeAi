@@ -43,7 +43,7 @@ export const ChatInput = ({ value, onChange, onSend, disabled }: Props) => {
           onKeyDown={onKeyDown}
           placeholder="Message SEO Agent..."
           rows={2}
-          className="w-full resize-none bg-transparent px-4 pt-3 pb-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none min-h-[56px] max-h-52 leading-relaxed scrollbar-chat"
+          className="w-full resize-none bg-transparent px-4 pt-3 pb-2 text-xs md:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none min-h-[56px] max-h-52 leading-relaxed scrollbar-chat"
         />
 
         <div className="flex items-center justify-between gap-3 px-3 pb-2.5 pt-1">

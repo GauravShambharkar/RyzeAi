@@ -69,6 +69,9 @@ export const Navbar = () => {
     router.replace("/login");
   };
 
+  // The SEO Agent route owns its chrome (ChatHeader). Don't render the global nav there.
+  if (pathname?.startsWith("/seo-agent")) return null;
+
   return (
     <nav
       ref={navRef}

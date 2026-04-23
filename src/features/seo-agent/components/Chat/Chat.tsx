@@ -27,6 +27,8 @@ export const Chat = ({ userEmail }: Props) => {
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-neutral-900">
+      <ChatHeader userEmail={userEmail} />
+
       <Sidebar
         threads={threads}
         activeThreadId={activeThreadId}
@@ -43,7 +45,6 @@ export const Chat = ({ userEmail }: Props) => {
         }`}
       >
         <div className="flex-1 flex flex-col gap-4 max-w-5xl mx-auto w-full px-4 sm:px-6">
-          <ChatHeader userEmail={userEmail} />
           <ChatMessages
             messages={messages}
             isStreaming={isStreaming}
