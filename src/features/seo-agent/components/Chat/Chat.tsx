@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useChat } from "@/features/seo-agent/hooks/chat.hook";
 import { ChatHeader } from "./ChatHeader";
 import { ChatMessages } from "./ChatMessages";
@@ -25,6 +25,21 @@ export const Chat = ({ userEmail }: Props) => {
   } = useChat();
 
   const [collapsed, setCollapsed] = useState(false);
+
+  // Handle ?ask=... query param. Dashboard cards and future deep links land
+  // here with a pre-filled prompt; we auto-send it once and scrub the URL so
+  // refresh/back/forward don't re-fire it.
+  const askConsumedRef = useRef(false);
+  useEffect(() => {
+    if (askConsumedRef.current) return;
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const ask = params.get("ask");
+    if (!ask || !ask.trim()) return;
+    askConsumedRef.current = true;
+    window.history.replaceState({}, "", "/seo-agent");
+    sendMessage(ask);
+  }, [sendMessage]);
 
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-neutral-900">

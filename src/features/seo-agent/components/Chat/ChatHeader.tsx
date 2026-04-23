@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LogOut, Plug } from "lucide-react";
+import { LogOut, Plug, LayoutDashboard } from "lucide-react";
 import { useLogin } from "@/features/seo-agent/hooks/login.hook";
 
 type Props = { userEmail: string };
@@ -31,8 +31,15 @@ export const ChatHeader = ({ userEmail }: Props) => {
           </h1>
         </div>
 
-        {/* Right — manage + user + sign out */}
+        {/* Right — dashboard + manage + user + sign out */}
         <div className="flex items-center gap-2 md:gap-3">
+          <Link
+            href="/seo-agent/dashboard"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white hover:bg-neutral-50 hover:border-emerald-500/25 text-neutral-700 hover:text-emerald-700 px-3 py-2 text-xs md:text-sm font-medium transition-all"
+          >
+            <LayoutDashboard className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Dashboard</span>
+          </Link>
           <Link
             href="/seo-agent/connect"
             className="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white hover:bg-neutral-50 hover:border-emerald-500/25 text-neutral-700 hover:text-emerald-700 px-3 py-2 text-xs md:text-sm font-medium transition-all"
