@@ -48,19 +48,19 @@ export const WebVitalsSection = ({ vitals, domain }: Props) => {
 
   return (
     <section>
-      <div className="flex items-baseline justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <Gauge className="w-4 h-4 text-emerald-600" />
-          <h2 className="font-display text-lg md:text-xl tracking-tight text-neutral-900">
+      <div className="flex items-baseline justify-between gap-2 mb-3 sm:mb-4">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <Gauge className="w-4 h-4 text-emerald-600 shrink-0" />
+          <h2 className="font-display text-base sm:text-lg md:text-xl tracking-tight text-neutral-900 truncate">
             Core Web Vitals
           </h2>
         </div>
-        <span className="text-[11px] text-neutral-500 font-mono">
-          Field data, last 28 days
+        <span className="text-[10px] sm:text-[11px] text-neutral-500 font-mono shrink-0">
+          Last 28 days
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         {vitals.map((v) => {
           const s = BAND_STYLES[v.band];
           return (
@@ -68,34 +68,34 @@ export const WebVitalsSection = ({ vitals, domain }: Props) => {
               key={v.id}
               type="button"
               onClick={() => askForFix(v)}
-              className={`group text-left rounded-3xl border bg-white px-5 py-5 transition-all hover:-translate-y-0.5 ${s.border} ${s.bg}`}
+              className={`group text-left rounded-2xl sm:rounded-3xl border bg-white p-4 sm:px-5 sm:py-5 transition-all hover:-translate-y-0.5 ${s.border} ${s.bg}`}
             >
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-2 sm:mb-3">
                 <span className={`w-2 h-2 rounded-full ${s.dot}`} aria-hidden />
                 <span
-                  className={`text-[10px] uppercase tracking-wide font-semibold ${s.text}`}
+                  className={`text-[9px] sm:text-[10px] uppercase tracking-wide font-semibold ${s.text}`}
                 >
                   {s.label}
                 </span>
               </div>
 
-              <div className="flex items-baseline gap-2">
-                <div className={`font-display text-3xl md:text-4xl tracking-tighter text-neutral-900`}>
+              <div className="flex items-baseline gap-1.5 sm:gap-2">
+                <div className="font-display text-2xl sm:text-3xl md:text-4xl tracking-tighter text-neutral-900 leading-none">
                   {v.valueLabel}
                 </div>
-                <div className="text-[11px] text-neutral-400 font-mono">
+                <div className="text-[10px] sm:text-[11px] text-neutral-400 font-mono">
                   {v.target}
                 </div>
               </div>
 
-              <div className="mt-3 text-xs font-medium text-neutral-800 leading-snug">
+              <div className="mt-2 sm:mt-3 text-[11px] sm:text-xs font-medium text-neutral-800 leading-snug">
                 {v.label}
               </div>
-              <div className="mt-1 text-[11px] text-neutral-500 leading-relaxed">
+              <div className="mt-0.5 sm:mt-1 text-[10px] sm:text-[11px] text-neutral-500 leading-relaxed line-clamp-2">
                 {v.helper}
               </div>
 
-              <div className="mt-4 pt-3 border-t border-black/5 flex items-center justify-between text-[11px] font-medium text-neutral-500 group-hover:text-emerald-700 transition-colors">
+              <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-black/5 flex items-center justify-between text-[10px] sm:text-[11px] font-medium text-neutral-500 group-hover:text-emerald-700 transition-colors">
                 Ask AI to fix
                 <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>

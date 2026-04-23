@@ -34,36 +34,36 @@ export const PropertySwitcher = () => {
   const activeCount = active ? connectionCount(active) : 0;
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative w-full md:w-auto">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-2 rounded-2xl border border-black/5 bg-white hover:border-emerald-500/30 px-4 py-2.5 text-sm transition-all shadow-[0_4px_16px_-8px_rgba(20,20,20,0.1)]"
+        className="w-full md:w-auto inline-flex items-center gap-2 rounded-2xl border border-black/5 bg-white hover:border-emerald-500/30 px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm transition-all shadow-[0_4px_16px_-8px_rgba(20,20,20,0.1)]"
       >
-        <Globe className="w-4 h-4 text-emerald-600" />
-        <div className="text-left min-w-0">
-          <div className="font-mono text-neutral-900 truncate max-w-[200px]">
+        <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
+        <div className="text-left min-w-0 flex-1 md:flex-initial">
+          <div className="font-mono text-neutral-900 truncate max-w-[160px] sm:max-w-[200px]">
             {active?.domain ?? "No property"}
           </div>
           {active?.label && (
-            <div className="text-[10px] text-neutral-500 truncate">
+            <div className="text-[9px] sm:text-[10px] text-neutral-500 truncate">
               {active.label}
             </div>
           )}
         </div>
         {active && (
-          <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-500/10 text-emerald-700 px-2 py-0.5 text-[10px] font-medium tabular-nums">
+          <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-500/10 text-emerald-700 px-1.5 sm:px-2 py-0.5 text-[10px] font-medium tabular-nums shrink-0">
             <Plug className="w-2.5 h-2.5" />
             {activeCount}
           </span>
         )}
         <ChevronDown
-          className={`w-4 h-4 text-neutral-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 transition-transform duration-200 shrink-0 ${open ? "rotate-180" : ""}`}
         />
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 min-w-[320px] rounded-2xl border border-black/5 bg-white shadow-[0_20px_60px_-16px_rgba(20,20,20,0.2)] overflow-hidden z-20">
+        <div className="absolute left-0 md:left-auto md:right-0 top-full mt-2 w-full md:w-auto md:min-w-[320px] rounded-2xl border border-black/5 bg-white shadow-[0_20px_60px_-16px_rgba(20,20,20,0.2)] overflow-hidden z-20">
           <div className="px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-neutral-500 border-b border-black/5 bg-neutral-50/70">
             Switch property
           </div>

@@ -15,11 +15,11 @@ export const HeroEmailForm = () => (
     <input
       type="email"
       placeholder="Enter your email"
-      className="flex-1 h-10 rounded-full bg-white/15 border border-white/25 backdrop-blur-md px-4 text-sm text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[#e35a32]/50"
+      className="flex-1 h-12 rounded-full bg-white/15 border border-white/25 backdrop-blur-md px-5 text-sm text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-[#e35a32]/50"
     />
     <button
       type="submit"
-      className="group inline-flex items-center justify-center gap-1.5 h-10 rounded-full bg-white text-neutral-900 px-5 text-sm font-semibold hover:bg-white/90 hover:shadow-lg transition-all shrink-0"
+      className="group inline-flex items-center justify-center gap-1.5 h-12 rounded-full bg-white text-neutral-900 px-5 text-sm font-semibold hover:bg-white/90 hover:shadow-lg transition-all shrink-0"
     >
       Get started
       <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

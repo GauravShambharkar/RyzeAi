@@ -25,15 +25,15 @@ export const Dashboard = ({ userEmail }: Props) => {
     <div className="min-h-screen bg-[#FAF7F2] text-neutral-900">
       <DashboardHeader userEmail={userEmail} />
 
-      <main className="pt-24 pb-16 px-4 sm:px-6">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16 px-3 sm:px-4 md:px-6">
         <div className="max-w-[1400px] mx-auto">
           {/* Page intro + property switcher */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 md:mb-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 md:gap-4 mb-5 sm:mb-6 md:mb-8">
             <div>
-              <div className="text-[10px] uppercase tracking-[0.25em] text-neutral-500 font-semibold mb-2">
+              <div className="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-neutral-500 font-semibold mb-1.5 sm:mb-2">
                 Domain dashboard
               </div>
-              <h1 className="font-display text-3xl md:text-4xl tracking-tighter text-neutral-900 leading-tight">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl tracking-tighter text-neutral-900 leading-tight">
                 A snapshot of{" "}
                 <span className="italic text-emerald-700">where you stand.</span>
               </h1>
@@ -42,27 +42,27 @@ export const Dashboard = ({ userEmail }: Props) => {
           </div>
 
           {!active || !data ? (
-            <div className="rounded-3xl border border-dashed border-black/10 bg-white/40 p-10 text-center">
+            <div className="rounded-3xl border border-dashed border-black/10 bg-white/40 p-6 sm:p-10 text-center">
               <Globe className="w-6 h-6 text-neutral-300 mx-auto mb-3" />
-              <p className="text-sm text-neutral-600 mb-4">
+              <p className="text-xs sm:text-sm text-neutral-600 mb-4">
                 Add a property to see its dashboard.
               </p>
               <Link
                 href="/seo-agent/connect"
-                className="inline-flex items-center gap-2 rounded-full bg-neutral-900 text-white px-4 py-2.5 text-sm font-medium hover:bg-neutral-800 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-neutral-900 text-white px-4 py-2.5 text-xs sm:text-sm font-medium hover:bg-neutral-800 transition-colors"
               >
                 Add a property
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           ) : (
-            <div className="space-y-8 md:space-y-10">
+            <div className="space-y-6 sm:space-y-8 md:space-y-10">
               <OverviewCard data={data} domain={active.domain} />
               <WebVitalsSection
                 vitals={data.webVitals}
                 domain={active.domain}
               />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8">
                 <KeywordRankings
                   keywords={data.keywords}
                   domain={active.domain}
@@ -71,7 +71,7 @@ export const Dashboard = ({ userEmail }: Props) => {
               </div>
 
               {/* Disclaimer */}
-              <div className="rounded-2xl border border-dashed border-black/10 bg-white/40 px-4 py-3 text-[11px] text-neutral-500 leading-relaxed">
+              <div className="rounded-2xl border border-dashed border-black/10 bg-white/40 px-3 sm:px-4 py-2.5 sm:py-3 text-[10px] sm:text-[11px] text-neutral-500 leading-relaxed">
                 Sample metrics shown here. Connect{" "}
                 <Link
                   href="/seo-agent/connect"

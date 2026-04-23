@@ -51,19 +51,19 @@ export const IssuesList = ({ issues, domain }: Props) => {
 
   return (
     <section>
-      <div className="flex items-baseline justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <AlertOctagon className="w-4 h-4 text-emerald-600" />
-          <h2 className="font-display text-lg md:text-xl tracking-tight text-neutral-900">
+      <div className="flex items-baseline justify-between gap-2 mb-3 sm:mb-4">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <AlertOctagon className="w-4 h-4 text-emerald-600 shrink-0" />
+          <h2 className="font-display text-base sm:text-lg md:text-xl tracking-tight text-neutral-900 truncate">
             Issues to fix
           </h2>
         </div>
-        <span className="text-[11px] text-neutral-500 font-mono tabular-nums">
+        <span className="text-[10px] sm:text-[11px] text-neutral-500 font-mono tabular-nums shrink-0">
           {issues.length} open
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
         {issues.map((issue) => {
           const s = SEVERITY_STYLES[issue.severity];
           return (
@@ -71,33 +71,33 @@ export const IssuesList = ({ issues, domain }: Props) => {
               key={issue.id}
               type="button"
               onClick={() => askForFix(issue)}
-              className={`group text-left rounded-3xl border bg-white p-5 transition-all hover:-translate-y-0.5 ${s.border} ${s.pill}`}
+              className={`group text-left rounded-2xl sm:rounded-3xl border bg-white p-4 sm:p-5 transition-all hover:-translate-y-0.5 ${s.border} ${s.pill}`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-2 min-w-0">
+              <div className="flex items-start justify-between gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
                   <span className={`w-2 h-2 rounded-full shrink-0 ${s.dot}`} aria-hidden />
                   <span
-                    className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${s.badge}`}
+                    className={`inline-flex items-center rounded-full border px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide ${s.badge}`}
                   >
                     {s.label}
                   </span>
                 </div>
-                <div className="font-mono text-xs tabular-nums text-neutral-900 shrink-0">
+                <div className="font-mono text-[11px] sm:text-xs tabular-nums text-neutral-900 shrink-0">
                   {issue.count}
                   <span className="text-neutral-400 font-normal">
-                    {issue.count === 1 ? " page" : " pages"}
+                    {issue.count === 1 ? " pg" : " pgs"}
                   </span>
                 </div>
               </div>
 
-              <h3 className="mt-3 font-medium text-sm md:text-base text-neutral-900 leading-snug">
+              <h3 className="mt-2.5 sm:mt-3 font-medium text-xs sm:text-sm md:text-base text-neutral-900 leading-snug">
                 {issue.title}
               </h3>
-              <p className="mt-1 text-xs text-neutral-600 leading-relaxed line-clamp-2">
+              <p className="mt-1 text-[11px] sm:text-xs text-neutral-600 leading-relaxed line-clamp-2">
                 {issue.detail}
               </p>
 
-              <div className="mt-4 pt-3 border-t border-black/5 flex items-center justify-between text-[11px] font-medium text-neutral-500 group-hover:text-emerald-700 transition-colors">
+              <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-black/5 flex items-center justify-between text-[10px] sm:text-[11px] font-medium text-neutral-500 group-hover:text-emerald-700 transition-colors">
                 Ask AI to fix
                 <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
