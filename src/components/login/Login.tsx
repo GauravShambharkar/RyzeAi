@@ -107,7 +107,6 @@ export const Login = () => {
                             </div>
                             <input
                                 type="email"
-                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@company.com"
                                 disabled={isSubmitting}
@@ -130,7 +129,6 @@ export const Login = () => {
                             </div>
                             <input
                                 type="password"
-                                value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
                                 disabled={isSubmitting}
