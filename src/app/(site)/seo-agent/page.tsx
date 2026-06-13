@@ -17,5 +17,5 @@ export default function SeoAgentPage() {
   // While hydrating, or if we're about to redirect, render nothing.
   if (!ready || !authed) return null;
 
-  return <Chat userEmail={email || ""} />;
+  return <Chat />;
 }
