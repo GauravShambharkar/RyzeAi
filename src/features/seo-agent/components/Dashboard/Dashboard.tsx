@@ -13,7 +13,7 @@ import { IssuesList } from "./IssuesList";
 
 type Props = { userEmail: string };
 
-export const Dashboard = ({ userEmail }: Props) => {
+export const Dashboard = () => {
   const active = useActiveProperty();
 
   return (
