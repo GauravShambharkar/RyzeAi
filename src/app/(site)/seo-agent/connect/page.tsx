@@ -15,5 +15,5 @@ export default function ConnectPage() {
 
   if (!ready || !authed) return null;
 
-  return <Connect userEmail={email} />;
+  return <Connect userEmail={email || ""} />;
 }
