@@ -15,5 +15,5 @@ export default function DashboardPage() {
 
   if (!ready || !authed) return null;
 
-  return <Dashboard userEmail={email} />;
+  return <Dashboard />;
 }
